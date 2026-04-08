@@ -1,0 +1,12 @@
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\bin\Debug\net8.0\Homestay.Domain.deps.json
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\bin\Debug\net8.0\Homestay.Domain.dll
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\bin\Debug\net8.0\Homestay.Domain.pdb
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\obj\Debug\net8.0\Homestay.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\obj\Debug\net8.0\Homestay.Domain.AssemblyInfoInputs.cache
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\obj\Debug\net8.0\Homestay.Domain.AssemblyInfo.cs
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\obj\Debug\net8.0\Homestay.Domain.csproj.CoreCompileInputs.cache
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\obj\Debug\net8.0\Homestay.Domain.sourcelink.json
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\obj\Debug\net8.0\Homestay.Domain.dll
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\obj\Debug\net8.0\refint\Homestay.Domain.dll
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\obj\Debug\net8.0\Homestay.Domain.pdb
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Domain\obj\Debug\net8.0\ref\Homestay.Domain.dll
