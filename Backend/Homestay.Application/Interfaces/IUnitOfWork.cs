@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace Homestay.Application.Interfaces
 {
-    public interface IUnitOfWork
+    //Kế thừa Idisposable để đảm bảo rằng các tài nguyên được giải phóng đúng cách sau khi sử unitof work
+    // Khi một đối tượng UnitOfWork được sử dụng trong một khối using,
+    // phương thức Dispose sẽ tự động được gọi khi khối using kết thúc,
+    // giúp đảm bảo rằng các tài nguyên được giải phóng đúng cách.
+    public interface IUnitOfWork //:IDisposable
     {
         public IUserRepository UserRepository { get; }
         void BeginTransaction();
