@@ -28,24 +28,24 @@ namespace Homestay.Api
                         ValidAudience = builder.Configuration["JwtBearer:aud"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtBearer:secret"]))
                     };
-                    options.Events = new JwtBearerEvents
-                    {
-                        OnMessageReceived = context =>
-                        {
-                            Console.WriteLine("Authorization Header: " + context.Request.Headers["Authorization"]);
-                            return Task.CompletedTask;
-                        },
-                        OnAuthenticationFailed = context =>
-                        {
-                            Console.WriteLine("AUTH FAILED: " + context.Exception.Message);
-                            return Task.CompletedTask;
-                        },
-                        OnChallenge = context =>
-                        {
-                            Console.WriteLine("CHALLENGE ERROR");
-                            return Task.CompletedTask;
-                        }
-                    };
+                    //options.Events = new JwtBearerEvents
+                    //{
+                    //    OnMessageReceived = context =>
+                    //    {
+                    //        Console.WriteLine("Authorization Header: " + context.Request.Headers["Authorization"]);
+                    //        return Task.CompletedTask;
+                    //    },
+                    //    OnAuthenticationFailed = context =>
+                    //    {
+                    //        Console.WriteLine("AUTH FAILED: " + context.Exception.Message);
+                    //        return Task.CompletedTask;
+                    //    },
+                    //    OnChallenge = context =>
+                    //    {
+                    //        Console.WriteLine("CHALLENGE ERROR");
+                    //        return Task.CompletedTask;
+                    //    }
+                    //};
                 });
 
             builder.Services.AddControllers();
