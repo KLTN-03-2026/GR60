@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Homestay.Application.DTOS.Users;
+using Homestay.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +10,7 @@ namespace Homestay.Application.Interfaces.Repositories
 {
     public interface IUserRepository
     {
-        public Task<bool> CheckUserLoginExistsAsync(string email,string matKhau);
+        public Task<UserResponse> CheckUserLoginExistsAsync(string email,string matKhau);
 
     }
 }
