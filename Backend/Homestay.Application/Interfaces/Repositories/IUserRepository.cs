@@ -8,5 +8,7 @@ namespace Homestay.Application.Interfaces.Repositories
 {
     public interface IUserRepository
     {
+        public Task<bool> CheckUserLoginExistsAsync(string email,string matKhau);
+
     }
 }

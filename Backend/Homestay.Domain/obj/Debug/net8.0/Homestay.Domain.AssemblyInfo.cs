@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Homestay.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8b51a2b3f64603658d9e46bc37b80f056ec15bf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+506aa9d4c23d4940da92a844862505084aed8df5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Homestay.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Homestay.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

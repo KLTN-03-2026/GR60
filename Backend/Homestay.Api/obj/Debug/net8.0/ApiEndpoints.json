@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "ContainingType": "Homestay.Api.Controllers.AuthController",
+    "Method": "AuthLogin",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
