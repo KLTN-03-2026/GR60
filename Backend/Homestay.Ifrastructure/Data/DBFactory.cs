@@ -14,9 +14,10 @@ namespace Homestay.Ifrastructure.Data
         private  SqlTransaction? _sqlTransaction;
         public SqlConnection GetConnection => _sqlConnection; 
         public SqlTransaction? GetTransaction => _sqlTransaction;
-        public DBFactory(IConfiguration configuration) 
+        public DBFactory(IConfiguration configuration)
         {
-            _sqlConnection = new SqlConnection(configuration.GetConnectionString("ConnectionString"));
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+            _sqlConnection = new SqlConnection(connectionString);
             _sqlConnection.Open();
         }  
         public void BeginTransaction()

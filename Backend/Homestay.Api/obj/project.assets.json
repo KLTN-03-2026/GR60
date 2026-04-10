@@ -561,7 +561,8 @@
         "dependencies": {
           "Homestay.Domain": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.3.9",
-          "Microsoft.Data.SqlClient": "7.0.0"
+          "Microsoft.Data.SqlClient": "7.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.5"
         },
         "compile": {
           "bin/placeholder/Homestay.Application.dll": {}
