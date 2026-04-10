@@ -16,8 +16,7 @@ Hệ thống **đặt phòng và quản lý Homestay thông minh** tích hợp A
 ## 🧠 Công nghệ sử dụng
 - **Frontend:** ReactJS  
 - **Backend:** ASP.NET Core Web API  
-- **Database:** MySQL / SQL Server  
-- **AI:** Python (Price Prediction)  
+- **Database:** MySQL / SQL Server   
 - **Tool:** GitHub, Postman  
 
 ---
