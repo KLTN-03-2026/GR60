@@ -71,15 +71,15 @@ namespace Homestay.Application.Services
 
         public async Task<bool> RegistereAsync(RegisterRequest registerRequest)
         {
-            var checkEmail = await unitOfWork.UserRepository.CheckEmailExistsAsync(registerRequest.Email);
-            if(checkEmail == false)
-            {
-                return false;
-            }
-            if(registerRequest.Matkhau.Length < 10)
-            {
-                return false;
-            }
+            //var checkEmail = await unitOfWork.UserRepository.CheckEmailExistsAsync(registerRequest.Email);
+            //if(checkEmail == false)
+            //{
+            //    return false;
+            //}
+            //if(registerRequest.Matkhau.Length < 10)
+            //{
+            //    return false;
+            //}
 
 
             throw new NotImplementedException();
