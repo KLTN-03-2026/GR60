@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Homestay.Ifrastructure.Data
 {
+    //DBFactory dùng để kết nối và quản lý transaction, và connection
     public class DBFactory : IDisposable
     {
         private readonly SqlConnection _sqlConnection;
