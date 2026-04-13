@@ -18,6 +18,12 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
         {
             this.dBFactory = dBFactory;
         }
+
+        public Task AddUserAsync(RegisterRequest usersRegis)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Users?> CheckUserLoginExistsAsync(string email, string matKhau)
         {
             
@@ -40,10 +46,16 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                         Anhdaidien = reader["anh_dai_dien"].ToString(),
                         Ngaytao = Convert.ToDateTime(reader["ngay_tao"])
                     };
+
                     return user;
                 }
                 return null;
             }
+        }
+
+        public Task<bool> CheckUserRegisterExistsAsync(string email)
+        {
+            throw new NotImplementedException();
         }
     }
 }

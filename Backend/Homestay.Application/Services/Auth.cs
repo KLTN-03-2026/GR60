@@ -10,6 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Homestay.Application.Services
@@ -17,7 +18,7 @@ namespace Homestay.Application.Services
     public class Auth : IAuth
     {
         private readonly HttpResponse httpResponse;
-        
+
         private readonly IUnitOfWork unitOfWork;
         private readonly IConfiguration configuration;
         public Auth(IConfiguration configuration, IUnitOfWork unitOfWork)
@@ -27,7 +28,7 @@ namespace Homestay.Application.Services
         }
 
         public async Task<AuthResponse?> LoginAsync(UserRequest userRequest)
-       {
+        {
 
             var check = await unitOfWork.UserRepository.CheckUserLoginExistsAsync(userRequest.Email, userRequest.Matkhau);
             if (check != null)
@@ -71,19 +72,52 @@ namespace Homestay.Application.Services
 
         public async Task<bool> RegistereAsync(RegisterRequest registerRequest)
         {
-            //var checkEmail = await unitOfWork.UserRepository.CheckEmailExistsAsync(registerRequest.Email);
-            //if(checkEmail == false)
-            //{
-            //    return false;
-            //}
-            //if(registerRequest.Matkhau.Length < 10)
-            //{
-            //    return false;
-            //}
+            var checkEmail = await unitOfWork.UserRepository.CheckUserRegisterExistsAsync(registerRequest.Email);
+            if (checkEmail == false)
+            {
+                return false;
+            }
+            if((!checkMk(registerRequest.Matkhau)))
+            {
+                return false;
+            }
+            unitOfWork.BeginTransaction();
+            try
+            {
+                await unitOfWork.UserRepository.AddUserAsync(registerRequest);
+                unitOfWork.Commit();
+                return true;
+            }
+            catch
+            {
+                unitOfWork.Rollback();
+                return false;
+            }
+            finally
+            {
+                unitOfWork.Dispose();
+            }
+
 
 
             throw new NotImplementedException();
         }
-        //public bool checkMk
+        public bool checkMk(string pass)
+        {
+            var reger = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$");
+            if (string.IsNullOrEmpty(pass))
+            {
+                return false;
+            }
+            if (pass.IndexOf(" ") >= 0)
+            {
+                return false;
+            }
+            if (!reger.IsMatch(pass))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

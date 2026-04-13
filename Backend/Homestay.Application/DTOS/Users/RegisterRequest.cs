@@ -13,7 +13,6 @@ namespace Homestay.Application.DTOS.Users
         [JsonPropertyName("Name")]
         public string Name { get; set; } = default!;
         public string Email { get; set; } = default!;
-        public string SDT { get; set; } = default!;
         public string Matkhau { get; set; } = default!;
     }
 }

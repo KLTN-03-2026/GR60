@@ -11,6 +11,8 @@ namespace Homestay.Application.Interfaces.Repositories
     public interface IUserRepository
     {
         public Task<Users?> CheckUserLoginExistsAsync(string email,string matKhau);
+        public Task<bool> CheckUserRegisterExistsAsync(string email);
+        public Task AddUserAsync(RegisterRequest usersRegis);
 
     }
 }
