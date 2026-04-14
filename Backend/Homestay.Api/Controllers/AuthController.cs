@@ -38,6 +38,7 @@ namespace Homestay.Api.Controllers
             });
             return Ok(Login.response);
         }
+        [HttpPost("register")]
 
         public async Task<IActionResult> AuthRegisterAsync([FromBody] RegisterRequest registerRequest)
         {

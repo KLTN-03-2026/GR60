@@ -19,9 +19,20 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             this.dBFactory = dBFactory;
         }
 
-        public Task AddUserAsync(RegisterRequest usersRegis)
+        public async Task AddUserAsync(RegisterRequest usersRegis)
         {
-            throw new NotImplementedException();
+           string query = "INSERT INTO ql_hs_nguoi_dung (ho_ten, email, mat_khau, dia_chi, so_dien_thoai, anh_dai_dien, vai_tro, ngay_tao) " +
+                "VALUES (@Name, @Email, @Matkhau, @Diachi, @SDT, @Anhdaidien, 'user', GETDATE())";
+            using(var cmd = new SqlCommand(query, dBFactory.GetConnection, dBFactory.GetTransaction))
+            {
+                cmd.Parameters.AddWithValue("@Name", usersRegis.Name);
+                cmd.Parameters.AddWithValue("@Email", usersRegis.Email);
+                cmd.Parameters.AddWithValue("@Matkhau", usersRegis.Matkhau);
+                cmd.Parameters.AddWithValue("@Diachi", "");
+                cmd.Parameters.AddWithValue("@SDT", "");
+                cmd.Parameters.AddWithValue("@Anhdaidien", "");
+                await cmd.ExecuteNonQueryAsync();
+            }
         }
 
         public async Task<Users?> CheckUserLoginExistsAsync(string email, string matKhau)
@@ -53,9 +64,21 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             }
         }
 
-        public Task<bool> CheckUserRegisterExistsAsync(string email)
+        public async Task<bool> CheckUserRegisterExistsAsync(string email)
         {
-            throw new NotImplementedException();
+            string query = "select * from ql_hs_nguoi_dung where email = @Email";
+            using(var cmd = new SqlCommand(query, dBFactory.GetConnection, dBFactory.GetTransaction))
+            {
+                cmd.Parameters.AddWithValue("@Email", email);
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    if (reader.Read())
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
         }
     }
 }

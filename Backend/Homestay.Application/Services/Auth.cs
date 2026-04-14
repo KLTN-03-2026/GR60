@@ -1,4 +1,5 @@
 ﻿using Homestay.Application.DTOS.Users;
+using Homestay.Application.helper;
 using Homestay.Application.Interfaces;
 using Homestay.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
@@ -73,7 +74,7 @@ namespace Homestay.Application.Services
         public async Task<bool> RegistereAsync(RegisterRequest registerRequest)
         {
             var checkEmail = await unitOfWork.UserRepository.CheckUserRegisterExistsAsync(registerRequest.Email);
-            if (checkEmail == false)
+            if (checkEmail)
             {
                 return false;
             }
@@ -97,10 +98,6 @@ namespace Homestay.Application.Services
             {
                 unitOfWork.Dispose();
             }
-
-
-
-            throw new NotImplementedException();
         }
         public bool checkMk(string pass)
         {

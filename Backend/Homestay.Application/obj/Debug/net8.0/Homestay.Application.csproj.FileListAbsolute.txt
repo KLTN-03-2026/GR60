@@ -9,6 +9,8 @@ D:\DoAnTotNghiep\GR60\Backend\Homestay.Application\obj\Debug\net8.0\Homestay.App
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Application\obj\Debug\net8.0\Homestay.Application.AssemblyInfo.cs
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Application\obj\Debug\net8.0\Homestay.Application.csproj.CoreCompileInputs.cache
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Application\obj\Debug\net8.0\Homestay.Application.sourcelink.json
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Application\obj\Debug\net8.0\Homestay.Application.csproj.Fody.CopyLocal.cache
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Application\obj\Debug\net8.0\Homestay.Application.csproj.Fody.RuntimeCopyLocal.cache
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Application\obj\Debug\net8.0\Homestay.FBA19DC7.Up2Date
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Application\obj\Debug\net8.0\Homestay.Application.dll
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Application\obj\Debug\net8.0\refint\Homestay.Application.dll

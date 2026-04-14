@@ -65,6 +65,10 @@
             "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
               "version": "[10.0.5, )"
+            },
+            "Realm": {
+              "target": "Package",
+              "version": "[20.1.0, )"
             }
           },
           "imports": [

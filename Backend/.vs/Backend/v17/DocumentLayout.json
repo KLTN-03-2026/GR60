@@ -11,28 +11,12 @@
       "RelativeMoniker": "D:0:0:{B1DECEF8-DC2C-4F9C-81A5-E931802C51A2}|Homestay.Ifrastructure\\Homestay.Ifrastructure.csproj|solutionrelative:homestay.ifrastructure\\repositoriesimplement\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\interfaces\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\interfaces\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\interfaces\\services\\iauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\interfaces\\services\\iauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{944D9D08-A81A-4843-9A44-14C5C6D5D3BA}|Homestay.Domain\\Homestay.Domain.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.domain\\entities\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{944D9D08-A81A-4843-9A44-14C5C6D5D3BA}|Homestay.Domain\\Homestay.Domain.csproj|solutionrelative:homestay.domain\\entities\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B1DECEF8-DC2C-4F9C-81A5-E931802C51A2}|Homestay.Ifrastructure\\Homestay.Ifrastructure.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.ifrastructure\\data\\dbfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B1DECEF8-DC2C-4F9C-81A5-E931802C51A2}|Homestay.Ifrastructure\\Homestay.Ifrastructure.csproj|solutionrelative:homestay.ifrastructure\\data\\dbfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\dtos\\users\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\dtos\\users\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9C2978A-83A0-4FBC-A56B-B24033E4FD6E}|Homestay.Api\\Homestay.Api.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9C2978A-83A0-4FBC-A56B-B24033E4FD6E}|Homestay.Api\\Homestay.Api.csproj|solutionrelative:homestay.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B1DECEF8-DC2C-4F9C-81A5-E931802C51A2}|Homestay.Ifrastructure\\Homestay.Ifrastructure.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.ifrastructure\\data\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,20 +27,48 @@
       "RelativeMoniker": "D:0:0:{B1DECEF8-DC2C-4F9C-81A5-E931802C51A2}|Homestay.Ifrastructure\\Homestay.Ifrastructure.csproj|solutionrelative:homestay.ifrastructure\\repositoriesimplement\\testrepoipm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\services\\testipl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\services\\testipl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\interfaces\\services\\iauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\interfaces\\services\\iauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C9C2978A-83A0-4FBC-A56B-B24033E4FD6E}|Homestay.Api\\Homestay.Api.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9C2978A-83A0-4FBC-A56B-B24033E4FD6E}|Homestay.Api\\Homestay.Api.csproj|solutionrelative:homestay.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\dtos\\users\\userresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\dtos\\users\\userresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\helper\\appexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\helper\\appexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\dtos\\users\\authresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\dtos\\users\\authresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\homestay.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\homestay.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9C2978A-83A0-4FBC-A56B-B24033E4FD6E}|Homestay.Api\\Homestay.Api.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C9C2978A-83A0-4FBC-A56B-B24033E4FD6E}|Homestay.Api\\Homestay.Api.csproj|solutionrelative:homestay.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\dtos\\users\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\dtos\\users\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\services\\testipl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\services\\testipl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\interfaces\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\interfaces\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{944D9D08-A81A-4843-9A44-14C5C6D5D3BA}|Homestay.Domain\\Homestay.Domain.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.domain\\entities\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{944D9D08-A81A-4843-9A44-14C5C6D5D3BA}|Homestay.Domain\\Homestay.Domain.csproj|solutionrelative:homestay.domain\\entities\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\dtos\\users\\userresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\dtos\\users\\userresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\dtos\\users\\userrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -79,10 +91,6 @@
       "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\interfaces\\repositories\\itestrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.application\\homestay.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{16186801-89D6-4D76-8E3A-691AEEC364D3}|Homestay.Application\\Homestay.Application.csproj|solutionrelative:homestay.application\\homestay.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C9C2978A-83A0-4FBC-A56B-B24033E4FD6E}|Homestay.Api\\Homestay.Api.csproj|d:\\doantotnghiep\\gr60\\backend\\homestay.api\\homestay.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
       "RelativeMoniker": "D:0:0:{C9C2978A-83A0-4FBC-A56B-B24033E4FD6E}|Homestay.Api\\Homestay.Api.csproj|solutionrelative:homestay.api\\homestay.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     }
@@ -94,7 +102,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 19,
+          "SelectedChildIndex": 21,
           "Children": [
             {
               "$type": "Bookmark",
@@ -106,20 +114,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
+              "Title": "AppException.cs",
+              "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\helper\\AppException.cs",
+              "RelativeDocumentMoniker": "Homestay.Application\\helper\\AppException.cs",
+              "ToolTip": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\helper\\AppException.cs",
+              "RelativeToolTip": "Homestay.Application\\helper\\AppException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T09:20:32.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Api\\appsettings.json",
+              "RelativeDocumentMoniker": "Homestay.Api\\appsettings.json",
+              "ToolTip": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Api\\appsettings.json",
+              "RelativeToolTip": "Homestay.Api\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-14T09:06:30.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "RegisterRequest.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\DTOS\\Users\\RegisterRequest.cs",
               "RelativeDocumentMoniker": "Homestay.Application\\DTOS\\Users\\RegisterRequest.cs",
               "ToolTip": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\DTOS\\Users\\RegisterRequest.cs",
               "RelativeToolTip": "Homestay.Application\\DTOS\\Users\\RegisterRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-11T14:14:34.854Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 9,
               "Title": "Homestay.Application.csproj",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\Homestay.Application.csproj",
               "RelativeDocumentMoniker": "Homestay.Application\\Homestay.Application.csproj",
@@ -127,11 +161,12 @@
               "RelativeToolTip": "Homestay.Application\\Homestay.Application.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-10T16:09:41.961Z"
+              "WhenOpened": "2026-04-10T16:09:41.961Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
               "Title": "TestRepoIpm.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Ifrastructure\\RepositoriesImplement\\TestRepoIpm.cs",
               "RelativeDocumentMoniker": "Homestay.Ifrastructure\\RepositoriesImplement\\TestRepoIpm.cs",
@@ -139,11 +174,12 @@
               "RelativeToolTip": "Homestay.Ifrastructure\\RepositoriesImplement\\TestRepoIpm.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAgwCEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T15:44:55.573Z"
+              "WhenOpened": "2026-04-10T15:44:55.573Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "TestIpl.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\Services\\TestIpl.cs",
               "RelativeDocumentMoniker": "Homestay.Application\\Services\\TestIpl.cs",
@@ -151,11 +187,12 @@
               "RelativeToolTip": "Homestay.Application\\Services\\TestIpl.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T15:34:57.81Z"
+              "WhenOpened": "2026-04-10T15:34:57.81Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "ITestSQlconnect.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\Interfaces\\Services\\ITestSQlconnect.cs",
               "RelativeDocumentMoniker": "Homestay.Application\\Interfaces\\Services\\ITestSQlconnect.cs",
@@ -163,11 +200,12 @@
               "RelativeToolTip": "Homestay.Application\\Interfaces\\Services\\ITestSQlconnect.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T15:34:26.437Z"
+              "WhenOpened": "2026-04-10T15:34:26.437Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "ITestRepo.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\Interfaces\\Repositories\\ITestRepo.cs",
               "RelativeDocumentMoniker": "Homestay.Application\\Interfaces\\Repositories\\ITestRepo.cs",
@@ -175,37 +213,38 @@
               "RelativeToolTip": "Homestay.Application\\Interfaces\\Repositories\\ITestRepo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T15:32:33.697Z"
+              "WhenOpened": "2026-04-10T15:32:33.697Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Ifrastructure\\Data\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "Homestay.Ifrastructure\\Data\\UnitOfWork.cs",
               "ToolTip": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Ifrastructure\\Data\\UnitOfWork.cs",
               "RelativeToolTip": "Homestay.Ifrastructure\\Data\\UnitOfWork.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAqwCcAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAADwvygAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-10T15:21:07.084Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "DBFactory.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Ifrastructure\\Data\\DBFactory.cs",
               "RelativeDocumentMoniker": "Homestay.Ifrastructure\\Data\\DBFactory.cs",
               "ToolTip": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Ifrastructure\\Data\\DBFactory.cs",
               "RelativeToolTip": "Homestay.Ifrastructure\\Data\\DBFactory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAIwDEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-10T15:19:32.325Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 15,
               "Title": "IUnitOfWork.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\Interfaces\\IUnitOfWork.cs",
               "RelativeDocumentMoniker": "Homestay.Application\\Interfaces\\IUnitOfWork.cs",
@@ -218,7 +257,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 14,
               "Title": "Users.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Domain\\Entities\\Users.cs",
               "RelativeDocumentMoniker": "Homestay.Domain\\Entities\\Users.cs",
@@ -237,14 +276,14 @@
               "RelativeDocumentMoniker": "Homestay.Ifrastructure\\RepositoriesImplement\\UserRepository.cs",
               "ToolTip": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Ifrastructure\\RepositoriesImplement\\UserRepository.cs",
               "RelativeToolTip": "Homestay.Ifrastructure\\RepositoriesImplement\\UserRepository.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAADwvxYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-10T15:03:17.388Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "UserRequest.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\DTOS\\Users\\UserRequest.cs",
               "RelativeDocumentMoniker": "Homestay.Application\\DTOS\\Users\\UserRequest.cs",
@@ -252,11 +291,12 @@
               "RelativeToolTip": "Homestay.Application\\DTOS\\Users\\UserRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T14:45:57.798Z"
+              "WhenOpened": "2026-04-10T14:45:57.798Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 8,
               "Title": "AuthResponse.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\DTOS\\Users\\AuthResponse.cs",
               "RelativeDocumentMoniker": "Homestay.Application\\DTOS\\Users\\AuthResponse.cs",
@@ -264,11 +304,12 @@
               "RelativeToolTip": "Homestay.Application\\DTOS\\Users\\AuthResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T14:38:31.708Z"
+              "WhenOpened": "2026-04-10T14:38:31.708Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "UserResponse.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\DTOS\\Users\\UserResponse.cs",
               "RelativeDocumentMoniker": "Homestay.Application\\DTOS\\Users\\UserResponse.cs",
@@ -276,11 +317,12 @@
               "RelativeToolTip": "Homestay.Application\\DTOS\\Users\\UserResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T14:28:43.905Z"
+              "WhenOpened": "2026-04-10T14:28:43.905Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "IAuth.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\Interfaces\\Services\\IAuth.cs",
               "RelativeDocumentMoniker": "Homestay.Application\\Interfaces\\Services\\IAuth.cs",
@@ -293,20 +335,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 13,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\Interfaces\\Repositories\\IUserRepository.cs",
               "RelativeDocumentMoniker": "Homestay.Application\\Interfaces\\Repositories\\IUserRepository.cs",
               "ToolTip": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\Interfaces\\Repositories\\IUserRepository.cs",
               "RelativeToolTip": "Homestay.Application\\Interfaces\\Repositories\\IUserRepository.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAuwBIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwA0AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-10T13:36:52.754Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "Homestay.Api.http",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Api\\Homestay.Api.http",
               "RelativeDocumentMoniker": "Homestay.Api\\Homestay.Api.http",
@@ -314,7 +356,8 @@
               "RelativeToolTip": "Homestay.Api\\Homestay.Api.http",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2026-04-10T13:36:23.801Z"
+              "WhenOpened": "2026-04-10T13:36:23.801Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -324,14 +367,14 @@
               "RelativeDocumentMoniker": "Homestay.Application\\Services\\Auth.cs",
               "ToolTip": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Application\\Services\\Auth.cs",
               "RelativeToolTip": "Homestay.Application\\Services\\Auth.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAASwEgAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAADcAAAAAAAAAAAAUwFgAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-10T03:04:19.515Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Api\\Program.cs",
               "RelativeDocumentMoniker": "Homestay.Api\\Program.cs",
@@ -339,31 +382,34 @@
               "RelativeToolTip": "Homestay.Api\\Program.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAcwCoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T02:48:48.518Z"
+              "WhenOpened": "2026-04-10T02:48:48.518Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "AuthenticateJwtBearer.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Api\\Authenticate\\AuthenticateJwtBearer.cs",
               "RelativeDocumentMoniker": "Homestay.Api\\Authenticate\\AuthenticateJwtBearer.cs",
               "ToolTip": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Api\\Authenticate\\AuthenticateJwtBearer.cs",
               "RelativeToolTip": "Homestay.Api\\Authenticate\\AuthenticateJwtBearer.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAywBQAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAADwvxQAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T02:46:54.623Z"
+              "WhenOpened": "2026-04-10T02:46:54.623Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 3,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Api\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Homestay.Api\\Controllers\\AuthController.cs",
               "ToolTip": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Api\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Homestay.Api\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAowD4AAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAowDYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T02:46:09.962Z"
+              "WhenOpened": "2026-04-10T02:46:09.962Z",
+              "EditorCaption": ""
             }
           ]
         }

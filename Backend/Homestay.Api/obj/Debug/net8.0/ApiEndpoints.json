@@ -1,22 +1,6 @@
 [
   {
     "ContainingType": "Homestay.Api.Controllers.AuthController",
-    "Method": "AuthRegisterAsync",
-    "RelativePath": "api/Auth",
-    "HttpMethod": "",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "registerRequest",
-        "Type": "Homestay.Application.DTOS.Users.RegisterRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Homestay.Api.Controllers.AuthController",
     "Method": "AuthLogin",
     "RelativePath": "api/Auth/login",
     "HttpMethod": "POST",
@@ -26,6 +10,22 @@
       {
         "Name": "userRequest",
         "Type": "Homestay.Application.DTOS.Users.UserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.AuthController",
+    "Method": "AuthRegisterAsync",
+    "RelativePath": "api/Auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerRequest",
+        "Type": "Homestay.Application.DTOS.Users.RegisterRequest",
         "IsRequired": true
       }
     ],
