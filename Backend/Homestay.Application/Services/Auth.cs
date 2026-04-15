@@ -71,28 +71,44 @@ namespace Homestay.Application.Services
             return null;
         }
 
-        public async Task<bool> RegistereAsync(RegisterRequest registerRequest)
+        public async Task<RegisterResponse> RegistereAsync(RegisterRequest registerRequest)
         {
             var checkEmail = await unitOfWork.UserRepository.CheckUserRegisterExistsAsync(registerRequest.Email);
             if (checkEmail)
             {
-                return false;
+                return new RegisterResponse
+                {
+                    StatusCode = 400,
+                    Message = "Email đã tồn tại"
+                };
             }
             if((!checkMk(registerRequest.Matkhau)))
             {
-                return false;
+                return new RegisterResponse
+                {
+                    StatusCode = 400,
+                    Message = "Mật khẩu không hợp lệ"
+                };
             }
             unitOfWork.BeginTransaction();
             try
             {
                 await unitOfWork.UserRepository.AddUserAsync(registerRequest);
                 unitOfWork.Commit();
-                return true;
+                return new RegisterResponse
+                {
+                    StatusCode = 201,
+                    Message = "Đăng ký thành công"
+                };
             }
             catch
             {
                 unitOfWork.Rollback();
-                return false;
+                return new RegisterResponse
+                {
+                    StatusCode = 500,
+                    Message = "Đăng ký thất bại"
+                };
             }
             finally
             {

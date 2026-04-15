@@ -11,13 +11,15 @@ namespace Homestay.Ifrastructure.Data
     public class UnitOfWork : IUnitOfWork
     {
         public IUserRepository UserRepository { get; set; }
+        public IRoomsRepository RoomsRepository { get; set; }
         public ITestRepo TestRepo { get; set; }
 
         private DBFactory dBFactory;
-        public UnitOfWork(DBFactory dBFactory,IUserRepository userRepository,ITestRepo testRepo)
+        public UnitOfWork(DBFactory dBFactory,IUserRepository userRepository,IRoomsRepository roomsRepository,ITestRepo testRepo)
         {
             this.dBFactory = dBFactory;
             UserRepository = userRepository;
+            RoomsRepository = roomsRepository;
             TestRepo = testRepo;
         }
 

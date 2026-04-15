@@ -15,6 +15,7 @@ namespace Homestay.Application.Interfaces
     {
         public IUserRepository UserRepository { get; }
         public ITestRepo TestRepo { get; }
+        public IRoomsRepository RoomsRepository { get; }
         void BeginTransaction();
         void Commit();
         void Rollback();

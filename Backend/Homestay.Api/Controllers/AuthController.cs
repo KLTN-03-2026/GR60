@@ -43,20 +43,29 @@ namespace Homestay.Api.Controllers
         public async Task<IActionResult> AuthRegisterAsync([FromBody] RegisterRequest registerRequest)
         {
             var check = await _auth.RegistereAsync(registerRequest);
-            if (check)
+            if (check.StatusCode == 201)
             {
-                return Ok("Đăng ký thành công");
+                return StatusCode(check.StatusCode,check);
             }
-            else
-            {
-                return BadRequest("Đăng ký thất bại");
 
-            }
+            return StatusCode(check.StatusCode, check);
+
         }
+        //Response.Cookies.Delete("token");
 
+        [HttpDelete("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("token");
+         
+            return Ok("Đăng xuất thành công");
+        }
+        [HttpDelete("forgot-pass")]
 
-          //Response.Cookies.Delete("token");
-      
+        public IActionResult ForgotPassword()
+        {
+            return Ok();
+        }
         [Authorize]
         [HttpPost("test")]
         public IActionResult AuthRegister()

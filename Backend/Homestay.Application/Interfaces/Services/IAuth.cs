@@ -10,6 +10,6 @@ namespace Homestay.Application.Interfaces.Services
     public interface IAuth
     {
         public  Task<AuthResponse?> LoginAsync(UserRequest userRequest);
-        public Task<bool> RegistereAsync(RegisterRequest registerRequest);
+        public Task<RegisterResponse> RegistereAsync(RegisterRequest registerRequest);
     }
 }
