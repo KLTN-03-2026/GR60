@@ -64,7 +64,7 @@
   {
     "ContainingType": "Homestay.Api.Controllers.RoomsController",
     "Method": "GetAllRoomsType",
-    "RelativePath": "api/Rooms/type",
+    "RelativePath": "api/Rooms/roomtype",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
