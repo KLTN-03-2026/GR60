@@ -90,6 +90,14 @@ namespace Homestay.Application.Services
                     Message = "Mật khẩu không hợp lệ"
                 };
             }
+            if(registerRequest.Matkhau != registerRequest.MatkhauXacNhan)
+            {
+                return new RegisterResponse
+                {
+                    StatusCode = 400,
+                    Message = "Mật khẩu xác nhận không khớp"
+                };
+            }
             unitOfWork.BeginTransaction();
             try
             {

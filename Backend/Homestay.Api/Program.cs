@@ -28,14 +28,22 @@ namespace Homestay.Api
             builder.Services.AuthenJwtService(builder.Configuration);
 
             builder.Services.AddControllers();
-
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowReact", policy =>
+                {
+                    policy.WithOrigins("http://localhost:5173")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
-
+            app.UseCors("AllowReact");
             app.UseAuthorization();
 
 

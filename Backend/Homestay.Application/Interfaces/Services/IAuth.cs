@@ -11,5 +11,6 @@ namespace Homestay.Application.Interfaces.Services
     {
         public  Task<AuthResponse?> LoginAsync(UserRequest userRequest);
         public Task<RegisterResponse> RegistereAsync(RegisterRequest registerRequest);
+
     }
 }

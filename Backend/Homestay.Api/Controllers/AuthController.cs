@@ -21,6 +21,8 @@ namespace Homestay.Api.Controllers
             _auth = auth;
             _testSQlconnect = testSQlconnect;
         }
+
+
         [HttpPost("login")]
         public async Task<IActionResult> AuthLogin([FromBody] UserRequest userRequest)
         {

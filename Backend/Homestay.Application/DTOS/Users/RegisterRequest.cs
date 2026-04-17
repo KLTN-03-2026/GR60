@@ -19,5 +19,7 @@ namespace Homestay.Application.DTOS.Users
         [EmailAddress(ErrorMessage = "Email không hợp lệ")]
         public string Email { get; set; } = default!;
         public string Matkhau { get; set; } = default!;
+        public string MatkhauXacNhan { get; set; } = default!;
+
     }
 }
