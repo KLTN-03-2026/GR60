@@ -1,11 +1,3 @@
-D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.csproj.AssemblyReference.cache
-D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\rpswa.dswa.cache.json
-D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.GeneratedMSBuildEditorConfig.editorconfig
-D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.AssemblyInfoInputs.cache
-D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.AssemblyInfo.cs
-D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.csproj.CoreCompileInputs.cache
-D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.MvcApplicationPartsAssemblyInfo.cache
-D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.sourcelink.json
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\appsettings.Development.json
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\appsettings.json
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\Homestay.Api.staticwebassets.endpoints.json
@@ -88,6 +80,14 @@ D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\Homestay.Ifrastructu
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\Homestay.Application.pdb
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\Homestay.Ifrastructure.pdb
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\Homestay.Domain.pdb
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.csproj.AssemblyReference.cache
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.GeneratedMSBuildEditorConfig.editorconfig
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.AssemblyInfoInputs.cache
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.AssemblyInfo.cs
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.csproj.CoreCompileInputs.cache
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.MvcApplicationPartsAssemblyInfo.cache
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\Homestay.Api.sourcelink.json
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\rjimswa.dswa.cache.json
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json

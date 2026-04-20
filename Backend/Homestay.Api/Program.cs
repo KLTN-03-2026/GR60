@@ -35,16 +35,16 @@ namespace Homestay.Api
                 {
                     policy.WithOrigins("http://localhost:5173")
                           .AllowAnyHeader()
-                          .AllowAnyMethod();
+                          .AllowAnyMethod()
+                          .AllowCredentials();
                 });
             });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-
+            app.UseCors("AllowReact");
             app.UseHttpsRedirection();
             app.UseAuthentication();
-            app.UseCors("AllowReact");
             app.UseAuthorization();
 
 
