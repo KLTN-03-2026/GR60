@@ -12,14 +12,16 @@ namespace Homestay.Ifrastructure.Data
     {
         public IUserRepository UserRepository { get; set; }
         public IRoomsRepository RoomsRepository { get; set; }
+        public IHolidaysRepository HolidaysRepository { get; set; }
         public ITestRepo TestRepo { get; set; }
 
         private DBFactory dBFactory;
-        public UnitOfWork(DBFactory dBFactory,IUserRepository userRepository,IRoomsRepository roomsRepository,ITestRepo testRepo)
+        public UnitOfWork(DBFactory dBFactory,IUserRepository userRepository,IRoomsRepository roomsRepository,IHolidaysRepository HolidaysRepository, ITestRepo testRepo)
         {
             this.dBFactory = dBFactory;
             UserRepository = userRepository;
             RoomsRepository = roomsRepository;
+            this.HolidaysRepository = HolidaysRepository;
             TestRepo = testRepo;
         }
 
