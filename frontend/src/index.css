@@ -1,1 +1,84 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+@theme {
+  --color-primary: #C07151;
+  --color-dark: #4A2C2A;
+  --color-gray-light: #7A7A7A;
+  --color-bg: #FDFBF7;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: #FDFBF7;
+  color: #4A2C2A;
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* Custom Scrollbar cho phần danh sách phòng chạy ngang */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+  margin: 0px 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d6cfc4; 
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary); 
+}
+
+/* Cho Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d6cfc4 transparent;
+}
+
+/* Ẩn hoàn toàn thanh cuộn ngang cho danh sách phòng cuộn ngang */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Ẩn hoàn toàn mũi tên tăng/giảm trên các input type number */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Animation cho dropdown menu */
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-in {
+  animation: dropdownIn 0.2s ease-out;
+}

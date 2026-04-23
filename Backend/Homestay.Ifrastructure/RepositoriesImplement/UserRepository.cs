@@ -43,7 +43,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             {
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Matkhau", matKhau);
-                var reader =  await cmd.ExecuteReaderAsync();   
+                using var reader =  await cmd.ExecuteReaderAsync();   
                 if(reader.Read())
                 {
                     var user = new Users

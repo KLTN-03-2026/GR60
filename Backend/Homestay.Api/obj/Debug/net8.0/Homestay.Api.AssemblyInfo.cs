@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Homestay.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b726dd0446ca74de45e296521ea3c812fb939b4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c2f4dc6be1e52277595549331a7647fd89bfe23")]
 [assembly: System.Reflection.AssemblyProductAttribute("Homestay.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Homestay.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

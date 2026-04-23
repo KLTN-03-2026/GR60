@@ -1,5 +1,8 @@
 ﻿using Homestay.Application.Interfaces;
 using Homestay.Application.Interfaces.Repositories;
+using Homestay.Application.Interfaces.Services;
+using Homestay.Application.Services;
+using Homestay.Ifrastructure.RepositoriesImplement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +18,29 @@ namespace Homestay.Ifrastructure.Data
         public IHolidaysRepository HolidaysRepository { get; set; }
         public ITestRepo TestRepo { get; set; }
 
+        public IBookingRepository BookingRepository { get; set; }
+
+        public IReviewRepository ReviewRepository { get; set; }
+
         private DBFactory dBFactory;
-        public UnitOfWork(DBFactory dBFactory,IUserRepository userRepository,IRoomsRepository roomsRepository,IHolidaysRepository HolidaysRepository, ITestRepo testRepo)
+        public UnitOfWork(
+               DBFactory dBFactory,
+               IUserRepository userRepository,
+               IRoomsRepository roomsRepository,
+               IHolidaysRepository HolidaysRepository,
+               IBookingRepository bookingRepository,
+               IReviewRepository reviewRepository,
+               ITestRepo testRepo
+            )
         {
             this.dBFactory = dBFactory;
-            UserRepository = userRepository;
-            RoomsRepository = roomsRepository;
+            this.UserRepository = userRepository;
+            this. RoomsRepository = roomsRepository;
             this.HolidaysRepository = HolidaysRepository;
+            this.BookingRepository = bookingRepository;
+            this.ReviewRepository = reviewRepository;    
             TestRepo = testRepo;
+
         }
 
         public void BeginTransaction()

@@ -26,7 +26,12 @@ namespace Homestay.Api
             builder.Services.AddScoped<DBFactory>();
             builder.Services.AddScoped<IRooms, Rooms>();
             builder.Services.AddScoped<IRoomsRepository, RoomsRepository>();
-            builder.Services.AddScoped<IHolidaysRepository, HolidaysRepository>();  
+            builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+            builder.Services.AddScoped<IHolidaysRepository, HolidaysRepository>();
+            builder.Services.AddScoped<IBooking, Booking>();
+            builder.Services.AddScoped<IReview, Review>();
+            builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+
 
             builder.Services.AuthenJwtService(builder.Configuration);
 
