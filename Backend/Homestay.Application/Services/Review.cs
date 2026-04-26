@@ -1,4 +1,5 @@
-﻿using Homestay.Application.DTOS.Review;
+﻿using Homestay.Application.DTOS;
+using Homestay.Application.DTOS.Review;
 using Homestay.Application.Interfaces;
 using Homestay.Application.Interfaces.Services;
 using System;
@@ -15,6 +16,43 @@ namespace Homestay.Application.Services
         public Review(IUnitOfWork unitOfWork) 
         {
             _unitOfWork = unitOfWork;
+        }
+
+        public async Task<CreateReviewResponse> CreateReviewAsync(int idRoom, int idUser, ReviewsRequest reviewsRequest)
+        {
+            var checkUserBooking =await _unitOfWork.ReviewRepository.CheckUserBooking(idRoom,idUser);
+            if(checkUserBooking == 0)
+            {
+                return new CreateReviewResponse
+                {
+                    StatusCode = 400,
+                    Message= "Bạn chưa từng sử dụng phòng này" 
+                };
+            }
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                await _unitOfWork.ReviewRepository.CreateReviews(idRoom,idUser,checkUserBooking,reviewsRequest);
+                _unitOfWork.Commit();
+                return new CreateReviewResponse
+                {
+                    StatusCode = 201,
+                    Message = "đánh giá thành công" 
+                };
+            }
+            catch
+            {
+                _unitOfWork.Rollback();
+                return new CreateReviewResponse
+                {
+                    StatusCode = 500,
+                   Message = "lỗi hệ thông" 
+                }; 
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
         }
 
         public async Task<List<ReviewResponse>> GelAllReviewsRoom(int id)

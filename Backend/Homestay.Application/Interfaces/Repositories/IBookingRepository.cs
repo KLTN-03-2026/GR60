@@ -10,6 +10,6 @@ namespace Homestay.Application.Interfaces.Repositories
     public interface IBookingRepository
     {
         public  Task<List<DayBookingReponse>> CheckDayBookingRoomAsync(int idRoom);
-        public Task CreateBooking(BookingRequest bookingRequest);
+        public Task<int> CreateBooking(BookingRequest bookingRequest);
     }
 }

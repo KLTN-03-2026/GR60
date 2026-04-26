@@ -8,6 +8,8 @@ namespace Homestay.Domain.Entities
 {
     public class Users
     {
+        public int id { get; set; } = default!;
+
         public string Vaitro { get; set; } = default!;
         public string Name { get; set; } = default!;
         public string Email { get; set; } = default!;

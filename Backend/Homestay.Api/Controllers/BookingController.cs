@@ -1,5 +1,6 @@
 ﻿using Homestay.Application.DTOS.Booking;
 using Homestay.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -15,12 +16,15 @@ namespace Homestay.Api.Controllers
         {
             _booking = booking;
         }
-        [HttpPost]
+
+        [Authorize]
+        [HttpPost("Bookingsssssss")]
         public async Task<IActionResult> CreateBookingAsync([FromBody] BookingRequest bookingRequest)
         {
-            await _booking.CreateBookingAsync(bookingRequest);
-            return Ok(bookingRequest);
+           var result =  await _booking.CreateBookingAsync(bookingRequest);
+            return Ok(result);
         }
+
         [HttpGet("day")]
         public async Task<IActionResult> BookingRoomAsync([FromQuery] int idRoom)
         {

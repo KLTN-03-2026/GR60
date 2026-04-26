@@ -23,18 +23,24 @@ namespace Homestay.Application.Services
             return CheckDayBooking.ToList();
         }
 
-        public async Task CreateBookingAsync(BookingRequest bookingRequest)
+        public async Task<int> CreateBookingAsync(BookingRequest bookingRequest)
         {
             _unitOfWork.BeginTransaction();
             try
             {
-                await _unitOfWork.BookingRepository.CreateBooking(bookingRequest);
+               var result =  await _unitOfWork.BookingRepository.CreateBooking(bookingRequest);
                 _unitOfWork.Commit();
+                return result;
 
             }
             catch
             {
                 _unitOfWork.Rollback();
+                return -1;
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
             }
         }
     }

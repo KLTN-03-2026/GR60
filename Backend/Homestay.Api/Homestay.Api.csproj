@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Homestay.Ifrastructure\Homestay.Ifrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\UploadsImg\" />
+  </ItemGroup>
+
 </Project>

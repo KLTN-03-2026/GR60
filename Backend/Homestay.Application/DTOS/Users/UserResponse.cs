@@ -8,6 +8,8 @@ namespace Homestay.Application.DTOS.Users
 {
     public class UserResponse
     {
+        public int id { get; set; } = default!;
+
         public string Vaitro { get; set; } = default!;
         public string Name { get; set; } = default!;
         public string Email { get; set; } = default!;

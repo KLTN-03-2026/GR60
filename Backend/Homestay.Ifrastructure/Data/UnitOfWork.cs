@@ -19,8 +19,8 @@ namespace Homestay.Ifrastructure.Data
         public ITestRepo TestRepo { get; set; }
 
         public IBookingRepository BookingRepository { get; set; }
-
         public IReviewRepository ReviewRepository { get; set; }
+        public IPaymentRepository paymentRepository { get; set; }
 
         private DBFactory dBFactory;
         public UnitOfWork(
@@ -30,7 +30,9 @@ namespace Homestay.Ifrastructure.Data
                IHolidaysRepository HolidaysRepository,
                IBookingRepository bookingRepository,
                IReviewRepository reviewRepository,
-               ITestRepo testRepo
+               ITestRepo testRepo,
+               IPaymentRepository paymentRepository
+                
             )
         {
             this.dBFactory = dBFactory;
@@ -39,8 +41,8 @@ namespace Homestay.Ifrastructure.Data
             this.HolidaysRepository = HolidaysRepository;
             this.BookingRepository = bookingRepository;
             this.ReviewRepository = reviewRepository;    
+            this.paymentRepository = paymentRepository;
             TestRepo = testRepo;
-
         }
 
         public void BeginTransaction()

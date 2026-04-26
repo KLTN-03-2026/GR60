@@ -31,6 +31,13 @@ namespace Homestay.Api
             builder.Services.AddScoped<IBooking, Booking>();
             builder.Services.AddScoped<IReview, Review>();
             builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+            builder.Services.AddScoped<IPayment, Payment>();
+            builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+            builder.Services.AddScoped<ICheckout, Checkout>();
+
+
+
+
 
 
             builder.Services.AuthenJwtService(builder.Configuration);
@@ -53,8 +60,7 @@ namespace Homestay.Api
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
-
-
+            app.UseStaticFiles();
             app.MapControllers();
 
             app.Run();

@@ -48,6 +48,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                 {
                     var user = new Users
                     {
+                        id = reader.GetInt32(0),
                         Vaitro = reader["vai_tro"].ToString(),
                         Name = reader["ho_ten"].ToString(),
                         Email = reader["email"].ToString(),

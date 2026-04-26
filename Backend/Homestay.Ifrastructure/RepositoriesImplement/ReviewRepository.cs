@@ -19,6 +19,40 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             _dBFactory = dBFactory;
 
         }
+
+        public async Task<int> CheckUserBooking(int idRoom, int idUser)
+        {
+            string query = @"select  DP.id, ND.id as id_nguoi_dung,P.id as id_phong,DP.trang_thai
+                                from ql_hs_dat_phong DP
+                                left join ql_hs_nguoi_dung ND on DP.ql_nguoi_dung_id = ND.id
+                                left join ql_hs_phong P on DP.ql_phong_id = P.id
+                                where ND.id = @idUser and P.id = @idRoom and DP.trang_thai = 'da_hoan_thanh'";
+            using var cmd = new SqlCommand(query,_dBFactory.GetConnection,_dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@idUser", idUser);
+            cmd.Parameters.AddWithValue("@idRoom", idRoom);
+            using var reader = await cmd.ExecuteReaderAsync();
+            int idBooking = 0;
+            if(await reader.ReadAsync())
+            {
+                idBooking = reader["id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id"]);  
+            }
+            return idBooking;
+        }
+
+        public async Task CreateReviews(int idRoom, int idUser, int checkUserBooking, ReviewsRequest reviewsRequest)
+        {
+            string query = @"INSERT INTO ql_hs_danh_gia(ql_phong_id, ql_nguoi_dung_id, ql_dat_phong_id, so_sao, noi_dung, trang_thai, thoi_gian) 
+                VALUES (@idRoom, @idUser, @idBooking, @SoSao, @NoiDung, 'hien_thi', GETDATE());";
+            using var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@idRoom", idRoom);
+            cmd.Parameters.AddWithValue("@idUser", idUser);
+            cmd.Parameters.AddWithValue("@idBooking", checkUserBooking);
+            cmd.Parameters.AddWithValue("@SoSao", reviewsRequest.So_Sao);
+            cmd.Parameters.AddWithValue("@NoiDung", reviewsRequest.Noi_Dung);
+            await cmd.ExecuteNonQueryAsync();
+
+        }
+
         public async Task<List<ReviewResponse>> GetAllReviewsAsync()
         {
             string query = @"

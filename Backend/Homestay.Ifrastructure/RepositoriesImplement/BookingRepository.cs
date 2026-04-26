@@ -37,11 +37,13 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             }
             return listDay;
         }
-        public async Task CreateBooking(BookingRequest bookingRequest)
+        public async Task<int> CreateBooking(BookingRequest bookingRequest)
         {
             DateTime time = DateTime.Now;
             string query = @"INSERT INTO ql_hs_dat_phong(ql_nguoi_dung_id,ql_phong_id,ngay_nhan_phong,ngay_tra_phong,so_nguoi,tong_tien,trang_thai,ngay_tao)
-                            values (@Id_user,@Id_Room,@Ngay_Nhan_Phong,@Ngay_Tra_Phong,@So_Nguoi,@TongTien,'dang_xu_ly',@ngay_tao)";
+                            values (@Id_user,@Id_Room,@Ngay_Nhan_Phong,@Ngay_Tra_Phong,@So_Nguoi,@TongTien,'dang_xu_ly',@ngay_tao);
+                                SELECT CAST(SCOPE_IDENTITY() AS INT);";
+
             using var cmd = new SqlCommand(query, _DBFactory.GetConnection, _DBFactory.GetTransaction);
             cmd.Parameters.AddWithValue("@Id_user", bookingRequest.Id_User);
             cmd.Parameters.AddWithValue("@Id_Room", bookingRequest.Id_Room);
@@ -50,7 +52,8 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             cmd.Parameters.AddWithValue("@So_Nguoi", bookingRequest.So_Nguoi);
             cmd.Parameters.AddWithValue("@TongTien", bookingRequest.Tong_Tien);
             cmd.Parameters.AddWithValue("@ngay_tao", time);
-           await cmd.ExecuteNonQueryAsync();
+            var result = await cmd.ExecuteScalarAsync();
+            return Convert.ToInt32(result);
         }
     }
 }

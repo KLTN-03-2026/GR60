@@ -1,5 +1,6 @@
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\appsettings.Development.json
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\appsettings.json
+D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\Homestay.Api.staticwebassets.runtime.json
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\Homestay.Api.staticwebassets.endpoints.json
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\Homestay.Api.exe
 D:\DoAnTotNghiep\GR60\Backend\Homestay.Api\bin\Debug\net8.0\Homestay.Api.deps.json

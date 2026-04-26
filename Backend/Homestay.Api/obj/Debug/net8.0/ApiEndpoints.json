@@ -64,7 +64,7 @@
   {
     "ContainingType": "Homestay.Api.Controllers.BookingController",
     "Method": "CreateBookingAsync",
-    "RelativePath": "api/Booking",
+    "RelativePath": "api/Booking/Bookingsssssss",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -94,6 +94,62 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Homestay.Api.Controllers.PaymentsController",
+    "Method": "Checkout",
+    "RelativePath": "api/Payments/checkout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "So_Tien",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "Phuong_Thuc",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Hinh_Anh_Minh_Chung",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Id_User",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Id_Room",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Ngay_Nhan_Phong",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "Ngay_Tra_Phong",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "So_Nguoi",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Tong_Tien",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Homestay.Api.Controllers.ReviewsController",
     "Method": "GetAllReview",
     "RelativePath": "api/Reviews",
@@ -101,6 +157,32 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.ReviewsController",
+    "Method": "CreateReviewAsync",
+    "RelativePath": "api/Reviews",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRoom",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "idUser",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "reviewsRequest",
+        "Type": "Homestay.Application.DTOS.Review.ReviewsRequest",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
