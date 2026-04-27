@@ -46,6 +46,8 @@ namespace Homestay.Application.Services
             catch
             {
                 _unitOfWork.Rollback();
+                throw;
+
             }
             finally
             {

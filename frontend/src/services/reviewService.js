@@ -39,3 +39,49 @@ export const apiGetRoomReviews = async (roomId) => {
     return [];
   }
 };
+/**
+ * Add a new review for a room
+ * @param {string|number} roomId 
+ * @param {Object} reviewData { idUser, So_Sao, Noi_Dung }
+ */
+export const apiAddReview = async (roomId, reviewData) => {
+  const stored = localStorage.getItem('homestayUser');
+  let headers = {
+    'Content-Type': 'application/json',
+  };
+
+  if (stored) {
+    const user = JSON.parse(stored);
+    const token = user.token || user.Token;
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+  }
+
+  const res = await fetch(`${API_BASE_URL}/reviews?idroom=${roomId}`, {
+    method: 'POST',
+    headers: headers,
+    credentials: 'include',
+    body: JSON.stringify(reviewData),
+  });
+
+  const text = await res.text();
+  let data = null;
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch (e) {
+    // Not JSON
+  }
+
+  if (res.status === 401) {
+    window.dispatchEvent(new CustomEvent('auth:unauthorized'));
+    throw new Error('Unauthorized');
+  }
+
+  if (!res.ok) {
+    const errorMsg = data?.message || text || 'Đã có lỗi xảy ra';
+    throw new Error(errorMsg);
+  }
+
+  return data;
+};

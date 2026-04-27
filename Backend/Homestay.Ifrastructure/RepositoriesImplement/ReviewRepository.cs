@@ -39,13 +39,13 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             return idBooking;
         }
 
-        public async Task CreateReviews(int idRoom, int idUser, int checkUserBooking, ReviewsRequest reviewsRequest)
+        public async Task CreateReviews(int idRoom, int checkUserBooking, ReviewsRequest reviewsRequest)
         {
             string query = @"INSERT INTO ql_hs_danh_gia(ql_phong_id, ql_nguoi_dung_id, ql_dat_phong_id, so_sao, noi_dung, trang_thai, thoi_gian) 
                 VALUES (@idRoom, @idUser, @idBooking, @SoSao, @NoiDung, 'hien_thi', GETDATE());";
             using var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction);
             cmd.Parameters.AddWithValue("@idRoom", idRoom);
-            cmd.Parameters.AddWithValue("@idUser", idUser);
+            cmd.Parameters.AddWithValue("@idUser", reviewsRequest.idUser);
             cmd.Parameters.AddWithValue("@idBooking", checkUserBooking);
             cmd.Parameters.AddWithValue("@SoSao", reviewsRequest.So_Sao);
             cmd.Parameters.AddWithValue("@NoiDung", reviewsRequest.Noi_Dung);

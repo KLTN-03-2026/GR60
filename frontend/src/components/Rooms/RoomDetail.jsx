@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import DateRangePicker from '../Common/DateRangePicker';
 import GuestRow from '../Common/GuestRow';
 import { apiGetRoomById, apiGetBookedDates, apiGetRoomPrice } from '../../services/roomService';
-import { apiGetRoomReviews } from '../../services/reviewService';
+import { apiGetRoomReviews, apiAddReview } from '../../services/reviewService';
+import { apiLogout } from '../../services/authService';
+import { showToast } from '../Common/Notification';
 import ReviewsModal from '../Home/ReviewsModal';
 import Header from '../Layout/Header';
 
@@ -12,6 +14,7 @@ const PRICE_PER_NIGHT = 3200000; // Giá mặc định nếu API trả về 0
 const RoomDetail = () => {
   const [searchParams] = useSearchParams();
   const roomId = searchParams.get('id') || 1;
+  const navigate = useNavigate();
 
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
@@ -29,6 +32,11 @@ const RoomDetail = () => {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [isAmenitiesModalOpen, setIsAmenitiesModalOpen] = useState(false);
 
+  // States cho form đánh giá mới
+  const [newRating, setNewRating] = useState(5);
+  const [newComment, setNewComment] = useState('');
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
+
   // User auth state
   const [currentUser, setCurrentUser] = useState(null);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -45,15 +53,22 @@ const RoomDetail = () => {
     }
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await apiLogout();
+      showToast('Đăng xuất thành công!', 'success');
+    } catch (e) {
+      console.error('Lỗi khi gọi API logout:', e);
+    }
     localStorage.removeItem('homestayUser');
     setCurrentUser(null);
     setIsUserMenuOpen(false);
+    navigate('/');
   };
 
   const getUserInitial = () => {
     if (!currentUser) return '?';
-    const name = currentUser.hoTen || currentUser.HoTen || currentUser.email || '';
+    const name = currentUser.name || currentUser.HoTen || currentUser.email || '';
     return name.charAt(0).toUpperCase();
   };
 
@@ -131,6 +146,46 @@ const RoomDetail = () => {
     });
   };
 
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    
+    const stored = localStorage.getItem('homestayUser');
+    if (!stored) {
+      showToast('Vui lòng đăng nhập để thực hiện đánh giá!', 'error');
+      navigate('/login');
+      return;
+    }
+
+    if (!newComment.trim()) {
+      showToast('Vui lòng nhập nội dung đánh giá!', 'error');
+      return;
+    }
+
+    const user = JSON.parse(stored);
+    setIsSubmittingReview(true);
+
+    try {
+      const response = await apiAddReview(roomId, {
+        idUser: user.id || user.Id,
+        So_Sao: newRating,
+        Noi_Dung: newComment
+      });
+
+      showToast(response?.message || 'Đánh giá thành công!', 'success');
+      setNewComment('');
+      setNewRating(5);
+      
+      // Tải lại danh sách đánh giá
+      const updatedReviews = await apiGetRoomReviews(roomId);
+      setReviews(updatedReviews);
+    } catch (err) {
+      // Xử lý lỗi 400 (Bạn chưa từng sử dụng phòng này) và các lỗi khác
+      showToast(err.message, 'error');
+    } finally {
+      setIsSubmittingReview(false);
+    }
+  };
+
   const reviewCount = reviews.length;
   const avgRating = reviewCount > 0 ? (reviews.reduce((acc, r) => acc + r.so_Sao, 0) / reviewCount).toFixed(1) : "0.0";
   const displayReviews = reviews.slice(0, 4);
@@ -153,6 +208,29 @@ const RoomDetail = () => {
   const total = subtotal + serviceFee;
 
   const fmt = (n) => n.toLocaleString('vi-VN');
+
+  const handleBookingClick = () => {
+    if (!currentUser) {
+      alert('Vui lòng đăng nhập để thực hiện đặt phòng!');
+      navigate('/login');
+      return;
+    }
+
+    if (!checkIn || !checkOut) {
+      alert('Vui lòng chọn ngày nhận và trả phòng trước khi đặt!');
+      return;
+    }
+    navigate('/checkout', {
+      state: {
+        room,
+        checkIn: checkIn.toISOString(),
+        checkOut: checkOut.toISOString(),
+        guests,
+        total,
+        nights
+      }
+    });
+  };
 
   // Loading Skeleton
   if (loading) {
@@ -327,6 +405,48 @@ const RoomDetail = () => {
                     </div>
                  </div>
 
+                 {/* Form Đánh giá mới */}
+                 <div className="bg-[#F9F7F2] p-6 md:p-8 rounded-2xl border border-[#E8E1D3] mb-12">
+                   <h3 className="text-xl font-serif text-[#364132] mb-6">Bạn nghĩ gì về căn phòng này?</h3>
+                   <form onSubmit={handleSubmitReview} className="space-y-6">
+                     <div>
+                       <label className="block text-sm font-bold text-[#7A6A63] tracking-widest uppercase mb-3">Số sao đánh giá</label>
+                       <div className="flex space-x-2">
+                         {[1, 2, 3, 4, 5].map((star) => (
+                           <button
+                             key={star}
+                             type="button"
+                             onClick={() => setNewRating(star)}
+                             className={`text-2xl transition-all duration-200 transform hover:scale-110 ${star <= newRating ? 'text-yellow-500' : 'text-gray-300'}`}
+                           >
+                             ★
+                           </button>
+                         ))}
+                       </div>
+                     </div>
+                     <div>
+                       <label className="block text-sm font-bold text-[#7A6A63] tracking-widest uppercase mb-3">Nội dung đánh giá</label>
+                       <textarea
+                         value={newComment}
+                         onChange={(e) => setNewComment(e.target.value)}
+                         placeholder="Chia sẻ trải nghiệm của bạn tại đây..."
+                         className="w-full bg-white border border-[#E8E1D3] rounded-xl p-4 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-[#364132] focus:border-transparent transition-all text-gray-700 placeholder-gray-400"
+                       ></textarea>
+                     </div>
+                     <button
+                       type="submit"
+                       disabled={isSubmittingReview}
+                       className={`px-8 py-3.5 rounded-full font-bold text-sm tracking-widest uppercase transition-all shadow-md ${
+                         isSubmittingReview 
+                           ? 'bg-gray-400 cursor-not-allowed text-white' 
+                           : 'bg-[#364132] text-white hover:bg-[#283125] active:scale-95'
+                       }`}
+                     >
+                       {isSubmittingReview ? 'Đang gửi...' : 'Gửi đánh giá'}
+                     </button>
+                   </form>
+                 </div>
+
                  {reviewCount > 0 ? (
                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                       {displayReviews.map((review, idx) => {
@@ -458,7 +578,10 @@ const RoomDetail = () => {
                 </>
               )}
 
-              <button className="w-full bg-[#364132] text-white py-4 rounded-xl font-medium hover:bg-[#283125] transition-colors shadow-md">
+              <button 
+                onClick={handleBookingClick}
+                className="w-full bg-[#364132] text-white py-4 rounded-xl font-medium hover:bg-[#283125] transition-colors shadow-md"
+              >
                 Đặt phòng ngay
               </button>
 

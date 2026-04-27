@@ -25,9 +25,9 @@ namespace Homestay.Api.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> CreateReviewAsync([FromQuery] int idRoom,[FromQuery]int idUser, [FromBody] ReviewsRequest reviewsRequest)
+        public async Task<IActionResult> CreateReviewAsync([FromQuery] int idRoom, [FromBody] ReviewsRequest reviewsRequest)
         {
-            var result = await _Review.CreateReviewAsync(idRoom,idUser,reviewsRequest);
+            var result = await _Review.CreateReviewAsync(idRoom,reviewsRequest);
             if(result.StatusCode == 201)
             {
                 return StatusCode(result.StatusCode, result);

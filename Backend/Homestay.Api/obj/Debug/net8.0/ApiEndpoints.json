@@ -173,11 +173,6 @@
         "IsRequired": false
       },
       {
-        "Name": "idUser",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "reviewsRequest",
         "Type": "Homestay.Application.DTOS.Review.ReviewsRequest",
         "IsRequired": true

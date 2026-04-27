@@ -18,9 +18,9 @@ namespace Homestay.Application.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<CreateReviewResponse> CreateReviewAsync(int idRoom, int idUser, ReviewsRequest reviewsRequest)
+        public async Task<CreateReviewResponse> CreateReviewAsync(int idRoom,  ReviewsRequest reviewsRequest)
         {
-            var checkUserBooking =await _unitOfWork.ReviewRepository.CheckUserBooking(idRoom,idUser);
+            var checkUserBooking =await _unitOfWork.ReviewRepository.CheckUserBooking(idRoom,reviewsRequest.idUser);
             if(checkUserBooking == 0)
             {
                 return new CreateReviewResponse
@@ -32,7 +32,7 @@ namespace Homestay.Application.Services
             _unitOfWork.BeginTransaction();
             try
             {
-                await _unitOfWork.ReviewRepository.CreateReviews(idRoom,idUser,checkUserBooking,reviewsRequest);
+                await _unitOfWork.ReviewRepository.CreateReviews(idRoom,checkUserBooking,reviewsRequest);
                 _unitOfWork.Commit();
                 return new CreateReviewResponse
                 {

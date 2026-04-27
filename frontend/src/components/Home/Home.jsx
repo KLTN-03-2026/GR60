@@ -10,6 +10,7 @@ import TestimonialCard, { avatarColors } from './TestimonialCard';
 import ReviewsModal from './ReviewsModal';
 import FadeInSection from '../Common/FadeInSection';
 import Footer from '../Layout/Footer';
+import { showToast } from '../Common/Notification';
 
 // Services
 import { apiSearchRooms } from '../../services/roomService';
@@ -169,7 +170,12 @@ const Home = () => {
   };
 
   const handleLogout = async () => {
-    await apiLogout();
+    try {
+      await apiLogout();
+      showToast('Đăng xuất thành công!', 'success');
+    } catch (e) {
+      console.error('Lỗi khi đăng xuất:', e);
+    }
     localStorage.removeItem('homestayUser');
     setCurrentUser(null);
     setIsUserMenuOpen(false);

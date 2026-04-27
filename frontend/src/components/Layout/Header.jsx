@@ -71,7 +71,7 @@ const Header = ({
                   <div className="absolute right-0 top-[calc(100%+16px)] w-[280px] bg-white rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-gray-100 overflow-hidden z-50 animate-in">
                     {/* User info header */}
                     <div className="px-6 py-5 bg-gradient-to-r from-[#2A3B32] to-[#3D5347] text-white">
-                      <p className="font-semibold text-base truncate">{currentUser.name || currentUser.HoTen || 'Người dùng'}</p>
+                      <p className="font-semibold text-base truncate">{currentUser.name || currentUser.name || 'Người dùng'}</p>
                       <p className="text-white/70 text-sm mt-1 truncate">{currentUser.email || currentUser.Email}</p>
                     </div>
 

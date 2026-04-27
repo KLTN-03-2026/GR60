@@ -10,7 +10,7 @@ namespace Homestay.Application.Interfaces.Services
 {
     public interface IReview
     {
-        public Task<CreateReviewResponse> CreateReviewAsync(int idRoom, int idUser, ReviewsRequest reviewsRequest);
+        public Task<CreateReviewResponse> CreateReviewAsync(int idRoom, ReviewsRequest reviewsRequest);
         public Task<List<ReviewResponse>> GelAllReviewsRoom(int id);
         public Task<List<ReviewResponse>> GetAllReviewAsync();
     }

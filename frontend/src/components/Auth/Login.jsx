@@ -20,6 +20,9 @@ const Login = () => {
       // Gọi qua function ở authService.js
       const userData = await apiLogin(email, matKhau);
       
+      // Thêm thời gian hết hạn (1 giờ) để tự động đăng xuất
+      userData.expiresAt = new Date().getTime() + 1 * 60 * 60 * 1000;
+      
       console.log('Thành công! Thông tin user:', userData);
       localStorage.setItem('homestayUser', JSON.stringify(userData));
       navigate('/'); // Điều hướng về app chính

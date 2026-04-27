@@ -113,7 +113,7 @@ export const apiRegister = async (data) => {
 export const apiLogout = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/auth/logout`, {
-      method: 'POST',
+      method: 'DELETE',
       credentials: 'include',
     });
     return response.ok;
