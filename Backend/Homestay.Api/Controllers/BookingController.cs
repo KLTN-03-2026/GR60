@@ -31,5 +31,18 @@ namespace Homestay.Api.Controllers
             var result = await _booking.BookingRoomAsync(idRoom);
             return Ok(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetBookingByUser([FromQuery] int idUser)
+        {
+            var result = await _booking.GetBookingByUser(idUser);
+            return Ok(result);
+        }
+        [Authorize]
+        [HttpGet("{idBooking}")]
+        public async Task<IActionResult> GetBookingById(int idBooking)
+        {
+            var result = await _booking.GetBookingById(idBooking);
+            return Ok(result);
+        }
     }
 }

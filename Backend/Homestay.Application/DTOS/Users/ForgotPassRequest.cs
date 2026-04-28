@@ -9,8 +9,8 @@ namespace Homestay.Application.DTOS.Users
 {
     public class ForgotPassRequest
     {
-        [JsonPropertyName("Email")]
+    //    [JsonPropertyName("Email")]
         public string Email { get; set; } = default!;
-
+        public string Sdt { get; set; } = default!;
     }
 }

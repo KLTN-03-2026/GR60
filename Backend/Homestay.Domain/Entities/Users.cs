@@ -18,6 +18,8 @@ namespace Homestay.Domain.Entities
         public string Diachi { get; set; } = default!;
         public string Anhdaidien { get; set; } = default!;
         public DateTime Ngaytao{ get; set; }
+        public DateTime NgaySinh { get; set; }
+
 
 
     }

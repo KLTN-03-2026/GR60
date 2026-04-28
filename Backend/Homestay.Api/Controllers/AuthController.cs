@@ -1,4 +1,5 @@
-﻿using Homestay.Application.DTOS.Users;
+﻿using Homestay.Application.DTOS;
+using Homestay.Application.DTOS.Users;
 using Homestay.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -62,12 +63,28 @@ namespace Homestay.Api.Controllers
          
             return Ok("Đăng xuất thành công");
         }
-        [HttpDelete("forgot-pass")]
-
-        public IActionResult ForgotPassword()
+        [HttpPost("forgot-pass")]
+        public async Task<IActionResult> ForgotPassword([FromBody]ForgotPassRequest forgotPassRequest)
         {
-            return Ok();
+            var token = await _auth.CheckEmaiLSdt(forgotPassRequest);
+            if(token == null)
+            {
+                return BadRequest();
+            }
+            return Ok(token);
         }
+        [HttpPatch("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPass resetPass)
+        {
+           var result =  await _auth.ResetPassword(resetPass);
+           if(result.StatusCode == 200)
+            {
+                return StatusCode(result.StatusCode,result.Message);
+            }
+            return StatusCode(result.StatusCode, result.Message);
+
+        }
+
         [Authorize]
         [HttpPost("test")]
         public IActionResult AuthRegister()

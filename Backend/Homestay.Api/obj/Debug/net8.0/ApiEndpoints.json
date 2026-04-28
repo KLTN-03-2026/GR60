@@ -3,10 +3,16 @@
     "ContainingType": "Homestay.Api.Controllers.AuthController",
     "Method": "ForgotPassword",
     "RelativePath": "api/Auth/forgot-pass",
-    "HttpMethod": "DELETE",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "forgotPassRequest",
+        "Type": "Homestay.Application.DTOS.Users.ForgotPassRequest",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -53,12 +59,60 @@
   },
   {
     "ContainingType": "Homestay.Api.Controllers.AuthController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Auth/reset-password",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resetPass",
+        "Type": "Homestay.Application.DTOS.Users.ResetPass",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.AuthController",
     "Method": "AuthRegister",
     "RelativePath": "api/Auth/test",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.BookingController",
+    "Method": "GetBookingByUser",
+    "RelativePath": "api/Booking",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUser",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.BookingController",
+    "Method": "GetBookingById",
+    "RelativePath": "api/Booking/{idBooking}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idBooking",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -91,6 +145,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.HomeStayController",
+    "Method": "GetHomeStay",
+    "RelativePath": "api/HomeStay",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -211,13 +211,13 @@ const RoomDetail = () => {
 
   const handleBookingClick = () => {
     if (!currentUser) {
-      alert('Vui lòng đăng nhập để thực hiện đặt phòng!');
+      showToast('Vui lòng đăng nhập để thực hiện đặt phòng!', 'error');
       navigate('/login');
       return;
     }
 
     if (!checkIn || !checkOut) {
-      alert('Vui lòng chọn ngày nhận và trả phòng trước khi đặt!');
+      showToast('Vui lòng chọn ngày nhận và trả phòng trước khi đặt!', 'error');
       return;
     }
     navigate('/checkout', {
@@ -598,7 +598,10 @@ const RoomDetail = () => {
       <footer className="bg-[#364132] text-[#F7F5F0] py-16 px-6 md:px-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1">
-            <img src="/logo.png" alt="Lumière Stay Logo" className="h-12 mb-6 w-auto object-contain rounded" />
+            <Link to="/" className="font-serif text-2xl md:text-3xl tracking-tighter transition-all duration-300 flex items-center gap-1 group text-white mb-6">
+              <span className="font-bold text-white">60</span>
+              <span className="font-light italic text-[#D1C2A5] ml-2">Homes</span>
+            </Link>
             <p className="text-sm text-white/70 leading-relaxed pr-4">
               Nơi tìm thấy sự tĩnh lặng giữa thiên nhiên hùng vĩ.
             </p>
@@ -642,7 +645,7 @@ const RoomDetail = () => {
         </div>
         
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-[11px] text-white/50">
-          <p>© 2024 Lumière Stay. All rights reserved.</p>
+          <p>© 2024 60 Homes. All rights reserved.</p>
           <div className="flex items-center space-x-6 mt-4 md:mt-0">
             <button className="hover:text-white transition flex items-center">
               <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>

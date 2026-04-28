@@ -35,6 +35,24 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             }
         }
 
+        public async Task<int> CheckEmailSdtUser(ForgotPassRequest forgotPassRequest)
+        {
+            string query = @"select id
+                            from ql_hs_nguoi_dung
+                            where email = @email and so_dien_thoai = @sdt";
+            
+            using var cmd = new SqlCommand(query,dBFactory.GetConnection, dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@email",forgotPassRequest.Email);
+            cmd.Parameters.AddWithValue("@sdt", forgotPassRequest.Sdt);
+
+            using var reader = await cmd.ExecuteReaderAsync();
+            if (await reader.ReadAsync())
+            {
+                return reader["id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id"]);
+            }
+            return 0;
+        }
+
         public async Task<Users?> CheckUserLoginExistsAsync(string email, string matKhau)
         {
             
@@ -56,7 +74,8 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                         Matkhau = "",
                         Diachi = reader["dia_chi"].ToString(),
                         Anhdaidien = reader["anh_dai_dien"].ToString(),
-                        Ngaytao = Convert.ToDateTime(reader["ngay_tao"])
+                        Ngaytao = Convert.ToDateTime(reader["ngay_tao"]),
+                        NgaySinh = Convert.ToDateTime(reader["ngay_sinh"]),
                     };
 
                     return user;
@@ -80,6 +99,17 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                 }
                 return false;
             }
+        }
+
+        public async Task UpdateNewPass(string userId, string newPass)
+        {
+            string query = @"UPDATE ql_hs_nguoi_dung
+                            SET mat_khau = @newPass
+                            where id = @userId";
+            using var cmd = new SqlCommand(query,dBFactory.GetConnection, dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@newPass", newPass);
+            cmd.Parameters.AddWithValue("@userId", userId);
+            await cmd.ExecuteNonQueryAsync();
         }
     }
 }

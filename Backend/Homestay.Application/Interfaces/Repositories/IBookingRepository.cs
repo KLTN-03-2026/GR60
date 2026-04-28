@@ -11,5 +11,7 @@ namespace Homestay.Application.Interfaces.Repositories
     {
         public  Task<List<DayBookingReponse>> CheckDayBookingRoomAsync(int idRoom);
         public Task<int> CreateBooking(BookingRequest bookingRequest);
+        public Task<BookingDetailByUser> GetBookingById(int idBooking);
+        public Task<List<BookingsByUserResponse>> GetBookingByUser(int idUser);
     }
 }

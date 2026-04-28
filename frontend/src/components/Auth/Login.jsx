@@ -106,9 +106,9 @@ const Login = () => {
                 <label htmlFor="password" className="block text-[11px] font-bold text-[#7A6A63] tracking-wider uppercase">
                   Mật khẩu
                 </label>
-                <a href="#quen-mat-khau" className="text-[11px] font-bold text-[#BA5D42] hover:text-[#9A4C35] tracking-wider uppercase transition-colors">
+                <Link to="/forgot-password" size="sm" className="text-[11px] font-bold text-[#BA5D42] hover:text-[#9A4C35] tracking-wider uppercase transition-colors">
                   Quên mật khẩu?
-                </a>
+                </Link>
               </div>
               <div className="relative text-gray-500">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">

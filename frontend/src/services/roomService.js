@@ -108,3 +108,45 @@ export const apiGetRoomPrice = async (roomId, checkIn, checkOut) => {
         return null;
     }
 };
+
+export const apiGetBookingHistory = async (idUser) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/booking?idUser=${idUser}`, {
+            credentials: 'include'
+        });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const text = await response.text();
+        return text ? JSON.parse(text) : [];
+    } catch (err) {
+        console.error(`Lỗi khi fetch booking history cho user id ${idUser}:`, err);
+        return [];
+    }
+};
+
+export const apiGetBookingDetail = async (bookingId) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/booking/${bookingId}`, {
+            credentials: 'include'
+        });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const text = await response.text();
+        return text ? JSON.parse(text) : null;
+    } catch (err) {
+        console.error(`Lỗi khi fetch booking detail cho id ${bookingId}:`, err);
+        return null;
+    }
+};
+
+export const apiGetHomeStayInfo = async () => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/HomeStay`, {
+            credentials: 'include'
+        });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        return Array.isArray(data) ? data[0] : data;
+    } catch (err) {
+        console.error('Lỗi khi fetch homestay info:', err);
+        return null;
+    }
+};

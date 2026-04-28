@@ -2,6 +2,7 @@
 using Homestay.Application.helper;
 using Homestay.Application.Interfaces;
 using Homestay.Application.Interfaces.Services;
+using Homestay.Application.Services.Jwt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -22,10 +23,12 @@ namespace Homestay.Application.Services
 
         private readonly IUnitOfWork unitOfWork;
         private readonly IConfiguration configuration;
-        public Auth(IConfiguration configuration, IUnitOfWork unitOfWork)
+        private readonly ResetTokenService _resetTokenService;
+        public Auth(IConfiguration configuration, IUnitOfWork unitOfWork,ResetTokenService resetTokenService)
         {
             this.unitOfWork = unitOfWork;
             this.configuration = configuration;
+            _resetTokenService = resetTokenService;
         }
 
         public async Task<AuthResponse?> LoginAsync(UserRequest userRequest)
@@ -46,7 +49,7 @@ namespace Homestay.Application.Services
                         issuer: configuration["JwtBearer:iss"],
                         audience: configuration["JwtBearer:aud"],
                         claims: claims,
-                        expires: DateTime.Now.AddHours(30),
+                        expires: DateTime.Now.AddMinutes(30),
                         signingCredentials: creds
                     );
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
@@ -55,11 +58,12 @@ namespace Homestay.Application.Services
                     id = check.id,
                     Name = check.Name,
                     Email = check.Email,
-                    Vaitro = check.Vaitro,
                     SDT = check.SDT,
+                    Vaitro =check.Vaitro,
                     Diachi = check.Diachi,
                     Ngaytao = check.Ngaytao,
-                    Anhdaidien = check.Anhdaidien
+                    Anhdaidien = check.Anhdaidien,
+                    NgaySinh = check.NgaySinh
                 };
                 return new AuthResponse
                 {
@@ -140,6 +144,73 @@ namespace Homestay.Application.Services
                 return false;
             }
             return true;
+        }
+
+        public async Task<string> CheckEmaiLSdt(ForgotPassRequest forgotPassRequest)
+        {
+            var result = await unitOfWork.UserRepository.CheckEmailSdtUser(forgotPassRequest);
+            if(result == 0)
+            {
+                return null;
+            }
+            return _resetTokenService.GenerateToken(result.ToString());
+        }
+
+        public async Task<RegisterResponse> ResetPassword(ResetPass resetPass)
+        {
+
+            if (!checkMk(resetPass.NewPass))
+            {
+                return new RegisterResponse
+                {
+                    StatusCode = 400,
+                    Message = "Mật khẩu không hợp lệ"
+                };
+            }
+            if (resetPass.NewPass != resetPass.ConfirmNewPass)
+            {
+                return new RegisterResponse
+                {
+                    StatusCode = 400,
+                    Message = "Mật khẩu xác nhận không trùng với mật khẩu"
+                };
+            }
+
+            var principal =  _resetTokenService.ValidateToken(resetPass.Token);
+            if (principal == null)
+            {
+                return new RegisterResponse
+                {
+                    StatusCode = 400,
+                    Message = "Token không hợp lệ"
+                };
+            }
+            var userId = principal.FindFirst("UserId").Value.ToString();
+            unitOfWork.BeginTransaction();
+            try
+            {
+                await unitOfWork.UserRepository.UpdateNewPass(userId, resetPass.NewPass);
+                unitOfWork.Commit();
+                return new RegisterResponse
+                {
+                    StatusCode = 200,
+                    Message = "đổi mật khẩu thành công"
+                };
+            }
+            catch
+            {
+                unitOfWork.Rollback();
+                return new RegisterResponse
+                {
+                    StatusCode = 500,
+                    Message = "Lỗi hệ thống"
+                };
+            }
+            finally
+            {
+                unitOfWork.Dispose();
+            }
+
         }
     }
 }

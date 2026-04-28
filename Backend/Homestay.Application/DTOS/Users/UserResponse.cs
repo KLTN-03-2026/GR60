@@ -9,13 +9,15 @@ namespace Homestay.Application.DTOS.Users
     public class UserResponse
     {
         public int id { get; set; } = default!;
-
-        public string Vaitro { get; set; } = default!;
         public string Name { get; set; } = default!;
+        public string Vaitro { get; set; } = default!;
+
         public string Email { get; set; } = default!;
         public string SDT { get; set; } = default!;
         public string Diachi { get; set; } = default!;
         public string Anhdaidien { get; set; } = default!;
         public DateTime Ngaytao { get; set; }
+        public DateTime NgaySinh { get; set; }
+
     }
 }

@@ -3,6 +3,7 @@ using Homestay.Application.Interfaces;
 using Homestay.Application.Interfaces.Repositories;
 using Homestay.Application.Interfaces.Services;
 using Homestay.Application.Services;
+using Homestay.Application.Services.Jwt;
 using Homestay.Ifrastructure.Data;
 using Homestay.Ifrastructure.RepositoriesImplement;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -34,6 +35,9 @@ namespace Homestay.Api
             builder.Services.AddScoped<IPayment, Payment>();
             builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
             builder.Services.AddScoped<ICheckout, Checkout>();
+            builder.Services.AddScoped<IHomeStay, HomeStay>();
+            builder.Services.AddScoped<IHomeStayRepository, HomeStayRepository>();
+            builder.Services.AddScoped<ResetTokenService>();
 
 
 

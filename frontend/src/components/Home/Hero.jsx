@@ -36,7 +36,7 @@ const Hero = ({
 
       <div className="relative z-10 max-w-5xl w-full px-6 text-center">
         <h1 className="text-5xl md:text-7xl font-serif text-white mb-6 tracking-tight leading-tight drop-shadow-lg">
-          Lumière Stay
+          60 Homes
         </h1>
         <p className="text-xl md:text-2xl text-white/90 mb-12 font-light tracking-wide max-w-2xl mx-auto drop-shadow-md">
           Tìm nơi bình yên của bạn

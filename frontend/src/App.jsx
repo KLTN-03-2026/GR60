@@ -3,8 +3,14 @@ import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-ro
 import Login from './components/Auth/Login'
 import Register from './components/Auth/Register'
 import Home from './components/Home/Home'
+import About from './components/Home/About'
 import RoomDetail from './components/Rooms/RoomDetail'
 import Checkout from './components/Rooms/Checkout'
+import BookingHistory from './components/Rooms/BookingHistory'
+import BookingDetail from './components/Rooms/BookingDetail'
+import ForgotPassword from './components/Auth/ForgotPassword'
+import ResetPassword from './components/Auth/ResetPassword'
+import Account from './components/Auth/Account'
 
 import Notification from './components/Common/Notification'
 
@@ -62,10 +68,16 @@ function App() {
       <AuthHandler>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/room-detail" element={<RoomDetail />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/booking-history" element={<BookingHistory />} />
+          <Route path="/booking-detail" element={<BookingDetail />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
       </AuthHandler>
     </BrowserRouter>

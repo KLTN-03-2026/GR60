@@ -122,3 +122,86 @@ export const apiLogout = async () => {
     return false;
   }
 };
+
+/**
+ * Gọi API Quên mật khẩu
+ * @param {string} email 
+ * @param {string} soDienThoai 
+ * @returns {Promise<Object>}
+ */
+export const apiForgotPassword = async (email, sdt) => {
+  const response = await fetch(`${API_BASE_URL}/auth/forgot-pass`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      Email: email,
+      Sdt: sdt,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    let errorMessage = 'Số điện thoại hoặc Email không đúng';
+    
+    try {
+      // Thử parse JSON nếu server trả về Problem Details
+      const errorObj = JSON.parse(errorText);
+      // Nếu có message cụ thể từ server thì dùng, nếu là generic "Bad Request" thì dùng message của mình
+      if (errorObj.message) {
+        errorMessage = errorObj.message;
+      } else if (errorObj.errors) {
+        // Handle Validation Errors
+        errorMessage = Object.values(errorObj.errors).flat().join(', ');
+      }
+    } catch (e) {
+      // Nếu không phải JSON, dùng text nguyên bản nếu có, không thì dùng mặc định
+      if (errorText && errorText.length < 100) errorMessage = errorText;
+    }
+
+    throw new Error(errorMessage);
+  }
+
+  // API trả về token dưới dạng chuỗi (plain text)
+  return await response.text();
+};
+
+/**
+ * Gọi API Đặt lại mật khẩu mới
+ * @param {string} email 
+ * @param {string} token 
+ * @param {string} newPassword 
+ * @returns {Promise<boolean>}
+ */
+export const apiResetPassword = async (token, newPass, confirmNewPass) => {
+  const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      Token: token,
+      NewPass: newPass,
+      ConfirmNewPass: confirmNewPass,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    let errorMessage = 'Đặt lại mật khẩu thất bại.';
+    
+    try {
+      // Nếu là JSON thì bóc tách
+      const errorObj = JSON.parse(errorText);
+      errorMessage = errorObj.message || errorObj.title || errorText;
+    } catch (e) {
+      // Nếu là text thuần (như "Token không hợp lệ") thì dùng luôn
+      if (errorText) errorMessage = errorText;
+    }
+    
+    throw new Error(errorMessage);
+  }
+
+  return await response.text();
+};

@@ -43,5 +43,21 @@ namespace Homestay.Application.Services
                 _unitOfWork.Dispose();
             }
         }
+
+        public async Task<BookingDetailByUser> GetBookingById(int idBooking)
+        {
+            var result = await _unitOfWork.BookingRepository.GetBookingById(idBooking);
+            return result;
+        }
+
+        public async Task<List<BookingsByUserResponse>> GetBookingByUser(int idUser)
+        {
+            var result = await _unitOfWork.BookingRepository.GetBookingByUser(idUser);
+            if(result == null)
+            {
+                return null;
+            }
+            return result;
+        }
     }
 }

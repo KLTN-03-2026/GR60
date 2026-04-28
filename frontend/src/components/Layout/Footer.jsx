@@ -6,9 +6,13 @@ const Footer = () => {
     <footer className="bg-[#2A3B32] text-white py-20 px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-1">
-          <img src="/logo.png" alt="Lumière Stay Logo" className="h-12 mb-6 w-auto object-contain rounded" />
+          <Link to="/" className="font-serif text-3xl md:text-4xl tracking-tighter transition-all duration-300 flex items-center gap-1 group text-white mb-6">
+            <span className="font-bold">60</span>
+            <span className="font-light italic text-[#D1C2A5] ml-2">Homes</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-[#D1C2A5] mt-2"></div>
+          </Link>
           <p className="text-sm text-gray-300 mb-6 leading-relaxed">
-            Định nghĩa lại không gian nghỉ dưỡng qua sự tối giản, tinh tế và gắn liền với thiên nhiên.
+            Định nghĩa lại không gian nghỉ dưỡng tại Đà Nẵng qua sự tối giản, tinh tế và gắn liền với nhịp sống đô thị thông minh.
           </p>
           <div className="flex space-x-4">
             <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 cursor-pointer transition">
@@ -42,13 +46,13 @@ const Footer = () => {
           <ul className="space-y-3 text-sm text-gray-300">
             <li><Link to="#" className="hover:text-white transition">Điều khoản</Link></li>
             <li><Link to="#" className="hover:text-white transition">Bảo mật</Link></li>
-            <li><Link to="#" className="hover:text-white transition">Liên hệ</Link></li>
+            <li><Link to="/about" className="hover:text-white transition">Giới thiệu</Link></li>
             <li><Link to="#" className="hover:text-white transition">FAQ</Link></li>
           </ul>
         </div>
       </div>
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/10 text-center text-xs text-gray-400">
-        © 2024 Lumière Stay. All rights reserved.
+        © 2024 60 Homes. All rights reserved.
       </div>
     </footer>
   );

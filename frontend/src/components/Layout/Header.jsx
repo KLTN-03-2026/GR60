@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = ({ 
   isScrolled, 
@@ -11,6 +11,7 @@ const Header = ({
   getUserInitial 
 }) => {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const location = useLocation();
 
   const triggerLogout = () => {
     setIsUserMenuOpen(false);
@@ -22,6 +23,8 @@ const Header = ({
     handleLogout();
   };
 
+  const isActive = (path) => location.pathname === path;
+
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-4' : 'bg-transparent py-6'}`}>
@@ -29,15 +32,79 @@ const Header = ({
           
           {/* LOGO (TRÁI) */}
           <div className="flex justify-start">
-            <Link to="/" className={`font-serif text-2xl md:text-3xl tracking-wider transition-colors ${isScrolled ? 'text-[#ff385c]' : 'text-white'}`}>
-              The Tactile Ethernet
+            <Link to="/" className={`font-serif text-3xl md:text-4xl tracking-tighter transition-all duration-300 flex items-center gap-1 group ${isScrolled ? 'text-dark' : 'text-white'}`}>
+              <span className="font-bold">60</span>
+              <span className="font-light italic text-primary ml-2">Homes</span>
+              <div className={`w-1.5 h-1.5 rounded-full bg-primary mt-2 transition-transform group-hover:scale-150 duration-500`}></div>
             </Link>
           </div>
           
-          {/* NAV (GIỮA) */}
-          <nav className="hidden md:flex justify-center items-center space-x-12">
-            <Link to="/" className={`text-lg font-medium tracking-wide border-b-2 pb-1 ${isScrolled ? 'text-gray-900 border-gray-900' : 'text-white border-white'}`}>Trang chủ</Link>
-            <Link to="/contact" className={`text-lg font-medium tracking-wide transition-colors ${isScrolled ? 'text-gray-500 hover:text-gray-900' : 'text-white/80 hover:text-white'}`}>Liên hệ</Link>
+          {/* NAV (GIỮA) - Redesigned for Premium Look */}
+          <nav className="hidden md:flex justify-center items-center">
+            <div className={`flex items-center p-1.5 rounded-full transition-all duration-500 ${
+              isScrolled 
+                ? 'bg-gray-100/50 backdrop-blur-md border border-gray-200/50' 
+                : 'bg-white/10 backdrop-blur-md border border-white/20'
+            }`}>
+              <Link 
+                to="/" 
+                className={`px-5 py-2 rounded-full text-[15px] font-bold tracking-wide transition-all duration-300 flex items-center gap-2.5 group ${
+                  isActive('/') 
+                    ? (isScrolled ? 'bg-white text-gray-900 shadow-sm' : 'bg-white text-gray-900 shadow-lg')
+                    : (isScrolled ? 'text-gray-500 hover:text-gray-900' : 'text-white/80 hover:text-white hover:bg-white/10')
+                }`}
+              >
+                <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 10L12 3L21 10V20C21 20.5523 20.5523 21 20 21H15V14H9V21H4C3.44772 21 3 20.5523 3 20V10Z" fill="#E2E8F0" stroke="#475569" strokeWidth="1.5"/>
+                    <path d="M12 14V21" stroke="#475569" strokeWidth="1.5"/>
+                    <rect x="11" y="15" width="2" height="6" fill="#EF4444"/>
+                    <circle cx="18" cy="14" r="3" fill="#22C55E" fillOpacity="0.8"/>
+                    <path d="M18 17V21" stroke="#92400E" strokeWidth="1.5"/>
+                  </svg>
+                </div>
+                Trang chủ
+              </Link>
+
+              <Link 
+                to="/about" 
+                className={`px-5 py-2 rounded-full text-[15px] font-bold tracking-wide transition-all duration-300 flex items-center gap-2.5 group ${
+                  isActive('/about') 
+                    ? (isScrolled ? 'bg-white text-gray-900 shadow-sm' : 'bg-white text-gray-900 shadow-lg')
+                    : (isScrolled ? 'text-gray-500 hover:text-gray-900' : 'text-white/80 hover:text-white hover:bg-white/10')
+                }`}
+              >
+                <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#3B82F6" fillOpacity="0.1" stroke="#3B82F6" strokeWidth="1.5"/>
+                    <path d="M12 16V12" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round"/>
+                    <circle cx="12" cy="8" r="1" fill="#3B82F6"/>
+                    <path d="M7 12H17" stroke="#3B82F6" strokeWidth="0.5" strokeDasharray="2 2"/>
+                  </svg>
+                </div>
+                Giới thiệu
+              </Link>
+
+              {/* Chỉ hiển thị cho Admin */}
+              {(currentUser?.vaitro === 'admin' || currentUser?.role === 'admin' || currentUser?.Role === 'Admin') && (
+                <Link 
+                  to="/admin" 
+                  className={`px-5 py-2 rounded-full text-[15px] font-bold tracking-wide transition-all duration-300 flex items-center gap-2.5 group ${
+                    isActive('/admin') 
+                      ? (isScrolled ? 'bg-white text-gray-900 shadow-sm' : 'bg-white text-gray-900 shadow-lg')
+                      : (isScrolled ? 'text-gray-500 hover:text-gray-900' : 'text-white/80 hover:text-white hover:bg-white/10')
+                  }`}
+                >
+                  <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:rotate-90">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="#F59E0B" stroke="#D97706" strokeWidth="1.5"/>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="#D97706" strokeWidth="1.5"/>
+                    </svg>
+                  </div>
+                  Quản lý
+                </Link>
+              )}
+            </div>
           </nav>
 
           {/* AUTH (PHẢI) */}
