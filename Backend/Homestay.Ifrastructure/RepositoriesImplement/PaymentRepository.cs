@@ -18,7 +18,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
         {
             _dbFactory = dBFactory;
         }
-        public async Task CreatePayment(Payments payments)
+        public async Task CreatePayment(PaymentsEntities payments)
         {
             string query = @"INSERT INTO ql_hs_thanh_toan(ql_dat_phong_id,so_tien,phuong_thuc,hinh_anh_minh_chung,trang_thai,thoi_gian_thanh_toan)
                              values (@idBooking,@So_tien ,@phuongThuc,@Anh,'cho_thanh_toan',GETDATE())";

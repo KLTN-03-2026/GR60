@@ -19,6 +19,7 @@ namespace Homestay.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddScoped<IUser, User>();
             builder.Services.AddScoped<IAuth, Auth>();
             builder.Services.AddScoped<ITestSQlconnect, TestIpl>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -38,7 +39,6 @@ namespace Homestay.Api
             builder.Services.AddScoped<IHomeStay, HomeStay>();
             builder.Services.AddScoped<IHomeStayRepository, HomeStayRepository>();
             builder.Services.AddScoped<ResetTokenService>();
-
 
 
 

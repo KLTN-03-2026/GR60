@@ -23,6 +23,11 @@ const Login = () => {
       // Thêm thời gian hết hạn (1 giờ) để tự động đăng xuất
       userData.expiresAt = new Date().getTime() + 1 * 60 * 60 * 1000;
       
+      // Xử lý trường hợp ảnh đại diện chỉ trả về base URL
+      if (userData.anhdaidien === 'https://localhost:7092' || userData.anhdaidien === 'https://localhost:7092/') {
+        userData.anhdaidien = null;
+      }
+
       console.log('Thành công! Thông tin user:', userData);
       localStorage.setItem('homestayUser', JSON.stringify(userData));
       navigate('/'); // Điều hướng về app chính

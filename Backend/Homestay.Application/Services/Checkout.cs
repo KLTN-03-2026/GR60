@@ -2,6 +2,7 @@
 using Homestay.Application.DTOS.Payment;
 using Homestay.Application.Interfaces;
 using Homestay.Application.Interfaces.Services;
+using Homestay.Application.Static;
 using Homestay.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -32,7 +33,7 @@ namespace Homestay.Application.Services
             try
             {
               var idBooking =   await _unitOfWork.BookingRepository.CreateBooking(bookingRequest);
-                var payment = new Payments
+                var payment = new PaymentsEntities
                 {
                     Id_Dat_phong = idBooking,
                     So_tien = Convert.ToDecimal(bookingRequest.Tong_Tien),

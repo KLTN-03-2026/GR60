@@ -10,6 +10,6 @@ namespace Homestay.Application.Interfaces.Repositories
 {
     public interface IPaymentRepository
     {
-       public Task CreatePayment(Payments payments);
+       public Task CreatePayment(PaymentsEntities payments);
     }
 }

@@ -42,7 +42,6 @@ namespace Homestay.Api.Controllers
             return Ok(Login.response);
         }
         [HttpPost("register")]
-
         public async Task<IActionResult> AuthRegisterAsync([FromBody] RegisterRequest registerRequest)
         {
             var check = await _auth.RegistereAsync(registerRequest);
@@ -84,7 +83,6 @@ namespace Homestay.Api.Controllers
             return StatusCode(result.StatusCode, result.Message);
 
         }
-
         [Authorize]
         [HttpPost("test")]
         public IActionResult AuthRegister()

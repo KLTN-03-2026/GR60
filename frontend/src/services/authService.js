@@ -205,3 +205,105 @@ export const apiResetPassword = async (token, newPass, confirmNewPass) => {
 
   return await response.text();
 };
+
+/**
+ * Gọi API Cập nhật thông tin cá nhân
+ * @param {string} idUser
+ * @param {Object} data { name, email, sdt, diachi, ngaySinh }
+ * @returns {Promise<Object>} response message
+ */
+export const apiUpdateProfile = async (idUser, data) => {
+  const response = await fetch(`${API_BASE_URL}/users/${idUser}/infouser`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok || responseData.statusCode >= 400) {
+    throw new Error(responseData.message || 'Cập nhật thông tin thất bại.');
+  }
+
+  return responseData;
+};
+
+/**
+ * Gọi API Cập nhật Email (Dùng FormData)
+ * @param {string} idUser 
+ * @param {string} email 
+ * @returns {Promise<Object>}
+ */
+export const apiUpdateEmail = async (idUser, email) => {
+  const formData = new FormData();
+  formData.append('email', email);
+
+  const response = await fetch(`${API_BASE_URL}/users/${idUser}/emailuser`, {
+    method: 'PATCH',
+    body: formData,
+    // Không set Content-Type khi dùng FormData để trình duyệt tự set kèm boundary
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok || responseData.statusCode >= 400 || responseData.StatusCode >= 400) {
+    throw new Error(responseData.message || responseData.Message || 'Cập nhật email thất bại.');
+  }
+
+  return responseData;
+};
+
+/**
+ * Gọi API Cập nhật Mật khẩu
+ * @param {string} idUser 
+ * @param {string} oldPass 
+ * @param {string} newPass 
+ * @returns {Promise<Object>}
+ */
+export const apiUpdatePassword = async (idUser, oldPass, newPass) => {
+  const response = await fetch(`${API_BASE_URL}/users/${idUser}/password`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      Old_Pass: oldPass,
+      New_Pass: newPass,
+    }),
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok || responseData.statusCode >= 400 || responseData.StatusCode >= 400) {
+    throw new Error(responseData.message || responseData.Message || 'Đổi mật khẩu thất bại.');
+  }
+
+  return responseData;
+};
+
+/**
+ * Gọi API Cập nhật Ảnh đại diện (Dùng FormData)
+ * @param {string} idUser 
+ * @param {File} file 
+ * @returns {Promise<Object>}
+ */
+export const apiUpdateAvatar = async (idUser, file) => {
+  const formData = new FormData();
+  formData.append('annh', file); // Tên field là 'annh' theo yêu cầu từ Postman screenshot
+
+  const response = await fetch(`${API_BASE_URL}/users/${idUser}/avatar`, {
+    method: 'PATCH',
+    body: formData,
+    // Không set Content-Type khi dùng FormData để trình duyệt tự set kèm boundary
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok || responseData.statusCode >= 400 || responseData.StatusCode >= 400) {
+    throw new Error(responseData.message || responseData.Message || 'Cập nhật ảnh đại diện thất bại.');
+  }
+
+  return responseData;
+};

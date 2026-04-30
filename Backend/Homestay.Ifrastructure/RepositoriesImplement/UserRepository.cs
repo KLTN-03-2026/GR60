@@ -1,5 +1,6 @@
 ﻿using Homestay.Application.DTOS.Users;
 using Homestay.Application.Interfaces.Repositories;
+using Homestay.Application.Services;
 using Homestay.Domain.Entities;
 using Homestay.Ifrastructure.Data;
 using Microsoft.Data.SqlClient;
@@ -53,7 +54,35 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             return 0;
         }
 
-        public async Task<Users?> CheckUserLoginExistsAsync(string email, string matKhau)
+        public async Task<UsersEntities?> checkOldPass(string old_Pass, int id_User)
+        {
+            string query = @"select *
+                        from ql_hs_nguoi_dung
+                        where id = @idUser and mat_khau = @old_Pass";
+            using var cmd = new SqlCommand(query, dBFactory.GetConnection, dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@idUser", id_User);
+            cmd.Parameters.AddWithValue("@old_Pass", old_Pass);
+            using var reader = await cmd.ExecuteReaderAsync();
+            if (await reader.ReadAsync())
+            {
+                return new UsersEntities
+                {
+                    id = reader["id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id"]),
+                    Vaitro = reader["vai_tro"] == DBNull.Value ?null : Convert.ToString(reader["vai_tro"]),
+                    Name = reader["ho_ten"] == DBNull.Value ? null : Convert.ToString(reader["ho_ten"]),
+                    Email = reader["email"] == DBNull.Value ? null : Convert.ToString(reader["email"]),
+                    SDT = reader["so_dien_thoai"] == DBNull.Value ? null : Convert.ToString(reader["so_dien_thoai"]),
+                    Matkhau = "",
+                    Diachi = reader["dia_chi"] == DBNull.Value ? null : Convert.ToString(reader["dia_chi"]),
+                    Anhdaidien = reader["anh_dai_dien"] == DBNull.Value ? null : Convert.ToString(reader["anh_dai_dien"]),
+                    Ngaytao = reader["ngay_sinh"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_tao"]),
+                    NgaySinh = reader["ngay_sinh"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_sinh"]),
+                };
+            }
+            return null;
+        }
+
+        public async Task<UsersEntities?> CheckUserLoginExistsAsync(string email, string matKhau)
         {
             
             string query = "SELECT * FROM ql_hs_nguoi_dung WHERE email = @Email AND mat_khau = @Matkhau";
@@ -64,18 +93,18 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                 using var reader =  await cmd.ExecuteReaderAsync();   
                 if(reader.Read())
                 {
-                    var user = new Users
+                    var user = new UsersEntities
                     {
-                        id = reader.GetInt32(0),
-                        Vaitro = reader["vai_tro"].ToString(),
-                        Name = reader["ho_ten"].ToString(),
-                        Email = reader["email"].ToString(),
-                        SDT = reader["so_dien_thoai"].ToString(),
+                        id = reader["id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id"]),
+                        Vaitro = reader["vai_tro"] == DBNull.Value ? null : Convert.ToString(reader["vai_tro"]),
+                        Name = reader["ho_ten"] == DBNull.Value ? null : Convert.ToString(reader["ho_ten"]),
+                        Email = reader["email"] == DBNull.Value ? null : Convert.ToString(reader["email"]),
+                        SDT = reader["so_dien_thoai"] == DBNull.Value ? null : Convert.ToString(reader["so_dien_thoai"]),
                         Matkhau = "",
-                        Diachi = reader["dia_chi"].ToString(),
-                        Anhdaidien = reader["anh_dai_dien"].ToString(),
-                        Ngaytao = Convert.ToDateTime(reader["ngay_tao"]),
-                        NgaySinh = Convert.ToDateTime(reader["ngay_sinh"]),
+                        Diachi = reader["dia_chi"] == DBNull.Value ? null : Convert.ToString(reader["dia_chi"]),
+                        Anhdaidien = reader["anh_dai_dien"] == DBNull.Value ? null : Convert.ToString(reader["anh_dai_dien"]),
+                        Ngaytao = reader["ngay_sinh"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_tao"]),
+                        NgaySinh = reader["ngay_sinh"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_sinh"]),
                     };
 
                     return user;
@@ -101,6 +130,19 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             }
         }
 
+        public async Task UpdateEmailUser(int idUser, string email)
+        {
+            string query = @"UPDATE ql_hs_nguoi_dung
+                                    SET email = @email 
+                                    where id = @idUser
+                                    ";
+
+            using var cmd = new SqlCommand(query, dBFactory.GetConnection, dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@email ", email);
+            cmd.Parameters.AddWithValue("@iduser", idUser);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
         public async Task UpdateNewPass(string userId, string newPass)
         {
             string query = @"UPDATE ql_hs_nguoi_dung
@@ -109,6 +151,33 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             using var cmd = new SqlCommand(query,dBFactory.GetConnection, dBFactory.GetTransaction);
             cmd.Parameters.AddWithValue("@newPass", newPass);
             cmd.Parameters.AddWithValue("@userId", userId);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task UpdateUser(UsersEntities usersEntities)
+        {
+
+            string query = @"UPDATE ql_hs_nguoi_dung
+                            SET ho_ten = @hoTen,so_dien_thoai = @sdt, dia_chi = @diachi ,ngay_sinh = @ngaysinh 
+                            where id = @iduser";
+            using var cmd = new SqlCommand(query,dBFactory.GetConnection,dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@hoTen", usersEntities.Name);
+            cmd.Parameters.AddWithValue("@sdt", usersEntities.SDT);
+            cmd.Parameters.AddWithValue("@diachi", usersEntities.Diachi);
+            cmd.Parameters.AddWithValue("@ngaysinh", usersEntities.NgaySinh);
+            cmd.Parameters.AddWithValue("@iduser", usersEntities.id);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task UploadsAnh(int idUser, string fileName)
+        {
+            string query = @"UPDATE ql_hs_nguoi_dung
+                            SET anh_dai_dien = @fileAnh
+                            where id = @iduser
+                            ";
+            using var cmd = new SqlCommand(query, dBFactory.GetConnection, dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@iduser", idUser);
+            cmd.Parameters.AddWithValue("@fileAnh", fileName);
             await cmd.ExecuteNonQueryAsync();
         }
     }

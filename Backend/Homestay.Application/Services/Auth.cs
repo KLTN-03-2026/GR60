@@ -62,7 +62,7 @@ namespace Homestay.Application.Services
                     Vaitro =check.Vaitro,
                     Diachi = check.Diachi,
                     Ngaytao = check.Ngaytao,
-                    Anhdaidien = check.Anhdaidien,
+                    Anhdaidien = Path.Combine(configuration["localhost"], check.Anhdaidien),
                     NgaySinh = check.NgaySinh
                 };
                 return new AuthResponse
