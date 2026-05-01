@@ -1,4 +1,5 @@
 using Homestay.Api.Authenticate;
+using Homestay.Api.Controllers;
 using Homestay.Application.Interfaces;
 using Homestay.Application.Interfaces.Repositories;
 using Homestay.Application.Interfaces.Services;
@@ -17,6 +18,8 @@ namespace Homestay.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddRazorPages();
+            builder.Services.AddSignalR();
 
             // Add services to the container.
             builder.Services.AddScoped<IUser, User>();
@@ -38,6 +41,9 @@ namespace Homestay.Api
             builder.Services.AddScoped<ICheckout, Checkout>();
             builder.Services.AddScoped<IHomeStay, HomeStay>();
             builder.Services.AddScoped<IHomeStayRepository, HomeStayRepository>();
+            builder.Services.AddScoped<IChatManager, ChatManager>();
+            builder.Services.AddScoped<IConversationRepository, ConversationRepository>();
+
             builder.Services.AddScoped<ResetTokenService>();
 
 
@@ -60,11 +66,15 @@ namespace Homestay.Api
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
+
             app.UseCors("AllowReact");
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseStaticFiles();
+            app.UseRouting();
+            app.MapRazorPages();
+            app.MapHub<SupportHub>("/chatHub");
             app.MapControllers();
 
             app.Run();

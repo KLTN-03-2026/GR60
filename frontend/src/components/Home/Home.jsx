@@ -11,6 +11,7 @@ import ReviewsModal from './ReviewsModal';
 import FadeInSection from '../Common/FadeInSection';
 import Footer from '../Layout/Footer';
 import { showToast } from '../Common/Notification';
+import ChatWidget from '../Common/ChatWidget';
 
 // Services
 import { apiSearchRooms } from '../../services/roomService';
@@ -359,6 +360,7 @@ const Home = () => {
       />
 
       <Footer />
+      <ChatWidget currentUser={currentUser} />
     </div>
   );
 };

@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "Homestay.Api.Controllers.ManagerChatController",
+    "Method": "GetAllConversation",
+    "RelativePath": "api/admin/ManagerChat",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.ManagerChatController",
+    "Method": "DeleteConversation",
+    "RelativePath": "api/admin/ManagerChat",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idConversation",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Homestay.Api.Controllers.AuthController",
     "Method": "ForgotPassword",
     "RelativePath": "api/Auth/forgot-pass",
@@ -145,6 +171,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.ChatUserController",
+    "Method": "GetMessage",
+    "RelativePath": "api/ChatUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -407,6 +443,22 @@
   },
   {
     "ContainingType": "Homestay.Api.Controllers.UsersController",
+    "Method": "GetConversation",
+    "RelativePath": "api/Users/{idUser}/conversation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUser",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.UsersController",
     "Method": "UpdateEmailUser",
     "RelativePath": "api/Users/{idUser}/emailuser",
     "HttpMethod": "PATCH",
@@ -442,6 +494,27 @@
       {
         "Name": "infoUpdateUser",
         "Type": "Homestay.Application.DTOS.Users.InfoUpdateUser",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.UsersController",
+    "Method": "GetMessageUser",
+    "RelativePath": "api/Users/{idUser}/Message",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idConversation",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "idUser",
+        "Type": "",
         "IsRequired": true
       }
     ],

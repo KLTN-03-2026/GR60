@@ -22,6 +22,9 @@ namespace Homestay.Application.Interfaces
         public IReviewRepository ReviewRepository { get; }
         public IPaymentRepository paymentRepository { get; }    
         public IHomeStayRepository homeStayRepository { get; }
+        public IConversationRepository conversationRepository { get; }
+
+
 
         void BeginTransaction();
         void Commit();

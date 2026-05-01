@@ -24,6 +24,8 @@ namespace Homestay.Ifrastructure.Data
 
         public IHomeStayRepository homeStayRepository { get; set; }
 
+        public IConversationRepository conversationRepository { get; set; }
+
         private DBFactory dBFactory;
         public UnitOfWork(
                DBFactory dBFactory,
@@ -34,9 +36,10 @@ namespace Homestay.Ifrastructure.Data
                IReviewRepository reviewRepository,
                ITestRepo testRepo,
                IPaymentRepository paymentRepository,
-               IHomeStayRepository homeStayRepository
-               
-                
+               IHomeStayRepository homeStayRepository,
+               IConversationRepository conversationRepository
+
+
             )
         {
             this.dBFactory = dBFactory;
@@ -48,6 +51,7 @@ namespace Homestay.Ifrastructure.Data
             this.paymentRepository = paymentRepository;
             this.homeStayRepository = homeStayRepository;
             TestRepo = testRepo;
+            this.conversationRepository = conversationRepository;
         }
 
         public void BeginTransaction()

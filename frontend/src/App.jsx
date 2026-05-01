@@ -11,7 +11,10 @@ import BookingDetail from './components/Rooms/BookingDetail'
 import ForgotPassword from './components/Auth/ForgotPassword'
 import ResetPassword from './components/Auth/ResetPassword'
 import Account from './components/Auth/Account'
-
+import AdminChat from './components/Admin/AdminChat'
+import AdminRooms from './components/Admin/AdminRooms'
+import AdminBookings from './components/Admin/AdminBookings'
+import AdminCustomers from './components/Admin/AdminCustomers'
 import Notification from './components/Common/Notification'
 
 // Component xử lý xác thực và tự động đăng xuất
@@ -78,6 +81,13 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/account" element={<Account />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminChat />} />
+          <Route path="/admin/chat" element={<AdminChat />} />
+          <Route path="/admin/rooms" element={<AdminRooms />} />
+          <Route path="/admin/bookings" element={<AdminBookings />} />
+          <Route path="/admin/customers" element={<AdminCustomers />} />
         </Routes>
       </AuthHandler>
     </BrowserRouter>
