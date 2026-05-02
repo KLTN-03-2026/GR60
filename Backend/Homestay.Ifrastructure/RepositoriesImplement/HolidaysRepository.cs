@@ -19,6 +19,44 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
         {
             _dBFactory = dbFactory;
         }
+
+        public async Task CreateHoliday(CreateHolidayRequest createHolidayRequest)
+        {
+            string query = @" INSERT INTO ql_hs_ngay_le(ten_ngay_le, ngay_bat_dau, ngay_ket_thuc, he_so) 
+                          VALUES (@ten_ngay_le, @ngay_bat_dau, @ngay_ket_thuc, @he_so)";
+            using (var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction))
+            {
+                cmd.Parameters.AddWithValue("@ten_ngay_le", createHolidayRequest.NameHoliday);
+                cmd.Parameters.AddWithValue("@ngay_bat_dau", createHolidayRequest.HolidayStart);
+                cmd.Parameters.AddWithValue("@ngay_ket_thuc", createHolidayRequest.HolidayEnd);
+                cmd.Parameters.AddWithValue("@he_so", createHolidayRequest.He_so);
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
+        public async Task<List<HolidayResponse>> GetAllHoliday()
+        {
+            string query = @"select *
+                            from ql_hs_ngay_le
+                            ";
+            var listHoliday = new List<HolidayResponse>();
+            using var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction);
+            using var reader = await cmd.ExecuteReaderAsync();
+            while (await reader.ReadAsync()) 
+            {
+                var holiday = new HolidayResponse()
+                {
+                    Id = reader["id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id"]),
+                    NameHoliday = reader["ten_ngay_le"] == DBNull.Value ? null : Convert.ToString(reader["ten_ngay_le"]),
+                    HolidayStart = reader["ngay_bat_dau"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_bat_dau"]),
+                    HolidayEnd = reader["ngay_ket_thuc"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_ket_thuc"]),
+                    He_so = reader["he_so"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["he_so"]),
+                };    
+                listHoliday.Add(holiday);
+            }
+            return listHoliday;
+        }
+
         public async Task<List<HolidayResponse>> GetHolidayByDateAsync(DateTime startDate, DateTime endDate)
         {
             string query = @"select id,ten_ngay_le,ngay_bat_dau,ngay_ket_thuc,he_so

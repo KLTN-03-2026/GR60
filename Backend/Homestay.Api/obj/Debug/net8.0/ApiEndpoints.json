@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "Homestay.Api.Controllers.HolidayManagerController",
+    "Method": "GetAllHoliday",
+    "RelativePath": "api/admin/HolidayManager",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.HolidayManagerController",
+    "Method": "CreateHoliday",
+    "RelativePath": "api/admin/HolidayManager",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createHolidayRequest",
+        "Type": "Homestay.Application.DTOS.HoLiday.CreateHolidayRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Homestay.Api.Controllers.HomeStayManagerController",
     "Method": "GetHomeStay",
     "RelativePath": "api/admin/HomeStayManager",

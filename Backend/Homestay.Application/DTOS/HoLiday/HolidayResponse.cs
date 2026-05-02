@@ -10,7 +10,6 @@ namespace Homestay.Application.DTOS.HoLiday
     {
         public int Id { get; set; }
         public string NameHoliday { get; set; } = default!;
-
         public DateTime HolidayStart { get; set; }
         public DateTime HolidayEnd { get; set; }
         public decimal He_so { get; set; }

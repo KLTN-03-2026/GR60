@@ -9,6 +9,8 @@ namespace Homestay.Application.Interfaces.Repositories
 {
     public interface IHolidaysRepository
     {
-       public Task<List<HolidayResponse>> GetHolidayByDateAsync(DateTime startDate, DateTime endDate);
+        public Task CreateHoliday(CreateHolidayRequest createHolidayRequest);
+        public Task<List<HolidayResponse>> GetAllHoliday();
+        public Task<List<HolidayResponse>> GetHolidayByDateAsync(DateTime startDate, DateTime endDate);
     }
 }

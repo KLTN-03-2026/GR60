@@ -43,6 +43,7 @@ namespace Homestay.Api
             builder.Services.AddScoped<IHomeStayRepository, HomeStayRepository>();
             builder.Services.AddScoped<IChatManager, ChatManager>();
             builder.Services.AddScoped<IConversationRepository, ConversationRepository>();
+            builder.Services.AddScoped<Iholiday, Holiday>();
             builder.Services.AddScoped<ResetTokenService>();
 
             builder.Services.AuthenJwtService(builder.Configuration);
