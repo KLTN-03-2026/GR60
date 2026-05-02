@@ -1,5 +1,66 @@
 [
   {
+    "ContainingType": "Homestay.Api.Controllers.HomeStayManagerController",
+    "Method": "GetHomeStay",
+    "RelativePath": "api/admin/HomeStayManager",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.HomeStayManagerController",
+    "Method": "UpdateInfoHomeStay",
+    "RelativePath": "api/admin/HomeStayManager",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Ten_Home",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Mo_Ta",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Dia_Chi",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SDT",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email_Home",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Anh",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "QR_Code",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "MoMo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Homestay.Api.Controllers.ManagerChatController",
     "Method": "GetAllConversation",
     "RelativePath": "api/admin/ManagerChat",

@@ -21,7 +21,6 @@ namespace Homestay.Api.Authenticate
                         ValidIssuer = configuration["JwtBearer:iss"],
                         ValidAudience = configuration["JwtBearer:aud"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtBearer:secret"] ?? throw new Exception("Không tìm thấy JWt")))
-
                     };
                     options.Events = new JwtBearerEvents
                     {
@@ -40,7 +39,6 @@ namespace Homestay.Api.Authenticate
                             Console.WriteLine("Failer: " + context.Exception.Message);
                             return Task.CompletedTask;
                         }
-
                     };
 
                 });

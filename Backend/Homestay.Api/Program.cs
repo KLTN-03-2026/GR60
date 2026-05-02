@@ -43,12 +43,7 @@ namespace Homestay.Api
             builder.Services.AddScoped<IHomeStayRepository, HomeStayRepository>();
             builder.Services.AddScoped<IChatManager, ChatManager>();
             builder.Services.AddScoped<IConversationRepository, ConversationRepository>();
-
             builder.Services.AddScoped<ResetTokenService>();
-
-
-
-
 
             builder.Services.AuthenJwtService(builder.Configuration);
 
@@ -69,12 +64,12 @@ namespace Homestay.Api
 
             app.UseCors("AllowReact");
             app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseAuthorization();
             app.UseStaticFiles();
             app.UseRouting();
             app.MapRazorPages();
             app.MapHub<SupportHub>("/chatHub");
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.MapControllers();
 
             app.Run();

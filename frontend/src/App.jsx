@@ -15,6 +15,7 @@ import AdminChat from './components/Admin/AdminChat'
 import AdminRooms from './components/Admin/AdminRooms'
 import AdminBookings from './components/Admin/AdminBookings'
 import AdminCustomers from './components/Admin/AdminCustomers'
+import AdminHomestay from './components/Admin/AdminHomestay'
 import Notification from './components/Common/Notification'
 
 // Component xử lý xác thực và tự động đăng xuất
@@ -86,6 +87,7 @@ function App() {
           <Route path="/admin" element={<AdminChat />} />
           <Route path="/admin/chat" element={<AdminChat />} />
           <Route path="/admin/rooms" element={<AdminRooms />} />
+          <Route path="/admin/info" element={<AdminHomestay />} />
           <Route path="/admin/bookings" element={<AdminBookings />} />
           <Route path="/admin/customers" element={<AdminCustomers />} />
         </Routes>
