@@ -451,8 +451,7 @@
               "RelativeToolTip": "Homestay.Application\\DTOS\\HoLiday\\HolidayRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T15:47:45.158Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-02T15:47:45.158Z"
             },
             {
               "$type": "Document",
@@ -464,8 +463,7 @@
               "RelativeToolTip": "Homestay.Application\\Services\\Holiday.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAQwEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T15:29:39.172Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-02T15:29:39.172Z"
             },
             {
               "$type": "Document",
@@ -477,8 +475,7 @@
               "RelativeToolTip": "Homestay.Application\\Interfaces\\Services\\Iholiday.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T15:29:26.866Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-02T15:29:26.866Z"
             },
             {
               "$type": "Document",
@@ -490,8 +487,7 @@
               "RelativeToolTip": "Homestay.Api\\Controllers\\HolidayManagerController.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAwwDEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T15:22:13.763Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-02T15:22:13.763Z"
             },
             {
               "$type": "Document",
@@ -551,8 +547,7 @@
               "RelativeToolTip": "Homestay.Api\\Controllers\\HomeStayManagerController.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T07:28:51.187Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-02T07:28:51.187Z"
             },
             {
               "$type": "Document",
@@ -636,8 +631,7 @@
               "RelativeToolTip": "Homestay.Api\\Controllers\\ManagerChatController.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAAwAkAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-01T02:55:04.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-01T02:55:04.184Z"
             },
             {
               "$type": "Document",
@@ -649,8 +643,7 @@
               "RelativeToolTip": "Homestay.Ifrastructure\\RepositoriesImplement\\ConversationRepository.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAADYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-30T09:37:54.196Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-30T09:37:54.196Z"
             },
             {
               "$type": "Document",
@@ -732,8 +725,7 @@
               "RelativeToolTip": "Homestay.Application\\DTOS\\CommonResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-29T03:00:50.308Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-29T03:00:50.308Z"
             },
             {
               "$type": "Document",
@@ -781,8 +773,7 @@
               "RelativeToolTip": "Homestay.Ifrastructure\\Data\\DBFactory.cs",
               "ViewState": "AgIAAB0AAAAAAAAAAAAQwDEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T15:29:57.397Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-28T15:29:57.397Z"
             },
             {
               "$type": "Document",
@@ -890,8 +881,7 @@
               "RelativeToolTip": "Homestay.Ifrastructure\\RepositoriesImplement\\HomeStayRepository.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAADsAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-27T13:42:12.608Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-27T13:42:12.608Z"
             },
             {
               "$type": "Document",
@@ -987,8 +977,7 @@
               "RelativeToolTip": "Homestay.Application\\Services\\Checkout.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAjwB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T04:18:50.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-26T04:18:50.782Z"
             },
             {
               "$type": "Document",
@@ -1024,8 +1013,7 @@
               "RelativeToolTip": "Homestay.Ifrastructure\\RepositoriesImplement\\PaymentRepository.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T03:26:38.089Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-26T03:26:38.089Z"
             },
             {
               "$type": "Document",
@@ -1108,8 +1096,7 @@
               "RelativeToolTip": "Homestay.Api\\Controllers\\PaymentsController.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAACEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T13:51:31.41Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T13:51:31.41Z"
             },
             {
               "$type": "Document",
@@ -1241,8 +1228,7 @@
               "RelativeToolTip": "Homestay.Ifrastructure\\RepositoriesImplement\\BookingRepository.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAACcAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T01:50:26.37Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T01:50:26.37Z"
             },
             {
               "$type": "Document",
@@ -1314,8 +1300,7 @@
               "RelativeToolTip": "Homestay.Api\\Controllers\\BookingController.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAqwBcAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T14:53:55.586Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T14:53:55.586Z"
             },
             {
               "$type": "Document",
@@ -1339,8 +1324,7 @@
               "RelativeToolTip": "Homestay.Ifrastructure\\RepositoriesImplement\\HolidaysRepository.cs",
               "ViewState": "AgIAABYAAAAAAAAAAADwvycAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T09:26:56.381Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T09:26:56.381Z"
             },
             {
               "$type": "Document",
@@ -1376,8 +1360,7 @@
               "RelativeToolTip": "Homestay.Application\\Interfaces\\Repositories\\IHolidaysRepository.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAuwAwAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T09:24:42.197Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T09:24:42.197Z"
             },
             {
               "$type": "Document",
@@ -1495,7 +1478,7 @@
               "RelativeDocumentMoniker": "Homestay.Ifrastructure\\RepositoriesImplement\\UserRepository.cs",
               "ToolTip": "D:\\DoAnTotNghiep\\GR60\\Backend\\Homestay.Ifrastructure\\RepositoriesImplement\\UserRepository.cs",
               "RelativeToolTip": "Homestay.Ifrastructure\\RepositoriesImplement\\UserRepository.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAQwFcAAAB/AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAB/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-20T03:25:20.896Z",
               "EditorCaption": ""
@@ -1510,8 +1493,7 @@
               "RelativeToolTip": "Homestay.Application\\Interfaces\\Repositories\\IRoomsRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T03:24:45.796Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-20T03:24:45.796Z"
             },
             {
               "$type": "Document",
@@ -1559,8 +1541,7 @@
               "RelativeToolTip": "Homestay.Application\\Services\\Rooms.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAjwCoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T02:46:07.579Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-20T02:46:07.579Z"
             },
             {
               "$type": "Document",
@@ -1584,8 +1565,7 @@
               "RelativeToolTip": "Homestay.Api\\Program.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAQwEsAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T12:19:48.585Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-18T12:19:48.585Z"
             },
             {
               "$type": "Document",
@@ -1609,8 +1589,7 @@
               "RelativeToolTip": "Homestay.Ifrastructure\\RepositoriesImplement\\RoomsRepository.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAkwDgAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T09:57:46.029Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-15T09:57:46.029Z"
             },
             {
               "$type": "Document",
