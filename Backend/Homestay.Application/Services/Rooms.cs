@@ -40,6 +40,7 @@ namespace Homestay.Application.Services
 
         public async Task<RoomResponse> GetRoomDetailAsync(int id)
         {
+
             var room = await _unitOfWork.RoomsRepository.GetRoomDetailAsync(id);
             return new RoomResponse
             {

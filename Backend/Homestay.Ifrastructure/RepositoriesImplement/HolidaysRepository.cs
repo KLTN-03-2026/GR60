@@ -20,7 +20,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             _dBFactory = dbFactory;
         }
 
-        public async Task CreateHoliday(CreateHolidayRequest createHolidayRequest)
+        public async Task CreateHoliday(HolidayRequest createHolidayRequest)
         {
             string query = @" INSERT INTO ql_hs_ngay_le(ten_ngay_le, ngay_bat_dau, ngay_ket_thuc, he_so) 
                           VALUES (@ten_ngay_le, @ngay_bat_dau, @ngay_ket_thuc, @he_so)";
@@ -32,6 +32,15 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                 cmd.Parameters.AddWithValue("@he_so", createHolidayRequest.He_so);
                 await cmd.ExecuteNonQueryAsync();
             }
+        }
+
+        public async Task DeleteHoliday(int idHoliday)
+        {
+            string query = @"delete from ql_hs_ngay_le
+                            where id = @id";
+            using var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@id", idHoliday);
+            await cmd.ExecuteNonQueryAsync();
         }
 
         public async Task<List<HolidayResponse>> GetAllHoliday()
@@ -56,7 +65,6 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             }
             return listHoliday;
         }
-
         public async Task<List<HolidayResponse>> GetHolidayByDateAsync(DateTime startDate, DateTime endDate)
         {
             string query = @"select id,ten_ngay_le,ngay_bat_dau,ngay_ket_thuc,he_so
@@ -80,6 +88,20 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                 holidays.Add(holiday);
             }
             return holidays;
+        }
+
+        public async Task UpdateHoliday(int idHoliday, HolidayRequest HolidayRequest)
+        {
+            string query = @"update ql_hs_ngay_le
+                            set ten_ngay_le = @ten, ngay_bat_dau = @daystart, ngay_ket_thuc= @dayend,he_so = @he_so
+                            where id = @id";
+            using var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@id", idHoliday);
+            cmd.Parameters.AddWithValue("@ten",HolidayRequest.NameHoliday);
+            cmd.Parameters.AddWithValue("@daystart", HolidayRequest.HolidayStart);
+            cmd.Parameters.AddWithValue("@dayend", HolidayRequest.HolidayEnd);
+            cmd.Parameters.AddWithValue("@he_so", HolidayRequest.He_so);
+            await cmd.ExecuteNonQueryAsync();
         }
     }
 }

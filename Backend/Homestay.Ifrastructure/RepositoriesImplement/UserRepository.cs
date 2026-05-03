@@ -22,8 +22,8 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
 
         public async Task AddUserAsync(RegisterRequest usersRegis)
         {
-           string query = "INSERT INTO ql_hs_nguoi_dung (ho_ten, email, mat_khau, dia_chi, so_dien_thoai, anh_dai_dien, vai_tro, ngay_tao) " +
-                "VALUES (@Name, @Email, @Matkhau, @Diachi, @SDT, @Anhdaidien, 'user', GETDATE())";
+           string query = "INSERT INTO ql_hs_nguoi_dung (ho_ten, email, mat_khau, dia_chi, so_dien_thoai, anh_dai_dien, vai_tro, ngay_tao,isDelete) " +
+                "VALUES (@Name, @Email, @Matkhau, @Diachi, @SDT, @Anhdaidien, 'user', GETDATE(),'active')";
             using(var cmd = new SqlCommand(query, dBFactory.GetConnection, dBFactory.GetTransaction))
             {
                 cmd.Parameters.AddWithValue("@Name", usersRegis.Name);
@@ -85,7 +85,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
         public async Task<UsersEntities?> CheckUserLoginExistsAsync(string email, string matKhau)
         {
             
-            string query = "SELECT * FROM ql_hs_nguoi_dung WHERE email = @Email AND mat_khau = @Matkhau";
+            string query = "SELECT * FROM ql_hs_nguoi_dung WHERE email = @Email AND mat_khau = @Matkhau and isDelete = 'active'";
             using (var cmd = new SqlCommand(query, dBFactory.GetConnection, dBFactory.GetTransaction))
             {
                 cmd.Parameters.AddWithValue("@Email", email);

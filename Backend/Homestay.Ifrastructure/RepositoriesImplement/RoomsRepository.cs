@@ -29,7 +29,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
               "LEFT JOIN GiaMoiNhat g ON p.id = g.ql_phong_id AND g.rn = 1 " +
               "LEFT JOIN DanhGiaTrungBinh dg ON p.id = dg.ql_phong_id " +
               "LEFT JOIN anhPhong1 ap ON p.id = ap.phong_id and ap.rn = 1"+
-             " WHERE p.loai_phong like @Type";
+             " WHERE p.loai_phong like @Type and isDelete != N'delete'";
                 using var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction) ;
                 cmd.Parameters.AddWithValue("@Type", $"{type}%");
                 using var reader = await cmd.ExecuteReaderAsync();

@@ -19,7 +19,44 @@
     "Parameters": [
       {
         "Name": "createHolidayRequest",
-        "Type": "Homestay.Application.DTOS.HoLiday.CreateHolidayRequest",
+        "Type": "Homestay.Application.DTOS.HoLiday.HolidayRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.HolidayManagerController",
+    "Method": "UpdateHoliday",
+    "RelativePath": "api/admin/HolidayManager/{idHoliday}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idHoliday",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "createHolidayRequest",
+        "Type": "Homestay.Application.DTOS.HoLiday.HolidayRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.HolidayManagerController",
+    "Method": "DeleteHoliday",
+    "RelativePath": "api/admin/HolidayManager/{idHoliday}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idHoliday",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
