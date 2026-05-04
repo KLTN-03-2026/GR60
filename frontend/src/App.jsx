@@ -17,7 +17,10 @@ import AdminBookings from './components/Admin/AdminBookings'
 import AdminCustomers from './components/Admin/AdminCustomers'
 import AdminHomestay from './components/Admin/AdminHomestay'
 import AdminHolidays from './components/Admin/AdminHolidays'
+import AdminRoomDetail from './components/Admin/AdminRoomDetail'
+import AdminAmenities from './components/Admin/AdminAmenities'
 import Notification from './components/Common/Notification'
+
 
 // Component xử lý xác thực và tự động đăng xuất
 function AuthHandler({ children }) {
@@ -92,7 +95,10 @@ function App() {
           <Route path="/admin/bookings" element={<AdminBookings />} />
           <Route path="/admin/customers" element={<AdminCustomers />} />
           <Route path="/admin/holidays" element={<AdminHolidays />} />
+          <Route path="/admin/amenities" element={<AdminAmenities />} />
+          <Route path="/admin/rooms/:id" element={<AdminRoomDetail />} />
         </Routes>
+
       </AuthHandler>
     </BrowserRouter>
   )

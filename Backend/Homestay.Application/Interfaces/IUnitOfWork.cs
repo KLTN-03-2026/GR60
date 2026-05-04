@@ -23,6 +23,8 @@ namespace Homestay.Application.Interfaces
         public IPaymentRepository paymentRepository { get; }    
         public IHomeStayRepository homeStayRepository { get; }
         public IConversationRepository conversationRepository { get; }
+        public IAmenitiesRepository amenitiesRepository { get; }
+
 
 
 

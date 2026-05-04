@@ -47,12 +47,18 @@ export const apiSearchRooms = async (searchParams) => {
 
     const url = `${API_BASE_URL}/rooms/roomfind?${query.toString()}`;
     const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
     const text = await response.text();
     const data = text ? JSON.parse(text) : [];
+
+    if (!response.ok) {
+        // Nếu có message từ backend thì trả về data để Home.jsx xử lý, 
+        // nếu không thì mới throw lỗi
+        if (data && data.message) return data;
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     return data;
+
 };
 
 /**
@@ -85,15 +91,24 @@ export const apiGetRoomById = async (id) => {
 
 export const apiGetBookedDates = async (roomId) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/booking/day?idroom=${roomId}`);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const response = await fetch(`${API_BASE_URL}/booking/day?idroom=${roomId}`, {
+            method: 'GET',
+            credentials: 'include', // Thêm để gửi kèm cookie/token nếu cần
+        });
+        
+        if (!response.ok) {
+            console.warn(`API Booked Dates trả về mã lỗi: ${response.status}`);
+            return [];
+        }
+
         const text = await response.text();
         return text ? JSON.parse(text) : [];
     } catch (err) {
-        console.error(`Lỗi khi fetch booked dates cho room id ${roomId}:`, err);
+        console.error(`Lỗi kết nối khi fetch booked dates cho room id ${roomId}:`, err);
         return [];
     }
 };
+
 
 export const apiGetRoomPrice = async (roomId, checkIn, checkOut) => {
     try {

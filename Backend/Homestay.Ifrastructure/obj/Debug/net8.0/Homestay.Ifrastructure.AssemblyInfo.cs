@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Homestay.Ifrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef54cc4389538b513a60d58b36478283d8b60548")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+46a66d082901e13c0132f0540109cd7dee518da7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Homestay.Ifrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Homestay.Ifrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -265,6 +265,19 @@ const RoomDetail = () => {
     return <div className="text-center py-20">Không tìm thấy thông tin phòng!</div>;
   }
 
+  const getStatusInfo = (status) => {
+    switch (status) {
+      case 'dang_hoat_dong':
+        return { text: 'Đang hoạt động', color: 'bg-emerald-600 text-white' };
+      case 'dang_bao_tri':
+        return { text: 'Đang bảo trì', color: 'bg-amber-600 text-white' };
+      default:
+        return null;
+    }
+  };
+
+  const statusInfo = getStatusInfo(room.trangThai);
+
   return (
     <div className="font-sans text-gray-800 bg-[#F7F5F0] min-h-screen selection:bg-[#364132] selection:text-white">
       
@@ -328,12 +341,32 @@ const RoomDetail = () => {
                   ))}
                   <span className="text-gray-600 text-base ml-2 font-medium">{avgRating} ({reviewCount} Đánh giá)</span>
                 </div>
-                <span className="px-3 py-1 bg-[#364132] text-[#F7F5F0] text-sm font-bold uppercase tracking-widest rounded-full shadow-sm">
-                  {room.loaiPhong}
-                </span>
+                <div className="flex gap-2">
+                  <span className="px-3 py-1 bg-[#364132] text-[#F7F5F0] text-sm font-bold uppercase tracking-widest rounded-full shadow-sm">
+                    {room.loaiPhong}
+                  </span>
+                  {statusInfo && (
+                    <span className={`px-3 py-1 ${statusInfo.color} text-sm font-bold uppercase tracking-widest rounded-full shadow-sm`}>
+                      {statusInfo.text}
+                    </span>
+                  )}
+                </div>
               </div>
+
               
-              <h1 className="text-4xl md:text-5xl font-serif text-gray-900 mb-8">{room.tenPhong}</h1>
+              <h1 className="text-4xl md:text-5xl font-serif text-gray-900 mb-4">{room.tenPhong}</h1>
+              
+              {/* Địa chỉ phòng */}
+              {room.diaChi && (
+                <div className="flex items-center text-gray-500 mb-8">
+                  <svg className="w-5 h-5 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  <span className="text-lg font-medium">{room.diaChi}</span>
+                </div>
+              )}
+
               
               {/* Thẻ tóm tắt sức chứa */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">

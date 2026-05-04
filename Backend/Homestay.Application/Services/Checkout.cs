@@ -22,6 +22,8 @@ namespace Homestay.Application.Services
         }
         public async Task CreateBookingPayment(PaymentRequest paymentRequest, BookingRequest bookingRequest)
         {
+
+
             if (paymentRequest.Hinh_Anh_Minh_Chung == null)
             {
                 throw new Exception("không có ảnh");

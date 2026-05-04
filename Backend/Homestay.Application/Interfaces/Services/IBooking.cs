@@ -9,7 +9,7 @@ namespace Homestay.Application.Interfaces.Services
 {
     public interface IBooking
     {
-      public Task<List<DayBookingReponse>> BookingRoomAsync(int idRoom);
+        public Task<List<DayBookingReponse>> BookingRoomAsync(int idRoom);
         public Task<int> CreateBookingAsync(BookingRequest bookingRequest);
         public Task<BookingDetailByUser> GetBookingById(int idBooking);
         public Task<List<BookingsByUserResponse>> GetBookingByUser(int idUser);

@@ -1,5 +1,15 @@
 [
   {
+    "ContainingType": "Homestay.Api.Controllers.AmenitiesManagerController",
+    "Method": "GetListAmenities",
+    "RelativePath": "api/admin/AmenitiesManager",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Homestay.Api.Controllers.HolidayManagerController",
     "Method": "GetAllHoliday",
     "RelativePath": "api/admin/HolidayManager",
@@ -143,6 +153,215 @@
     "Parameters": [
       {
         "Name": "idConversation",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
+    "Method": "GetAllRoom",
+    "RelativePath": "api/admin/RoomManager",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
+    "Method": "GetRoomDetail",
+    "RelativePath": "api/admin/RoomManager/{idRoom}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRoom",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
+    "Method": "GetRoomDetailAmenities",
+    "RelativePath": "api/admin/RoomManager/{idRoom}/amenities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRoom",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
+    "Method": "CreateRoomDetailAmenities",
+    "RelativePath": "api/admin/RoomManager/{idRoom}/amenities",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRoom",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "amenitiesByRoomRequest",
+        "Type": "Homestay.Application.DTOS.Amenities.AmenitiesByRoomRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
+    "Method": "DeleteRoomDetailAmenities",
+    "RelativePath": "api/admin/RoomManager/{idRoom}/amenities",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRoom",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "IdTienNghi",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
+    "Method": "GetRoomDetailImg",
+    "RelativePath": "api/admin/RoomManager/{idRoom}/imgRoom",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRoom",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
+    "Method": "AddRoomDetailImg",
+    "RelativePath": "api/admin/RoomManager/{idRoom}/imgRoom",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRoom",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "ContentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentDisposition",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Headers",
+        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
+        "IsRequired": false
+      },
+      {
+        "Name": "Length",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
+    "Method": "DeleteRoomDetailImg",
+    "RelativePath": "api/admin/RoomManager/{idRoom}/imgRoom",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idImg",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idRoom",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.UserManagerController",
+    "Method": "GetAllUser",
+    "RelativePath": "api/admin/UserManager",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.UserManagerController",
+    "Method": "CreateUser",
+    "RelativePath": "api/admin/UserManager",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createUserManagerRequest",
+        "Type": "Homestay.Application.DTOS.Users.CreateUserManagerRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.UserManagerController",
+    "Method": "UpdateIsdelete",
+    "RelativePath": "api/admin/UserManager/{idUser}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUser",
         "Type": "System.Int32",
         "IsRequired": true
       }

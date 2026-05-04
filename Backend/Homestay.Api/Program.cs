@@ -44,6 +44,9 @@ namespace Homestay.Api
             builder.Services.AddScoped<IChatManager, ChatManager>();
             builder.Services.AddScoped<IConversationRepository, ConversationRepository>();
             builder.Services.AddScoped<Iholiday, Holiday>();
+            builder.Services.AddScoped<IAmenities, Amenities>();
+            builder.Services.AddScoped<IAmenitiesRepository, AmenitiesRepository>();
+
             builder.Services.AddScoped<ResetTokenService>();
 
             builder.Services.AuthenJwtService(builder.Configuration);

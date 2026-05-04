@@ -20,5 +20,8 @@ namespace Homestay.Application.Interfaces.Repositories
         public Task UpdateUser(UsersEntities usersEntities);
         public Task UpdateEmailUser(int idUser, string email);
         public Task UploadsAnh(int idUser, string fileName);
+        public Task<List<UsersEntities>> GetAllUser();
+        public Task CreateUser(CreateUserManagerRequest createUserManagerRequest);
+        public Task UpdateIsdelete(int idUser);
     }
 }

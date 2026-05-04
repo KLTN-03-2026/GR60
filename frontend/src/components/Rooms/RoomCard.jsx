@@ -41,6 +41,19 @@ const RoomCard = ({ room, className = '' }) => {
     ? dsAnh[0]
     : 'https://placehold.co/600x400?text=No+Image';
 
+  const getStatusInfo = (status) => {
+    switch (status) {
+      case 'dang_hoat_dong':
+        return { text: 'Đang hoạt động', color: 'bg-emerald-500' };
+      case 'dang_bao_tri':
+        return { text: 'Đang bảo trì', color: 'bg-amber-500' };
+      default:
+        return null;
+    }
+  };
+
+  const statusInfo = getStatusInfo(room.trangThai);
+
   return (
     <Link 
       to={`/room-detail?id=${id}`}
@@ -57,6 +70,13 @@ const RoomCard = ({ room, className = '' }) => {
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
           loading="lazy"
         />
+        {/* Status Badge */}
+        {statusInfo && (
+          <div className={`absolute top-3 left-3 ${statusInfo.color} text-white text-[10px] font-bold px-2 py-1 rounded-md shadow-sm z-10 uppercase tracking-wider`}>
+            {statusInfo.text}
+          </div>
+        )}
+        
         {/* Gradient overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
@@ -66,6 +86,7 @@ const RoomCard = ({ room, className = '' }) => {
           <span className="text-gray-light text-[11px] ml-0.5">/đêm</span>
         </div>
       </div>
+
 
       {/* Content */}
       <div className="p-5">

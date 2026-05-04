@@ -144,11 +144,22 @@ const Home = () => {
       };
 
       const data = await apiSearchRooms(params);
-      setSearchResults(data);
       
-      if (data.length === 0) {
-        setSearchError('Không tìm thấy phòng phù hợp');
+      // Kiểm tra nếu Backend trả về object có chứa message (thay vì mảng phòng)
+      if (data && data.message) {
+        setSearchResults([]);
+        setSearchError(data.message);
+      } else if (Array.isArray(data)) {
+        setSearchResults(data);
+        if (data.length === 0) {
+          setSearchError('Không tìm thấy phòng nào phù hợp với yêu cầu của bạn.');
+        }
+      } else {
+        // Trường hợp data không phải mảng và không có message (có thể là null/undefined)
+        setSearchResults([]);
+        setSearchError('Không tìm thấy phòng nào phù hợp với yêu cầu của bạn.');
       }
+
 
       setTimeout(() => {
         searchResultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });

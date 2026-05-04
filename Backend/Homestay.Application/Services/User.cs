@@ -66,6 +66,58 @@ namespace Homestay.Application.Services
             }
         }
 
+        public async Task<CommonResponse> CreateUser(CreateUserManagerRequest createUserManagerRequest)
+        {
+            var checkEmail = await _unitOfWork.UserRepository.CheckUserRegisterExistsAsync(createUserManagerRequest.Email);
+            if (checkEmail)
+            {
+                return new CommonResponse
+                {
+                    StatusCode = 400,
+                    Message = "Email đã có trong hệ thống"
+                };
+            }
+            if (!CLassStatic.checkMk(createUserManagerRequest.Mat_Khau))
+            {
+                return new CommonResponse
+                {
+                    StatusCode = 400,
+                    Message = "Mật khẩu không phù hợp"
+                };
+            }
+
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                await _unitOfWork.UserRepository.CreateUser(createUserManagerRequest);
+                _unitOfWork.Commit();
+                return new CommonResponse
+                {
+                    StatusCode = 201,
+                    Message = "Thêm người dùng thành công"
+                };
+            }
+            catch
+            {
+                _unitOfWork.Rollback();
+                return new CommonResponse
+                {
+                    StatusCode = 400,
+                    Message = "Thêm người dùng thất bại"
+                };
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+        }
+
+        public async Task<List<UsersEntities>> GetAllUser()
+        {
+            var result = await _unitOfWork.UserRepository.GetAllUser();
+            return result;
+        }
+
         public async Task<int> GetConversationByUser(int idUser)
         {
             var result = await _unitOfWork.conversationRepository.GetIDConversationByUser(idUser);
@@ -172,6 +224,34 @@ namespace Homestay.Application.Services
                 {
                     StatusCode = 500,
                     Message = "Lỗi hệ thống"
+                };
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+        }
+
+        public async Task<CommonResponse> UpdateIsdelete(int idUser)
+        {
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                await _unitOfWork.UserRepository.UpdateIsdelete(idUser);
+                _unitOfWork.Commit();
+                return new CommonResponse
+                {
+                    StatusCode = 200,
+                    Message = "người dùng đã xóa thành công"
+                };
+            }
+            catch
+            {
+                _unitOfWork.Rollback();
+                return new CommonResponse
+                {
+                    StatusCode = 400,
+                    Message = "Người dùng xóa thất bại"
                 };
             }
             finally
