@@ -1,4 +1,5 @@
 ﻿using Homestay.Application.DTOS;
+using Homestay.Application.DTOS.Booking;
 using Homestay.Application.DTOS.Rooms;
 using Homestay.Application.DTOS.Users;
 using Homestay.Application.Interfaces;
@@ -90,18 +91,25 @@ namespace Homestay.Application.Services
             decimal totalPrice = 0;
             decimal totalPriceEarly = 0;
 
+            var giaPhong = room.Gia;
+            if (giaPhong == 0)
+            {
+                giaPhong = room.Gia_Goc;
+
+            }
+
 
             for (DateTime date = roomDetailRequest.NgayNhanPhong; date < roomDetailRequest.NgayTraPhong; date = date.AddDays(1))
             {
-                var price = room.Gia;
+                var price = giaPhong;
                 var holidayDetail = holiday.FirstOrDefault(h => h.HolidayStart <= date && h.HolidayEnd >= date);
                 if (holidayDetail != null)
                 {
-                    price = room.Gia * holidayDetail.He_so;
+                    price = giaPhong * holidayDetail.He_so;
                 }
                 else
                 {
-                    price = room.Gia;
+                    price = giaPhong;
                 }
                 totalPrice += price;
             }
@@ -196,6 +204,110 @@ namespace Homestay.Application.Services
                 {
                     StatusCode = 400,
                     Message = "xóa ảnh thất bại"
+                };
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+        }
+
+        public async Task<CommonResponse> AddRoom(RoomInfoRequest roomInfoRequest)
+        {
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                await _unitOfWork.RoomsRepository.AddRoom(roomInfoRequest);
+                _unitOfWork.Commit();
+                return new CommonResponse
+                {
+                    StatusCode = 201,
+                    Message = "Thêm phòng thành công"
+                };
+            }
+            catch (Exception ex)
+            {
+                _unitOfWork.Rollback();
+                return new CommonResponse
+                {
+                    StatusCode = 400,
+                    Message = "Thêm phòng thất bại"
+                };
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+        }
+
+        public async Task<CommonResponse> UpdateRoom(int id, RoomInfoRequest roomInfoRequest)
+        {
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                await _unitOfWork.RoomsRepository.UpdateRoom(id, roomInfoRequest);
+                _unitOfWork.Commit();
+                return new CommonResponse
+                {
+                    StatusCode = 200,
+                    Message = "Cập nhật phòng thành công"
+                };
+            }
+            catch (Exception ex)
+            {
+                _unitOfWork.Rollback();
+                return new CommonResponse
+                {
+                    StatusCode = 400,
+                    Message = "Cập nhật phòng thất bại"
+                };
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+        }
+
+        public async Task<CommonResponse> UpdateRoomIsDelete(int idRoom)
+        {
+            var dayCheckInCheckOut = await _unitOfWork.BookingRepository.CheckDayBookingRoomAsync(idRoom);
+
+            if (dayCheckInCheckOut.Count > 0 && dayCheckInCheckOut != null)
+            {
+                var listDay = new List<DayBookingReponse>();
+                foreach (var item in dayCheckInCheckOut)
+                {
+                    listDay.Add(new DayBookingReponse
+                    {
+                        Ngay_Nhan_Phong = item.Ngay_Nhan_Phong,
+                        Ngay_Tra_Phong = item.Ngay_Tra_Phong
+                    });
+                }
+                return new CommonResponse
+                {
+                    StatusCode = 400,
+                    Message = $"Phòng đang có lịch đặt{string.Join(", ", listDay.Select(d => $"[{d.Ngay_Nhan_Phong} - {d.Ngay_Tra_Phong}]"))}, không thể xóa"
+                };
+            }
+
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                await _unitOfWork.RoomsRepository.UpdateRoomIsDelete(idRoom);
+                _unitOfWork.Commit();
+                return new CommonResponse
+                {
+                    StatusCode = 200,
+                    Message = "Xóa phòng thành công"
+                };
+            }
+            catch (Exception ex)
+            {
+                _unitOfWork.Rollback();
+                return new CommonResponse
+                {
+                    StatusCode = 400,
+                    Message = "Xóa phòng thất bại"
                 };
             }
             finally

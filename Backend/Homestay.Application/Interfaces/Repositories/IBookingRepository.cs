@@ -13,5 +13,6 @@ namespace Homestay.Application.Interfaces.Repositories
         public Task<int> CreateBooking(BookingRequest bookingRequest);
         public Task<BookingDetailByUser> GetBookingById(int idBooking);
         public Task<List<BookingsByUserResponse>> GetBookingByUser(int idUser);
+        public Task<List<DayBookingReponse>> GetDayCheckInCheckOutByRoomIdInFuture(int idRoom);
     }
 }

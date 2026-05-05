@@ -10,6 +10,59 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Homestay.Api.Controllers.AmenitiesManagerController",
+    "Method": "CreateDAmenity",
+    "RelativePath": "api/admin/AmenitiesManager",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "amenitiesRequest",
+        "Type": "Homestay.Application.DTOS.Amenities.AmenitiesRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.AmenitiesManagerController",
+    "Method": "DeleteAmenity",
+    "RelativePath": "api/admin/AmenitiesManager/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.AmenitiesManagerController",
+    "Method": "UpdateAmenity",
+    "RelativePath": "api/admin/AmenitiesManager/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "amenitiesRequest",
+        "Type": "Homestay.Application.DTOS.Amenities.AmenitiesRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Homestay.Api.Controllers.HolidayManagerController",
     "Method": "GetAllHoliday",
     "RelativePath": "api/admin/HolidayManager",
@@ -161,12 +214,65 @@
   },
   {
     "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
+    "Method": "AddRoom",
+    "RelativePath": "api/admin/RoomManager",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createRoomRequest",
+        "Type": "Homestay.Application.DTOS.Rooms.RoomInfoRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
     "Method": "GetAllRoom",
     "RelativePath": "api/admin/RoomManager",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
+    "Method": "UpdateRoom",
+    "RelativePath": "api/admin/RoomManager/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "createRoomRequest",
+        "Type": "Homestay.Application.DTOS.Rooms.RoomInfoRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.RoomManagerController",
+    "Method": "DeleteRoom",
+    "RelativePath": "api/admin/RoomManager/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

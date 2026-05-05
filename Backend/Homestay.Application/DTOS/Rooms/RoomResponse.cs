@@ -17,6 +17,7 @@ namespace Homestay.Application.DTOS.Rooms
         public string DiaChi { get; set; } = default!;
         public string Mota { get; set; } = default!;
         public decimal Gia { get; set; } = default!;
+        public decimal Gia_Goc { get; set; } = default!;
         public int SoNguoiLon { get; set; } = default!;
         public int SoTreEm { get; set; } = default!;
         public int SoGiuong { get; set; } = default!;

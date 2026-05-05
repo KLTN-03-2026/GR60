@@ -7,9 +7,10 @@ import {
   Plus, Search, X, MapPin, Maximize,
   Eye, Filter, Download, 
   ChevronLeft, ChevronRight,
-  Image as ImageIcon
+  Image as ImageIcon, Trash2
 } from 'lucide-react';
-import { apiGetAdminRooms } from '../../services/adminRoomService';
+import { apiGetAdminRooms, apiAddAdminRoom, apiDeleteAdminRoom } from '../../services/adminRoomService';
+import { showToast } from '../Common/Notification';
 
 
 const AdminRooms = () => {
@@ -26,24 +27,92 @@ const AdminRooms = () => {
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);
 
+  // State cho việc thêm phòng mới
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [newRoomData, setNewRoomData] = useState({
+    TenPhong: '',
+    DiaChi: '',
+    MoTa: '',
+    LoaiPhong: 'Standard',
+    TrangThai: 'dang_hoat_dong',
+    GiaGoc: 0,
+    SoNguoiLon: 1,
+    SoTreEm: 0,
+    SoGiuong: 1
+  });
 
-  // Fetch dữ liệu từ API
+  const fetchRooms = async () => {
+    try {
+      setLoading(true);
+      const data = await apiGetAdminRooms();
+      setRooms(data);
+      setError(null);
+    } catch (err) {
+      console.error('Error fetching rooms:', err);
+      setError('Không thể tải danh sách phòng. Vui lòng thử lại sau.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   React.useEffect(() => {
-    const fetchRooms = async () => {
-      try {
-        setLoading(true);
-        const data = await apiGetAdminRooms();
-        setRooms(data);
-        setError(null);
-      } catch (err) {
-        console.error('Error fetching rooms:', err);
-        setError('Không thể tải danh sách phòng. Vui lòng thử lại sau.');
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchRooms();
   }, []);
+
+  const handleAddRoom = async (e) => {
+    e.preventDefault();
+    try {
+      setIsSubmitting(true);
+      
+      // Chuyển đổi kiểu dữ liệu cho đúng spec backend (Số)
+      const submitData = {
+        ...newRoomData,
+        GiaGoc: parseInt(newRoomData.GiaGoc),
+        SoNguoiLon: parseInt(newRoomData.SoNguoiLon),
+        SoTreEm: parseInt(newRoomData.SoTreEm),
+        SoGiuong: parseInt(newRoomData.SoGiuong)
+      };
+
+      await apiAddAdminRoom(submitData);
+      
+      showToast('Thêm phòng mới thành công!', 'success');
+      
+      setShowAddModal(false);
+      setNewRoomData({
+        TenPhong: '',
+        DiaChi: '',
+        MoTa: '',
+        LoaiPhong: 'Standard',
+        TrangThai: 'dang_hoat_dong',
+        GiaGoc: 0,
+        SoNguoiLon: 1,
+        SoTreEm: 0,
+        SoGiuong: 1
+      });
+      
+      fetchRooms(); // Tải lại danh sách
+    } catch (err) {
+      showToast(err.message || 'Lỗi khi thêm phòng', 'error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleToggleDelete = async (roomId, roomName) => {
+    if (!window.confirm(`Bạn có chắc chắn muốn xóa phòng "${roomName}" không?`)) {
+      return;
+    }
+
+    try {
+      await apiDeleteAdminRoom(roomId);
+      showToast(`Xóa phòng thành công!`, 'success');
+      fetchRooms(); // Tải lại danh sách
+    } catch (err) {
+      showToast(err.message || `Lỗi khi xóa phòng`, 'error');
+    }
+  };
 
   // Logic lọc dữ liệu
   const filteredRooms = rooms.filter(room => {
@@ -106,6 +175,13 @@ const AdminRooms = () => {
               <p className="text-gray-500 mt-1">Danh sách phòng nghỉ và trạng thái hệ thống.</p>
             </div>
             <div className="flex gap-2">
+               <button 
+                  onClick={() => setShowAddModal(true)}
+                  className="px-6 py-3.5 bg-[#003580] text-white rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-blue-900/20 hover:bg-[#002559] transition-all active:scale-95"
+               >
+                  <Plus size={20} />
+                  Thêm phòng mới
+               </button>
                <button className="p-3.5 bg-white border border-gray-100 rounded-2xl text-gray-400 hover:text-gray-600 transition-all shadow-sm"><Download size={20}/></button>
                <button className="p-3.5 bg-white border border-gray-100 rounded-2xl text-gray-400 hover:text-gray-600 transition-all shadow-sm"><Filter size={20}/></button>
             </div>
@@ -216,14 +292,25 @@ const AdminRooms = () => {
                          </div>
                       </div>
 
-                      {/* Chỉ giữ nút Chi tiết */}
-                      <button 
-                        onClick={() => navigate(`/admin/rooms/${room.id}`)}
-                        className="w-full py-3.5 border border-gray-200 hover:bg-gray-50 text-gray-700 text-xs font-bold rounded-2xl transition-all flex items-center justify-center gap-2"
-                      >
-                        <Eye size={16} />
-                        Chi tiết phòng
-                      </button>
+                      {/* Nút Chi tiết & Xóa */}
+                      <div className="flex gap-2">
+                        <button 
+                          onClick={() => navigate(`/admin/rooms/${room.id}`)}
+                          className={`${room.isDelete === "True" ? 'w-full' : 'flex-1'} py-3.5 border border-gray-200 hover:bg-gray-50 text-gray-700 text-xs font-bold rounded-2xl transition-all flex items-center justify-center gap-2`}
+                        >
+                          <Eye size={16} />
+                          Chi tiết
+                        </button>
+                        {room.isDelete !== "True" && (
+                          <button 
+                            onClick={() => handleToggleDelete(room.id, room.tenPhong)}
+                            className="px-4 py-3.5 border border-rose-100 bg-rose-50 text-rose-500 hover:bg-rose-100 transition-all rounded-2xl flex items-center justify-center"
+                            title="Xóa phòng"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        )}
+                      </div>
 
                     </div>
                   </div>
@@ -286,6 +373,158 @@ const AdminRooms = () => {
                    <button onClick={() => setIsDetailModalOpen(false)} className="px-10 py-3.5 bg-gray-900 text-white rounded-2xl font-bold hover:bg-black transition-all shadow-lg active:scale-95">Đóng cửa sổ</button>
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+        {/* Modal Thêm Phòng Mới */}
+        {showAddModal && (
+          <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/50 backdrop-blur-md animate-in fade-in duration-300">
+            <div className="bg-white w-full max-w-2xl max-h-[90vh] rounded-[40px] shadow-2xl overflow-hidden flex flex-col animate-in zoom-in-95 duration-300">
+              <div className="p-8 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900">Thêm phòng mới</h3>
+                  <p className="text-sm text-gray-500 mt-1">Điền thông tin chi tiết để thêm phòng nghỉ vào hệ thống.</p>
+                </div>
+                <button onClick={() => setShowAddModal(false)} className="p-2 hover:bg-gray-200 rounded-full transition-colors">
+                  <X size={24} className="text-gray-400" />
+                </button>
+              </div>
+
+              <form onSubmit={handleAddRoom} className="flex-1 overflow-y-auto p-8 space-y-6 scrollbar-thin">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Tên phòng */}
+                  <div className="md:col-span-2">
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Tên phòng nghỉ</label>
+                    <input 
+                      type="text"
+                      required
+                      placeholder="VD: Deluxe Ocean View #101"
+                      className="w-full px-5 py-4 bg-gray-50 border-none rounded-[20px] focus:ring-2 focus:ring-[#003580] outline-none transition-all text-sm font-medium"
+                      value={newRoomData.TenPhong}
+                      onChange={(e) => setNewRoomData({...newRoomData, TenPhong: e.target.value})}
+                    />
+                  </div>
+
+                  {/* Địa chỉ */}
+                  <div className="md:col-span-2">
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Địa chỉ / Vị trí</label>
+                    <input 
+                      type="text"
+                      required
+                      placeholder="VD: Tầng 10, Block A"
+                      className="w-full px-5 py-4 bg-gray-50 border-none rounded-[20px] focus:ring-2 focus:ring-[#003580] outline-none transition-all text-sm font-medium"
+                      value={newRoomData.DiaChi}
+                      onChange={(e) => setNewRoomData({...newRoomData, DiaChi: e.target.value})}
+                    />
+                  </div>
+
+                  {/* Loại phòng & Trạng thái */}
+                  <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Loại phòng</label>
+                    <select 
+                      className="w-full px-5 py-4 bg-gray-50 border-none rounded-[20px] focus:ring-2 focus:ring-[#003580] outline-none transition-all text-sm font-medium appearance-none"
+                      value={newRoomData.LoaiPhong}
+                      onChange={(e) => setNewRoomData({...newRoomData, LoaiPhong: e.target.value})}
+                    >
+                      <option value="Standard">Standard</option>
+                      <option value="Family">Family</option>
+                      <option value="VIP">VIP</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Trạng thái ban đầu</label>
+                    <select 
+                      className="w-full px-5 py-4 bg-gray-50 border-none rounded-[20px] focus:ring-2 focus:ring-[#003580] outline-none transition-all text-sm font-medium appearance-none"
+                      value={newRoomData.TrangThai}
+                      onChange={(e) => setNewRoomData({...newRoomData, TrangThai: e.target.value})}
+                    >
+                      <option value="dang_hoat_dong">Sẵn sàng đón khách</option>
+                      <option value="dang_bao_tri">Đang bảo trì</option>
+                    </select>
+                  </div>
+
+                  {/* Giá gốc */}
+                  <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Giá gốc (VNĐ/đêm)</label>
+                    <input 
+                      type="number"
+                      required
+                      min="0"
+                      className="w-full px-5 py-4 bg-gray-50 border-none rounded-[20px] focus:ring-2 focus:ring-[#003580] outline-none transition-all text-sm font-bold"
+                      value={newRoomData.GiaGoc}
+                      onChange={(e) => setNewRoomData({...newRoomData, GiaGoc: e.target.value})}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Số giường</label>
+                    <input 
+                      type="number"
+                      required
+                      min="1"
+                      className="w-full px-5 py-4 bg-gray-50 border-none rounded-[20px] focus:ring-2 focus:ring-[#003580] outline-none transition-all text-sm font-bold"
+                      value={newRoomData.SoGiuong}
+                      onChange={(e) => setNewRoomData({...newRoomData, SoGiuong: e.target.value})}
+                    />
+                  </div>
+
+                  {/* Sức chứa */}
+                  <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Số người lớn</label>
+                    <input 
+                      type="number"
+                      required
+                      min="1"
+                      className="w-full px-5 py-4 bg-gray-50 border-none rounded-[20px] focus:ring-2 focus:ring-[#003580] outline-none transition-all text-sm font-bold"
+                      value={newRoomData.SoNguoiLon}
+                      onChange={(e) => setNewRoomData({...newRoomData, SoNguoiLon: e.target.value})}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Số trẻ em</label>
+                    <input 
+                      type="number"
+                      required
+                      min="0"
+                      className="w-full px-5 py-4 bg-gray-50 border-none rounded-[20px] focus:ring-2 focus:ring-[#003580] outline-none transition-all text-sm font-bold"
+                      value={newRoomData.SoTreEm}
+                      onChange={(e) => setNewRoomData({...newRoomData, SoTreEm: e.target.value})}
+                    />
+                  </div>
+
+                  {/* Mô tả */}
+                  <div className="md:col-span-2">
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Mô tả chi tiết</label>
+                    <textarea 
+                      rows="4"
+                      className="w-full px-5 py-4 bg-gray-50 border-none rounded-[20px] focus:ring-2 focus:ring-[#003580] outline-none transition-all text-sm font-medium resize-none"
+                      placeholder="Thông tin về tiện ích, view, dịch vụ đi kèm..."
+                      value={newRoomData.MoTa}
+                      onChange={(e) => setNewRoomData({...newRoomData, MoTa: e.target.value})}
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 pt-4">
+                  <button 
+                    type="button" 
+                    onClick={() => setShowAddModal(false)}
+                    className="flex-1 py-4 border border-gray-100 text-gray-500 rounded-[24px] font-bold hover:bg-gray-50 transition-all"
+                  >
+                    Hủy bỏ
+                  </button>
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="flex-[2] py-4 bg-[#003580] text-white rounded-[24px] font-bold hover:bg-[#002559] transition-all shadow-xl shadow-blue-900/20 disabled:opacity-50 flex items-center justify-center gap-2"
+                  >
+                    {isSubmitting ? (
+                      <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                    ) : (
+                      'Xác nhận thêm phòng'
+                    )}
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         )}

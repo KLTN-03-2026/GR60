@@ -9,6 +9,7 @@ namespace Homestay.Application.Interfaces.Repositories
 {
     public interface IRoomsRepository
     {
+        public Task AddRoom(RoomInfoRequest roomInfoRequest);
         public Task CreateRoomImg(int idRoom, string pathImg);
         public Task DeleteRoomDetailImg(int idImg);
         public Task<List<RoomResponse>> GetAllRooms();
@@ -18,5 +19,7 @@ namespace Homestay.Application.Interfaces.Repositories
         public Task<List<ImgRoomResponse>> GetRoomDetailImg(int idRoom);
         public Task<RoomResponse> GetRoomDetailManager(int idRoom);
         public Task<string> GetUrlImgById(int idImg);
+        public Task UpdateRoom(int id, RoomInfoRequest roomInfoRequest);
+        public Task UpdateRoomIsDelete(int id);
     }
 }

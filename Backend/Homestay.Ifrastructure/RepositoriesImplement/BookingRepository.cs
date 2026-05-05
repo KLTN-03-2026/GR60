@@ -22,10 +22,10 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             var listDay = new List<DayBookingReponse> ();
             string query = @"select ngay_nhan_phong,ngay_tra_phong
                             from ql_hs_dat_phong
-                            where ql_phong_id  = @IdRoom and trang_thai = 'da_hoan_thanh'";
+                            where ql_phong_id  = @IdRoom and trang_thai = 'da_hoan_thanh' and ngay_tra_phong > GETDATE()";
             using var cmd = new SqlCommand(query,_DBFactory.GetConnection,_DBFactory.GetTransaction);
             cmd.Parameters.AddWithValue("@IdRoom", idRoom);
-            var reader = await cmd.ExecuteReaderAsync();
+            using var reader = await cmd.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {
                 var day = new DayBookingReponse()
@@ -134,6 +134,11 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                 result.Add(booking);
             }
             return result;
+        }
+
+        public Task<List<DayBookingReponse>> GetDayCheckInCheckOutByRoomIdInFuture(int idRoom)
+        {
+            throw new NotImplementedException();
         }
     }
 }

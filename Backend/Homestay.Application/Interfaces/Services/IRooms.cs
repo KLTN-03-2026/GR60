@@ -20,5 +20,8 @@ namespace Homestay.Application.Interfaces.Services
         public Task <List<ImgRoomResponse>> GetRoomDetailImg(int idRoom);
         public Task<CommonResponse> AddRoomDetailImg(int idRoom, IFormFile fileAnh);
         public Task<CommonResponse> DeleteRoomDetailImg(int idImg);
+        public Task<CommonResponse> AddRoom(RoomInfoRequest roomInfoRequest);
+        public Task<CommonResponse> UpdateRoom(int id,RoomInfoRequest roomInfoRequest);
+        public Task<CommonResponse> UpdateRoomIsDelete(int id);
     }
 }

@@ -17,6 +17,7 @@ wwwroot\HomeImg\MoMo.jpg
 wwwroot\HomeImg\photo-1470770841072-f978cf4d019e.png
 wwwroot\HomeImg\photo-1566073771259-6a8506099945.jpg
 wwwroot\ImgRoom\9746af06-b68b-41b5-8d1e-ccb1c81b51ebMBBank.png
+wwwroot\ImgRoom\d1d7e605-961b-4b21-a289-78ce212c27e1photo-1566073771259-6a8506099945.jpg
 wwwroot\ImgRoom\deluxe1.Png
 wwwroot\ImgRoom\deluxe11.png
 wwwroot\ImgRoom\deluxe12.png

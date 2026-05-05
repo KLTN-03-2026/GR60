@@ -26,6 +26,23 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             _configuration = configuration;
         }
 
+        public async Task AddRoom(RoomInfoRequest createRoomRequest)
+        {
+            string query = @"insert into ql_hs_phong(ten_phong,ql_homestay_id,loai_phong,gia_goc,trang_thai,mo_ta,so_nguoi_lon,so_tre_em,so_giuong,isDelete,dia_chi)
+                            values (@ten_phong,1,@loai_phong,@gia_goc,@trang_thai,@mo_ta,@so_nguoi_lon,@so_tre_em,@so_giuong,'false',@dia_chi)";
+            using var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@ten_phong", createRoomRequest.TenPhong);
+            cmd.Parameters.AddWithValue("@loai_phong", createRoomRequest.LoaiPhong);
+            cmd.Parameters.AddWithValue("@gia_goc", createRoomRequest.GiaGoc);
+            cmd.Parameters.AddWithValue("@trang_thai", createRoomRequest.TrangThai);
+            cmd.Parameters.AddWithValue("@mo_ta", createRoomRequest.MoTa);
+            cmd.Parameters.AddWithValue("@so_nguoi_lon", createRoomRequest.SoNguoiLon);
+            cmd.Parameters.AddWithValue("@so_tre_em", createRoomRequest.SoTreEm);
+            cmd.Parameters.AddWithValue("@so_giuong", createRoomRequest.SoGiuong);
+            cmd.Parameters.AddWithValue("@dia_chi", createRoomRequest.DiaChi);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
         public async Task CreateRoomImg(int idRoom, string pathImg)
         {
             string query = @"insert into ql_hs_anh_phong (phong_id,url_anh,mo_ta)
@@ -35,7 +52,6 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             cmd.Parameters.AddWithValue("@pathImg", pathImg);
             await cmd.ExecuteNonQueryAsync();
         }
-
         public async Task DeleteRoomDetailImg(int idImg)
         {
             string query = @"delete from ql_hs_anh_phong
@@ -44,7 +60,6 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             cmd.Parameters.AddWithValue("@idImg", idImg);
             await cmd.ExecuteNonQueryAsync();
         }
-
         public async Task<List<RoomResponse>> GetAllRooms()
         {
             string query = @"with anhphong as 
@@ -74,14 +89,13 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             }
             return list;
         }
-
         public async Task<List<RoomResponse>> GetAllRoomsTypeAsync(string type)
         {
             string query =
               "WITH GiaMoiNhat AS(SELECT ql_phong_id, gia_ap_dung, ngay_ap_dung, ROW_NUMBER() OVER (PARTITION BY ql_phong_id ORDER BY ngay_ap_dung DESC) as rn FROM ql_hs_gia_ap_dung),"+
               "DanhGiaTrungBinh AS(SELECT ql_phong_id, AVG(CAST(so_sao AS FLOAT)) AS so_sao_tb FROM ql_hs_danh_gia GROUP BY ql_phong_id)," +
               "anhPhong1 as (SELECT phong_id, url_anh, ROW_NUMBER() OVER(PARTITION BY phong_id ORDER BY id ASC) as rn FROM ql_hs_anh_phong)" +
-              "SELECT P.id, ROUND(dg.so_sao_tb, 1) AS so_sao, p.ten_phong, ap.url_anh,g.gia_ap_dung,p.mo_ta,p.so_nguoi_lon,p.so_tre_em,p.trang_thai FROM ql_hs_phong p " +
+              "SELECT P.id, ROUND(dg.so_sao_tb, 1) AS so_sao, p.ten_phong, ap.url_anh,g.gia_ap_dung,p.mo_ta,p.so_nguoi_lon,p.so_tre_em,p.trang_thai,p.gia_goc FROM ql_hs_phong p " +
               "LEFT JOIN GiaMoiNhat g ON p.id = g.ql_phong_id AND g.rn = 1 " +
               "LEFT JOIN DanhGiaTrungBinh dg ON p.id = dg.ql_phong_id " +
               "LEFT JOIN anhPhong1 ap ON p.id = ap.phong_id and ap.rn = 1"+
@@ -98,7 +112,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                         TenPhong =  reader["ten_phong"] == DBNull.Value ? null:reader["ten_phong"].ToString(),
                         DSAnh = new List<string> { reader["url_anh"] == DBNull.Value ? null : Path.Combine(_configuration["localhost"],reader["url_anh"].ToString()) },
                         Mota = reader["mo_ta"] == DBNull.Value ? null : reader["mo_ta"].ToString(),
-                        Gia = reader["gia_ap_dung"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["gia_ap_dung"]),
+                        Gia = reader["gia_ap_dung"] == DBNull.Value ? Convert.ToDecimal(reader["gia_goc"]) : Convert.ToDecimal(reader["gia_ap_dung"]),
                         SoNguoiLon = reader["so_nguoi_lon"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_nguoi_lon"]),
                         SoTreEm = reader["so_tre_em"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_tre_em"]),
                         SoSao = reader["so_sao"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_sao"]),
@@ -108,7 +122,6 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                 }
                 return rooms;
         }
-
         public async Task<List<RoomResponse>> GetRoomByFindAsync(FindRoomRequest findRoomRequest)
         {
             string query = "WITH GiaMoiNhat AS(SELECT ql_phong_id, gia_ap_dung, ngay_ap_dung, ROW_NUMBER() OVER (PARTITION BY ql_phong_id ORDER BY ngay_ap_dung DESC) as rn FROM ql_hs_gia_ap_dung)," +
@@ -223,6 +236,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                                     ISNULL(g.gia_ap_dung, 0) AS gia_ap_dung,
                                     p.trang_thai,
                                     p.mo_ta,
+                                    p.gia_goc,
                                     p.dia_chi,
                                     p.so_nguoi_lon,
                                     p.so_tre_em,
@@ -265,6 +279,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                         TrangThai = reader["trang_thai"] == DBNull.Value ? null : reader["trang_thai"].ToString(),
                         Mota = reader["mo_ta"] == DBNull.Value ? null : reader["mo_ta"].ToString(),
                         Gia = reader["gia_ap_dung"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["gia_ap_dung"]),
+                        Gia_Goc = reader["gia_goc"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["gia_goc"]),
                         SoNguoiLon = reader["so_nguoi_lon"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_nguoi_lon"]),
                         SoTreEm = reader["so_tre_em"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_tre_em"]),
                         SoSao = reader["so_sao"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_sao"]),
@@ -276,7 +291,6 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                  }
             return null;
         }
-
         public async Task<List<ImgRoomResponse>> GetRoomDetailImg(int idRoom)
         {
             string query = @"select *
@@ -297,7 +311,6 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             } 
             return listImg;
         }
-
         public async Task<RoomResponse> GetRoomDetailManager(int idRoom)
         {
             string query = @"              
@@ -338,7 +351,6 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             return null;
 
         }
-
         public async Task<string> GetUrlImgById(int idImg)
         {
             string query = @"              
@@ -353,6 +365,45 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                 return reader["url_anh"] == DBNull.Value ? null : reader["url_anh"].ToString();
             }
             return null;
+        }
+
+        public async Task UpdateRoom(int id, RoomInfoRequest roomInfoRequest)
+        {
+            string query = @"update ql_hs_phong
+                             set ten_phong = @ten_phong,
+                                 loai_phong = @loai_phong,
+                                 gia_goc = @gia_goc,
+                                 trang_thai = @trang_thai,
+                                 mo_ta = @mo_ta,
+                                 so_nguoi_lon = @so_nguoi_lon,
+                                 so_tre_em = @so_tre_em,
+                                 so_giuong = @so_giuong,
+                                 dia_chi = @dia_chi
+                             where id = @id";
+            using var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@ten_phong", roomInfoRequest.TenPhong);
+            cmd.Parameters.AddWithValue("@loai_phong", roomInfoRequest.LoaiPhong);
+            cmd.Parameters.AddWithValue("@gia_goc", roomInfoRequest.GiaGoc);
+            cmd.Parameters.AddWithValue("@trang_thai", roomInfoRequest.TrangThai);
+            cmd.Parameters.AddWithValue("@mo_ta", roomInfoRequest.MoTa);
+            cmd.Parameters.AddWithValue("@so_nguoi_lon", roomInfoRequest.SoNguoiLon);
+            cmd.Parameters.AddWithValue("@so_tre_em", roomInfoRequest.SoTreEm);
+            cmd.Parameters.AddWithValue("@so_giuong", roomInfoRequest.SoGiuong);
+            cmd.Parameters.AddWithValue("@dia_chi", roomInfoRequest.DiaChi);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task UpdateRoomIsDelete(int id)
+        {
+            string query = @"
+                              update ql_hs_phong
+                              set isDelete = 'True'
+                              where id = @idRoom";
+            using var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@idRoom", id);
+            await cmd.ExecuteNonQueryAsync();
         }
     }
 }
