@@ -19,6 +19,7 @@ import AdminHomestay from './components/Admin/AdminHomestay'
 import AdminHolidays from './components/Admin/AdminHolidays'
 import AdminRoomDetail from './components/Admin/AdminRoomDetail'
 import AdminAmenities from './components/Admin/AdminAmenities'
+import AdminAIPricing from './components/Admin/AdminAIPricing'
 import Notification from './components/Common/Notification'
 
 
@@ -96,6 +97,7 @@ function App() {
           <Route path="/admin/customers" element={<AdminCustomers />} />
           <Route path="/admin/holidays" element={<AdminHolidays />} />
           <Route path="/admin/amenities" element={<AdminAmenities />} />
+          <Route path="/admin/ai" element={<AdminAIPricing />} />
           <Route path="/admin/rooms/:id" element={<AdminRoomDetail />} />
         </Routes>
 

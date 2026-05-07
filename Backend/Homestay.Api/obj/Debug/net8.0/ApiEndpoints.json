@@ -1,5 +1,83 @@
 [
   {
+    "ContainingType": "Homestay.Api.Controllers.AIPriceManagerController",
+    "Method": "GetListGiaDuDoan",
+    "RelativePath": "api/admin/AIPriceManager",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.AIPriceManagerController",
+    "Method": "CreatePriceRoomAI",
+    "RelativePath": "api/admin/AIPriceManager/{idRoom}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRoom",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "ngayDuDoanRequest",
+        "Type": "Homestay.Application.DTOS.AIPrice.NgayDuDoanRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.AIPriceManagerController",
+    "Method": "CreateGiaAPDung",
+    "RelativePath": "api/admin/AIPriceManager/{idRoom}/giaapDung",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRoom",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "createGiaApDungRequest",
+        "Type": "Homestay.Application.DTOS.AIPrice.CreateGiaApDungRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.AIPriceManagerController",
+    "Method": "DeleteGiaAPDungAndDuDoan",
+    "RelativePath": "api/admin/AIPriceManager/doangia/{idDuDoanGia}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idDuDoanGia",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.AIPriceManagerController",
+    "Method": "GetGiaApDung",
+    "RelativePath": "api/admin/AIPriceManager/giaapdung",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Homestay.Api.Controllers.AmenitiesManagerController",
     "Method": "GetListAmenities",
     "RelativePath": "api/admin/AmenitiesManager",

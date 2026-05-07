@@ -47,6 +47,9 @@ namespace Homestay.Api
             builder.Services.AddScoped<IAmenities, Amenities>();
             builder.Services.AddScoped<IAmenitiesRepository, AmenitiesRepository>();
 
+            builder.Services.AddScoped<IAIService, AIService>();
+            builder.Services.AddScoped<IAIPriceRepository, AIPriceRepository>();
+
             builder.Services.AddScoped<ResetTokenService>();
 
             builder.Services.AuthenJwtService(builder.Configuration);

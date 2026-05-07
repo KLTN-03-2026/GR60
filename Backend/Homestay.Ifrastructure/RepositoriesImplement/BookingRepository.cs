@@ -140,5 +140,27 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
         {
             throw new NotImplementedException();
         }
+
+        public async Task<BookingAIServiceResponse> GetOccupancyRateLast7Days()
+        {
+            string query = @"	SELECT
+                                COUNT(CASE
+                                    WHEN ngay_tao >= DATEADD(DAY, -7, GETDATE())
+                                    THEN 1
+                                END) AS Tong_dat_phong,
+                               (select count(*)*7 from ql_hs_phong) AS Tong_phong
+                               FROM ql_hs_dat_phong dp";
+            using var cmd = new SqlCommand(query,_DBFactory.GetConnection,_DBFactory.GetTransaction);
+            using var reader = await cmd.ExecuteReaderAsync();
+            if(await reader.ReadAsync())
+            {
+                return new BookingAIServiceResponse()
+                {
+                    Tong_phong = reader["Tong_phong"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Tong_phong"]),
+                    Tong_dat_phong = reader["Tong_dat_phong"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Tong_dat_phong"])
+                };
+            }
+            return null;
+        }
     }
 }
