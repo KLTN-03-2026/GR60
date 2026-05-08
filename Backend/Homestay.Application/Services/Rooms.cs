@@ -86,7 +86,7 @@ namespace Homestay.Application.Services
         public async Task<RoomPriceResponse> GetRoomPriceAsync(int id, RoomDetailRequest roomDetailRequest)
         {
             var room = await _unitOfWork.RoomsRepository.GetRoomDetailAsync(id);
-            var holiday = await _unitOfWork.HolidaysRepository.GetHolidayByDateAsync(roomDetailRequest.NgayNhanPhong, roomDetailRequest.NgayTraPhong);
+            var holiday = await _unitOfWork.HolidaysRepository.GetAllHoliday();
             bool checkDay = (roomDetailRequest.NgayNhanPhong.Date - DateTime.Now.Date).TotalDays >= 60;
             decimal totalPrice = 0;
             decimal totalPriceEarly = 0;

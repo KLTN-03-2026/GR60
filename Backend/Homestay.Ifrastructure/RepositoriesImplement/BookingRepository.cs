@@ -1,5 +1,6 @@
 ﻿using Homestay.Application.DTOS.Booking;
 using Homestay.Application.Interfaces.Repositories;
+using Homestay.Application.Interfaces.Services;
 using Homestay.Ifrastructure.Data;
 using Microsoft.Data.SqlClient;
 using System;
@@ -40,8 +41,8 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
         public async Task<int> CreateBooking(BookingRequest bookingRequest)
         {
             DateTime time = DateTime.Now;
-            string query = @"INSERT INTO ql_hs_dat_phong(ql_nguoi_dung_id,ql_phong_id,ngay_nhan_phong,ngay_tra_phong,so_nguoi,tong_tien,trang_thai,ngay_tao)
-                            values (@Id_user,@Id_Room,@Ngay_Nhan_Phong,@Ngay_Tra_Phong,@So_Nguoi,@TongTien,'dang_xu_ly',@ngay_tao);
+            string query = @"INSERT INTO ql_hs_dat_phong(ql_nguoi_dung_id,ql_phong_id,ngay_nhan_phong,ngay_tra_phong,so_nguoi,tong_tien,trang_thai,ngay_tao,isDelete)
+                            values (@Id_user,@Id_Room,@Ngay_Nhan_Phong,@Ngay_Tra_Phong,@So_Nguoi,@TongTien,'dang_xu_ly',@ngay_tao,'False');
                                 SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
             using var cmd = new SqlCommand(query, _DBFactory.GetConnection, _DBFactory.GetTransaction);
@@ -54,6 +55,35 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             cmd.Parameters.AddWithValue("@ngay_tao", time);
             var result = await cmd.ExecuteScalarAsync();
             return Convert.ToInt32(result);
+        }
+
+        public async Task<List<BookingManagerRessponse>> GetAllBooking()
+        {
+            var listbooking = new List<BookingManagerRessponse>();
+            string query = @"select dp.id as id_dat_phong, nd.id as idUser, nd.ho_ten,p.id as idPhong,p.ten_phong, dp.ngay_nhan_phong, dp.ngay_tra_phong, dp.so_nguoi, dp.tong_tien,dp.ngay_tao,dp.trang_thai,dp.isDelete
+                            from ql_hs_dat_phong dp
+                            left join ql_hs_nguoi_dung nd on dp.ql_nguoi_dung_id = nd.id
+                            left join ql_hs_phong p on dp.ql_phong_id = p.id";
+            using var cmd = new SqlCommand(query, _DBFactory.GetConnection, _DBFactory.GetTransaction);
+            using var reader = await cmd.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                var day = new BookingManagerRessponse()
+                {
+                    Id_Booking = reader["id_dat_phong"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id_dat_phong"]),
+                    User_Name = reader["ho_ten"] == DBNull.Value ? null : Convert.ToString(reader["ho_ten"]),
+                    Room_Name = reader["ten_phong"] == DBNull.Value ? null : Convert.ToString(reader["ten_phong"]),
+                    So_Nguoi = reader["so_nguoi"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_nguoi"]),
+                    Tong_Tien = reader["tong_tien"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["tong_tien"]),
+                    Ngay_Tao = reader["ngay_tao"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_tao"]),
+                    Ngay_Nhan_Phong = reader["ngay_nhan_phong"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_nhan_phong"]),
+                    Ngay_Tra_Phong = reader["ngay_tra_phong"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_tra_phong"]),
+                    Trang_Thai = reader["trang_thai"] == DBNull.Value ? null : Convert.ToString(reader["trang_thai"]),  
+                    IsDelete= reader["isDelete"] == DBNull.Value ? null : Convert.ToString(reader["isDelete"])
+                };
+                listbooking.Add(day);
+            }
+            return listbooking;
         }
 
         public async Task<BookingDetailByUser> GetBookingById(int idBooking)
@@ -113,7 +143,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                             from ql_hs_dat_phong dp
                             left join ql_hs_phong p on dp.ql_phong_id = p.id
                             left join AnhPhong ap on p.id = ap.phong_id and rn = 1
-                            where dp.ql_nguoi_dung_id = @idUser";
+                            where dp.ql_nguoi_dung_id = @idUser and dp.isDelete = 'False'";
             using var cmd = new SqlCommand(query,_DBFactory.GetConnection, _DBFactory.GetTransaction);
             cmd.Parameters.AddWithValue("@idUser", idUser);
             using var reader = await cmd.ExecuteReaderAsync();
@@ -161,6 +191,32 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                 };
             }
             return null;
+        }
+
+        public async Task UpdateIsDeleteBooking(int idBooking)
+        {
+            string query = @"update ql_hs_dat_phong
+                            set isDelete = 'True'
+                            where id = @idBooking";
+            using var cmd = new SqlCommand(query, _DBFactory.GetConnection, _DBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@idBooking", idBooking);
+            var result = await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task UpdateStatusBookingAndPayment(int idBooking, string trangThai)
+        {
+            string query = @"update ql_hs_dat_phong
+                            set trang_thai = @trangThai
+                            where id = @idBooking
+
+                            update ql_hs_thanh_toan
+                            set trang_thai = @trangThai
+                            where ql_dat_phong_id = @idBooking";
+
+            using var cmd = new SqlCommand(query, _DBFactory.GetConnection, _DBFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@idBooking", idBooking);
+            cmd.Parameters.AddWithValue("@trangThai", trangThai);
+            var result = await cmd.ExecuteNonQueryAsync();
         }
     }
 }

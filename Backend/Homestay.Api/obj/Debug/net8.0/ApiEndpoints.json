@@ -141,6 +141,53 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Homestay.Api.Controllers.BookingManagerController",
+    "Method": "GetAllBooking",
+    "RelativePath": "api/admin/BookingManager",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.BookingManagerController",
+    "Method": "UpdateIsDeleteBooking",
+    "RelativePath": "api/admin/BookingManager/{idBooking}/isDelete",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idBooking",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.BookingManagerController",
+    "Method": "UpdateBooking",
+    "RelativePath": "api/admin/BookingManager/{idBooking}/status",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idBooking",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "trangThai",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Homestay.Api.Controllers.HolidayManagerController",
     "Method": "GetAllHoliday",
     "RelativePath": "api/admin/HolidayManager",
@@ -285,6 +332,53 @@
       {
         "Name": "idConversation",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.PaymentManagerController",
+    "Method": "GetAllPayment",
+    "RelativePath": "api/admin/PaymentManager",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.PaymentManagerController",
+    "Method": "UpdateIsDeleteBooking",
+    "RelativePath": "api/admin/PaymentManager/{idPayment}/isDelete",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPayment",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idBooking",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Homestay.Api.Controllers.PaymentManagerController",
+    "Method": "UpdatePayment",
+    "RelativePath": "api/admin/PaymentManager/status",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Homestay.Application.DTOS.Payment.PaymentUpdateStatusRequest",
         "IsRequired": true
       }
     ],

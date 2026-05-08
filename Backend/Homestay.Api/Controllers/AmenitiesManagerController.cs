@@ -1,5 +1,6 @@
 ﻿using Homestay.Application.DTOS.Amenities;
 using Homestay.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,8 @@ namespace Homestay.Api.Controllers
 {
     [Route("api/admin/[controller]")]
     [ApiController]
+    [Authorize(Roles = "admin")]
+
     public class AmenitiesManagerController : ControllerBase
     {
         private IAmenities _amenities;

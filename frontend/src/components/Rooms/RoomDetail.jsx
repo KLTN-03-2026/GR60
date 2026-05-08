@@ -35,6 +35,7 @@ const RoomDetail = () => {
   // States cho form đánh giá mới
   const [newRating, setNewRating] = useState(5);
   const [newComment, setNewComment] = useState('');
+  const [newStatus, setNewStatus] = useState('tich_cuc');
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
   // User auth state
@@ -168,12 +169,14 @@ const RoomDetail = () => {
       const response = await apiAddReview(roomId, {
         idUser: user.id || user.Id,
         So_Sao: newRating,
-        Noi_Dung: newComment
+        Noi_Dung: newComment,
+        Trang_Thai: newStatus
       });
 
       showToast(response?.message || 'Đánh giá thành công!', 'success');
       setNewComment('');
       setNewRating(5);
+      setNewStatus('tich_cuc');
       
       // Tải lại danh sách đánh giá
       const updatedReviews = await apiGetRoomReviews(roomId);
@@ -458,6 +461,18 @@ const RoomDetail = () => {
                        </div>
                      </div>
                      <div>
+                       <label className="block text-sm font-bold text-[#7A6A63] tracking-widest uppercase mb-3">Trạng thái đánh giá</label>
+                       <select
+                         value={newStatus}
+                         onChange={(e) => setNewStatus(e.target.value)}
+                         className="w-full bg-white border border-[#E8E1D3] rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-[#364132] focus:border-transparent transition-all text-gray-700"
+                       >
+                         <option value="tich_cuc">Tích cực</option>
+                         <option value="trung_lap">Trung lập</option>
+                         <option value="tieu_cuc">Tiêu cực</option>
+                       </select>
+                     </div>
+                     <div>
                        <label className="block text-sm font-bold text-[#7A6A63] tracking-widest uppercase mb-3">Nội dung đánh giá</label>
                        <textarea
                          value={newComment}
@@ -496,15 +511,48 @@ const RoomDetail = () => {
                                             <p className="text-sm text-gray-500">{new Date(review.thoi_Gian).toLocaleDateString('vi-VN')}</p>
                                         </div>
                                     </div>
-                                    <div className="flex text-yellow-500 text-sm">
-                                        {[...Array(review.so_Sao || 5)].map((_, i) => (
-                                            <span key={i}>★</span>
-                                        ))}
+                                    <div className="flex flex-col items-end gap-1">
+                                        <div className="flex text-yellow-500 text-sm">
+                                            {[...Array(review.so_Sao || 5)].map((_, i) => (
+                                                <span key={i}>★</span>
+                                            ))}
+                                        </div>
+                                        {review.trang_Thai && (
+                                            <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${
+                                                review.trang_Thai === 'tich_cuc' ? 'bg-green-100 text-green-700' :
+                                                review.trang_Thai === 'tieu_cuc' ? 'bg-red-100 text-red-700' :
+                                                'bg-gray-100 text-gray-600'
+                                            }`}>
+                                                {review.trang_Thai === 'tich_cuc' ? 'Tích cực' : review.trang_Thai === 'tieu_cuc' ? 'Tiêu cực' : 'Trung lập'}
+                                            </span>
+                                        )}
                                     </div>
                                 </div>
-                                <p className="text-gray-600 text-base leading-relaxed line-clamp-3">
+                                <p className="text-gray-600 text-base leading-relaxed line-clamp-3 mb-4">
                                     "{review.noi_dung}"
                                 </p>
+                                {review.noi_dung_Phan_Hoi && (
+                                    <div className="bg-[#F9F7F2] p-4 rounded-xl border border-[#E8E1D3] mt-2">
+                                        <div className="flex justify-between items-center mb-2">
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-6 h-6 rounded-full bg-[#364132] text-white flex items-center justify-center text-[10px] font-bold">
+                                                    {(review.ho_Ten_Phan_Hoi || 'A').charAt(0).toUpperCase()}
+                                                </div>
+                                                <h5 className="font-bold text-gray-800 text-sm">
+                                                    {review.ho_Ten_Phan_Hoi || 'Quản trị viên'}
+                                                </h5>
+                                            </div>
+                                            {review.thoi_Gian_Phan_Hoi && (
+                                                <span className="text-xs text-gray-500">
+                                                    {new Date(review.thoi_Gian_Phan_Hoi).toLocaleDateString('vi-VN')}
+                                                </span>
+                                            )}
+                                        </div>
+                                        <p className="text-gray-600 text-sm leading-relaxed pl-8">
+                                            "{review.noi_dung_Phan_Hoi}"
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                           );
                       })}

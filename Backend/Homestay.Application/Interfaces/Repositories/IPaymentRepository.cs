@@ -11,5 +11,7 @@ namespace Homestay.Application.Interfaces.Repositories
     public interface IPaymentRepository
     {
        public Task CreatePayment(PaymentsEntities payments);
+       public Task<List<PaymentResponse>> GetAllPayment();
+       public Task UpdateIsDeletePayment(int idPayment, int idBooking);
     }
 }

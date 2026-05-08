@@ -142,20 +142,18 @@ const AdminChat = () => {
 
   const handleDeleteConversation = async () => {
     if (!activeConv) return;
-    if (!window.confirm('Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?')) return;
+    if (!window.confirm('Bạn có chắc chắn muốn xóa tất cả tin nhắn trong cuộc trò chuyện này không?')) return;
     
     try {
       await apiDeleteConversation(activeConv.id);
-      setConversations(prev => prev.filter(c => c.id !== activeConv.id));
-      setActiveConv(null);
       setMessages([]);
       window.dispatchEvent(new CustomEvent('show-notification', { 
-        detail: { message: 'Xóa tin nhắn thành công', type: 'success' } 
+        detail: { message: 'Xóa tất cả tin nhắn thành công', type: 'success' } 
       }));
     } catch (err) {
       console.error('Lỗi khi xóa:', err);
       window.dispatchEvent(new CustomEvent('show-notification', { 
-        detail: { message: 'Lỗi khi xóa cuộc trò chuyện', type: 'error' } 
+        detail: { message: 'Lỗi khi xóa tin nhắn', type: 'error' } 
       }));
     }
   };
@@ -186,14 +184,7 @@ const AdminChat = () => {
               />
             </div>
 
-            <div className="flex gap-2">
-              <button className="px-4 py-1.5 bg-[#2D3E35] text-white text-sm font-medium rounded-full shadow-sm">
-                Tất cả
-              </button>
-              <button className="px-4 py-1.5 bg-gray-100 text-gray-600 hover:bg-gray-200 text-sm font-medium rounded-full transition-colors">
-                Chưa đọc
-              </button>
-            </div>
+
           </div>
 
           <div className="flex-1 overflow-y-auto">
@@ -253,8 +244,6 @@ const AdminChat = () => {
                   <h3 className="font-bold text-[#1A251F] text-lg">{activeConv.name}</h3>
                 </div>
                 <div className="flex items-center gap-4 text-gray-400">
-                  <button className="hover:text-gray-600"><Phone size={20} /></button>
-                  <button className="hover:text-gray-600"><Video size={20} /></button>
                   <button 
                     onClick={handleDeleteConversation}
                     className="hover:text-red-500 transition-colors"
@@ -311,15 +300,7 @@ const AdminChat = () => {
           {/* Chat Input */}
           <div className="p-6 bg-transparent">
             <div className="flex items-center gap-3 bg-[#EAE6DF] rounded-full p-2 pr-2.5">
-              <button className="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-gray-800 rounded-full hover:bg-black/5 transition-colors">
-                <Plus size={20} />
-              </button>
-              <button className="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-gray-800 rounded-full hover:bg-black/5 transition-colors">
-                <ImageIcon size={20} />
-              </button>
-              <button className="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-gray-800 rounded-full hover:bg-black/5 transition-colors">
-                <Smile size={20} />
-              </button>
+
               
               <input 
                 type="text" 

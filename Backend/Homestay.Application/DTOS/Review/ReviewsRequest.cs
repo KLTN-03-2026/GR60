@@ -11,5 +11,6 @@ namespace Homestay.Application.DTOS.Review
         public int idUser { get; set; } = default!;
         public int So_Sao { get; set; } = default!;
         public string Noi_Dung { get; set; } = default!;
+        public string Trang_Thai { get; set; } = default!;
     }
 }

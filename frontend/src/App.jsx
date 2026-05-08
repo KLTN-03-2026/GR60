@@ -20,6 +20,8 @@ import AdminHolidays from './components/Admin/AdminHolidays'
 import AdminRoomDetail from './components/Admin/AdminRoomDetail'
 import AdminAmenities from './components/Admin/AdminAmenities'
 import AdminAIPricing from './components/Admin/AdminAIPricing'
+import AdminPayments from './components/Admin/AdminPayments'
+import AdminStatistics from './components/Admin/AdminStatistics'
 import Notification from './components/Common/Notification'
 
 
@@ -89,8 +91,9 @@ function App() {
           <Route path="/account" element={<Account />} />
           
           {/* Admin Routes */}
-          <Route path="/admin" element={<AdminChat />} />
+          <Route path="/admin" element={<AdminStatistics />} />
           <Route path="/admin/chat" element={<AdminChat />} />
+          <Route path="/admin/stats" element={<AdminStatistics />} />
           <Route path="/admin/rooms" element={<AdminRooms />} />
           <Route path="/admin/info" element={<AdminHomestay />} />
           <Route path="/admin/bookings" element={<AdminBookings />} />
@@ -98,6 +101,7 @@ function App() {
           <Route path="/admin/holidays" element={<AdminHolidays />} />
           <Route path="/admin/amenities" element={<AdminAmenities />} />
           <Route path="/admin/ai" element={<AdminAIPricing />} />
+          <Route path="/admin/payments" element={<AdminPayments />} />
           <Route path="/admin/rooms/:id" element={<AdminRoomDetail />} />
         </Routes>
 

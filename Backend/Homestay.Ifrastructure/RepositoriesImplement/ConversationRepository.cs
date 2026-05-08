@@ -46,9 +46,9 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
         public async Task DeleteConversation(int idConversation)
         {
             string query = @"delete from ql_hs_tin_nhan
-                            where ql_cuoc_tro_chuyen_id = @idConversation
-                            delete from ql_hs_cuoc_tro_chuyen
-                            where id = @idConversation";
+                            where ql_cuoc_tro_chuyen_id = @idConversation";
+                            //@"delete from ql_hs_cuoc_tro_chuyen
+                            //where id = @idConversation";
             var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction);
             cmd.Parameters.AddWithValue("@idConversation", idConversation);
             await cmd.ExecuteNonQueryAsync();
@@ -64,7 +64,8 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                             select ctt.id,ctt.ql_nguoi_dung_id,nd.id,nd.ho_ten,ctt.trang_thai,ctt.ngay_tao,ctt.ngay_cap_nhat,tn.noi_dung as tn_new,tn.thoi_gian,nd.anh_dai_dien
                             from ql_hs_cuoc_tro_chuyen ctt
                             left join ql_hs_nguoi_dung nd on ctt.ql_nguoi_dung_id = nd.id
-                            left join tinNhanMoiNhat tn on ctt.id = tn.ql_cuoc_tro_chuyen_id and rn =1";
+                            left join tinNhanMoiNhat tn on ctt.id = tn.ql_cuoc_tro_chuyen_id and rn =1
+                            order by tn.thoi_gian desc";
             var listConversation = new List<ConversationResponse>();
             using var cmd =  new SqlCommand(query,_dBFactory.GetConnection,_dBFactory.GetTransaction);
             using var reader = await cmd.ExecuteReaderAsync();
