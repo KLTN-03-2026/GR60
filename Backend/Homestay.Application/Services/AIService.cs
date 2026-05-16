@@ -18,10 +18,10 @@ namespace Homestay.Application.Services
     {
         private HttpClient _httpClient;
         private IUnitOfWork _unitOfWork;
-        private string _aTK;
-        private string _accountId;
-        private string _model;
-
+        private string _apiToken = "cfut_dHC4qrqk6ZTZA1RAOSrXndmF93VY2Nb9QY9gDtvN2bd33a26";
+        private string _accountId = "24995311f4248b035950fa159126cbb0";
+        private string _model = "@cf/meta/llama-3-8b-instruct";
+        //private string _model = "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b";
 
 
         public AIService(IUnitOfWork unitOfWork)
@@ -31,7 +31,7 @@ namespace Homestay.Application.Services
         public async Task<string> GetMessageAIResponse(NgayDuDoanRequest ngayDuDoanRequest, DataAIprice dataAIprice)
         {
             _httpClient = new HttpClient();
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _aTK);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiToken);
             string endpoint = $"https://api.cloudflare.com/client/v4/accounts/{_accountId}/ai/run/{_model}";
 
 
