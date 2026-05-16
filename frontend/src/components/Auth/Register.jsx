@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { User, Mail, Lock, ShieldCheck, Eye, EyeOff, ArrowRight, Moon } from 'lucide-react';
+import { User, Mail, Lock, ShieldCheck, Eye, EyeOff, ArrowRight, Moon, Phone } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { apiRegister } from '../../services/authService';
 
 const Register = () => {
   const [hoTen, setHoTen] = useState('');
   const [email, setEmail] = useState('');
+  const [soDienThoai, setSoDienThoai] = useState('');
   const [matKhau, setMatKhau] = useState('');
   const [xacNhanMatKhau, setXacNhanMatKhau] = useState('');
   const [dongY, setDongY] = useState(false);
@@ -16,10 +17,28 @@ const Register = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
+  const handleNameChange = (e) => {
+    setHoTen(e.target.value);
+  };
+
+  const handlePhoneChange = (e) => {
+    setSoDienThoai(e.target.value);
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setErrorMessage('');
     setSuccessMessage('');
+
+    if (/[0-9]/.test(hoTen) || /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(hoTen)) {
+      setErrorMessage('Họ tên không được chứa số hoặc ký tự đặc biệt.');
+      return;
+    }
+
+    if (!/^0[123456789]\d{8}$/.test(soDienThoai)) {
+      setErrorMessage('Số điện thoại không hợp lệ (phải gồm 10 chữ số và bắt đầu bằng 0)!');
+      return;
+    }
 
     if (matKhau !== xacNhanMatKhau) {
       setErrorMessage('Mật khẩu xác nhận không khớp.');
@@ -37,8 +56,9 @@ const Register = () => {
       const dataToSubmit = {
         Name: hoTen,
         Email: email,
-        MatKhau: matKhau,
-        MatKhauXacNhan: xacNhanMatKhau
+        SDT: soDienThoai,
+        Matkhau: matKhau,
+        MatkhauXacNhan: xacNhanMatKhau
       };
       
       const userData = await apiRegister(dataToSubmit);
@@ -50,6 +70,7 @@ const Register = () => {
       // Clear form
       setHoTen('');
       setEmail('');
+      setSoDienThoai('');
       setMatKhau('');
       setXacNhanMatKhau('');
 
@@ -107,7 +128,7 @@ const Register = () => {
                 type="text"
                 required
                 value={hoTen}
-                onChange={(e) => setHoTen(e.target.value)}
+                onChange={handleNameChange}
                 className="block w-full pl-12 pr-4 py-3.5 bg-white border-transparent rounded-[12px] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#BA5D42] text-[15px] font-medium placeholder-[#C9BDB7] text-[#3D312B] transition-all"
                 placeholder="Nguyễn Văn A"
               />
@@ -130,6 +151,26 @@ const Register = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="block w-full pl-12 pr-4 py-3.5 bg-white border-transparent rounded-[12px] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#BA5D42] text-[15px] font-medium placeholder-[#C9BDB7] text-[#3D312B] transition-all"
                 placeholder="example@email.com"
+              />
+            </div>
+          </div>
+
+          {/* Số điện thoại */}
+          <div className="space-y-1.5">
+            <label className="block text-[11px] font-bold text-[#6D5A50] tracking-[0.1em] uppercase ml-1">
+              Số điện thoại
+            </label>
+            <div className="relative text-[#6D5A50]">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Phone className="h-5 w-5" />
+              </div>
+              <input
+                type="tel"
+                required
+                value={soDienThoai}
+                onChange={handlePhoneChange}
+                className="block w-full pl-12 pr-4 py-3.5 bg-white border-transparent rounded-[12px] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#BA5D42] text-[15px] font-medium placeholder-[#C9BDB7] text-[#3D312B] transition-all"
+                placeholder="0912345678"
               />
             </div>
           </div>
@@ -163,6 +204,9 @@ const Register = () => {
                 )}
               </button>
             </div>
+            <p className="text-[10px] text-[#A84A2A] font-medium ml-1 italic">
+              * Ít nhất 8 ký tự có ít nhất một ký tự hoa, một ký tự thường, một ký tự số và một ký tự đặc biệt (@$!%*?&#)
+            </p>
           </div>
 
           {/* Xác nhận mật khẩu */}

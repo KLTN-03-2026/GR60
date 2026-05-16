@@ -22,6 +22,7 @@ import AdminAmenities from './components/Admin/AdminAmenities'
 import AdminAIPricing from './components/Admin/AdminAIPricing'
 import AdminPayments from './components/Admin/AdminPayments'
 import AdminStatistics from './components/Admin/AdminStatistics'
+import AdminReviews from './components/Admin/AdminReviews'
 import Notification from './components/Common/Notification'
 
 
@@ -102,6 +103,7 @@ function App() {
           <Route path="/admin/amenities" element={<AdminAmenities />} />
           <Route path="/admin/ai" element={<AdminAIPricing />} />
           <Route path="/admin/payments" element={<AdminPayments />} />
+          <Route path="/admin/reviews" element={<AdminReviews />} />
           <Route path="/admin/rooms/:id" element={<AdminRoomDetail />} />
         </Routes>
 

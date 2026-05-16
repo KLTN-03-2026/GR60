@@ -63,14 +63,16 @@ export const apiUpdatePaymentStatus = async (idBooking, status) => {
 /**
  * Xóa thanh toán (isDelete)
  * @param {number|string} idPayment 
+ * @param {number|string} idBooking
  */
-export const apiDeletePayment = async (idPayment) => {
+export const apiDeletePayment = async (idPayment, idBooking) => {
   const response = await fetch(`${API_BASE_URL}/admin/PaymentManager/${idPayment}/isDelete`, {
     method: 'PATCH',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify(Number(idBooking)),
   });
 
   if (!response.ok) {

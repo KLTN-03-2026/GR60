@@ -128,6 +128,9 @@ const ResetPassword = () => {
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                 </button>
               </div>
+              <p className="text-[10px] text-[#C4674A] font-medium ml-1 italic">
+                * Ít nhất 8 ký tự có ít nhất một ký tự hoa, một ký tự thường, một ký tự số và một ký tự đặc biệt (@$!%*?&#)
+              </p>
             </div>
 
             {/* Confirm Password */}

@@ -19,5 +19,6 @@ namespace Homestay.Api.Controllers
             var result = await _homeStay.GetHomestay();
             return Ok(result);
         }
+
     }
 }

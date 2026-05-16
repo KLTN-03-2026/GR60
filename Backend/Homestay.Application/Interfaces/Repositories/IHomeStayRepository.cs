@@ -11,6 +11,9 @@ namespace Homestay.Application.Interfaces.Repositories
     public interface IHomeStayRepository
     {
         public Task<HomeStayEntities> GetInfoHomeStay();
+        public Task UpdateAVTHomeStay(string anh);
+        Task UpdateImgMoMoHomeStay(string anhMoMo);
+        public Task UpdateImgQRHomeStay(string anhQr);
         public Task UpdateInfoHomeStay(HomeStayEntities homeStay);
     }
 }

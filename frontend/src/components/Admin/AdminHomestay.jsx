@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MainLayout from '../Layout/MainLayout';
 import AdminLayout from './AdminLayout';
-import { apiGetAdminHomeStayManager, apiUpdateAdminHomeStayManager } from '../../services/adminHomeService';
+import { apiGetAdminHomeStayManager, apiUpdateAdminHomeStayManager, apiUpdateHomeStayAvatar, apiUpdateHomeStayQR, apiUpdateHomeStayMoMo } from '../../services/adminHomeService';
 import { Save, Image as ImageIcon, MapPin, AlignLeft, Smartphone, Mail, Hash, CreditCard, Loader2 } from 'lucide-react';
 
 const AdminHomestay = () => {
@@ -83,16 +83,7 @@ const AdminHomestay = () => {
     }
   };
 
-  const urlToFile = async (url, filename) => {
-    try {
-      const res = await fetch(url);
-      const blob = await res.blob();
-      return new File([blob], filename, { type: blob.type || 'image/jpeg' });
-    } catch (e) {
-      console.error("Lỗi khi tải ảnh cũ:", e);
-      return null;
-    }
-  };
+
 
   const handleSave = async () => {
     setSaving(true);
@@ -104,28 +95,24 @@ const AdminHomestay = () => {
       fd.append('Email_Home', formData.email_Home || '');
       fd.append('Mo_Ta', formData.mo_Ta || '');
       
-      // Xử lý Ảnh chính: lấy ảnh mới hoặc tải lại ảnh cũ từ URL
-      let anhFile = imageFiles.anh;
-      if (!anhFile && previewImages.anh) {
-        anhFile = await urlToFile(previewImages.anh, 'anh_cu.jpg');
-      }
-      if (anhFile) fd.append('Anh', anhFile);
 
-      // Xử lý QR Code
-      let qrFile = imageFiles.qR_Code;
-      if (!qrFile && previewImages.qR_Code) {
-        qrFile = await urlToFile(previewImages.qR_Code, 'qr_cu.jpg');
-      }
-      if (qrFile) fd.append('QR_Code', qrFile);
-
-      // Xử lý MoMo
-      let momoFile = imageFiles.moMo;
-      if (!momoFile && previewImages.moMo) {
-        momoFile = await urlToFile(previewImages.moMo, 'momo_cu.jpg');
-      }
-      if (momoFile) fd.append('MoMo', momoFile);
 
       await apiUpdateAdminHomeStayManager(fd);
+
+      // Nếu có chọn ảnh đại diện mới thì gọi API update ảnh
+      if (imageFiles.anh) {
+        await apiUpdateHomeStayAvatar(imageFiles.anh);
+      }
+
+      // Nếu có chọn QR Code mới thì gọi API update QR Code
+      if (imageFiles.qR_Code) {
+        await apiUpdateHomeStayQR(imageFiles.qR_Code);
+      }
+
+      // Nếu có chọn MoMo mới thì gọi API update MoMo
+      if (imageFiles.moMo) {
+        await apiUpdateHomeStayMoMo(imageFiles.moMo);
+      }
       
       window.dispatchEvent(new CustomEvent('show-notification', { 
         detail: { message: 'Cập nhật thông tin Homestay thành công!', type: 'success' } 

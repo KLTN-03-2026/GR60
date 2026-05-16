@@ -108,11 +108,11 @@ const AdminPayments = () => {
     }
   };
 
-  const handleDeletePayment = async (id) => {
+  const handleDeletePayment = async (idPayment, idBooking) => {
     if (!window.confirm('Bạn có chắc chắn muốn xóa dữ liệu thanh toán này?')) return;
 
     try {
-      await apiDeletePayment(id);
+      await apiDeletePayment(idPayment, idBooking);
       showToast('Xóa thanh toán thành công!', 'success');
       fetchData();
     } catch (err) {
@@ -145,14 +145,7 @@ const AdminPayments = () => {
                 <p className="text-gray-500 font-medium">Theo dõi doanh thu, dòng tiền và lịch sử giao dịch.</p>
               </div>
               <div className="flex items-center gap-3">
-                <button className="flex items-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 rounded-xl font-bold hover:bg-gray-50 transition-all shadow-sm">
-                  <Download size={18} />
-                  Xuất báo cáo
-                </button>
-                <button className="flex items-center gap-2 px-5 py-2.5 bg-[#2D3E35] text-white rounded-xl font-bold hover:bg-[#1A251F] transition-all shadow-lg shadow-emerald-900/10 active:scale-95">
-                  <Plus size={18} />
-                  Tạo hóa đơn
-                </button>
+
               </div>
             </div>
 
@@ -349,7 +342,7 @@ const AdminPayments = () => {
                                 <Edit2 size={14} />
                               </button>
                               <button 
-                                onClick={(e) => { e.stopPropagation(); handleDeletePayment(payment.id_Payment); }}
+                                onClick={(e) => { e.stopPropagation(); handleDeletePayment(payment.id_Payment, payment.id_Booking); }}
                                 className="p-2 bg-gray-50 text-gray-400 rounded-lg hover:text-rose-600 hover:bg-rose-50 transition-all"
                                 title="Xóa thanh toán"
                               >

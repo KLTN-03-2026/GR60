@@ -28,5 +28,24 @@ namespace Homestay.Api.Controllers
             await _homeStay.UpdateInfoHomeStay(homeStayRequest);
             return Ok();
         }
+        [HttpPatch("IMG")]
+        public async Task<IActionResult> UpdateAVTHomeStay([FromForm] IFormFile  ImghomeStayRequest)
+        {
+            await _homeStay.UpdateAVTHomeStay(ImghomeStayRequest);
+            return Ok();
+        }
+        [HttpPatch("momo")]
+        public async Task<IActionResult> UpdateImgMoMoHomeStay([FromForm] IFormFile ImgmomoHomeStayRequest)
+        {
+            await _homeStay.UpdateImgMoMoHomeStay(ImgmomoHomeStayRequest);
+            return Ok();
+        }
+
+        [HttpPatch("qr")]
+        public async Task<IActionResult> UpdateImgQRHomeStay([FromForm] IFormFile ImgqrHomeStayRequest)
+        {
+            await _homeStay.UpdateImgQRHomeStay(ImgqrHomeStayRequest);
+            return Ok();
+        }
     }
 }

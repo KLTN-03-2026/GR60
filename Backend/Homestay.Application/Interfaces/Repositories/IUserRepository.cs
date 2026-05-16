@@ -13,7 +13,7 @@ namespace Homestay.Application.Interfaces.Repositories
     {
         public Task<UsersEntities?> CheckUserLoginExistsAsync(string email,string matKhau);
         public Task<bool> CheckUserRegisterExistsAsync(string email);
-        public Task AddUserAsync(RegisterRequest usersRegis);
+        public Task<int> AddUserAsync(RegisterRequest usersRegis);
         public Task<int> CheckEmailSdtUser(ForgotPassRequest forgotPassRequest);
         public Task UpdateNewPass(string userId, string newPass);
         public Task<UsersEntities> checkOldPass(string old_Pass, int id_User);

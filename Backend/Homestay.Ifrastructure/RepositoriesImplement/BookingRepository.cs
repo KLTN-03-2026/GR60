@@ -23,7 +23,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             var listDay = new List<DayBookingReponse> ();
             string query = @"select ngay_nhan_phong,ngay_tra_phong
                             from ql_hs_dat_phong
-                            where ql_phong_id  = @IdRoom and trang_thai = 'da_hoan_thanh' and ngay_tra_phong > GETDATE()";
+                            where ql_phong_id  = @IdRoom and trang_thai = 'da_hoan_thanh' and ngay_tra_phong > GETDATE() and isDelete = 'false'";
             using var cmd = new SqlCommand(query,_DBFactory.GetConnection,_DBFactory.GetTransaction);
             cmd.Parameters.AddWithValue("@IdRoom", idRoom);
             using var reader = await cmd.ExecuteReaderAsync();
@@ -41,8 +41,8 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
         public async Task<int> CreateBooking(BookingRequest bookingRequest)
         {
             DateTime time = DateTime.Now;
-            string query = @"INSERT INTO ql_hs_dat_phong(ql_nguoi_dung_id,ql_phong_id,ngay_nhan_phong,ngay_tra_phong,so_nguoi,tong_tien,trang_thai,ngay_tao,isDelete)
-                            values (@Id_user,@Id_Room,@Ngay_Nhan_Phong,@Ngay_Tra_Phong,@So_Nguoi,@TongTien,'dang_xu_ly',@ngay_tao,'False');
+            string query = @"INSERT INTO ql_hs_dat_phong(ql_nguoi_dung_id,ql_phong_id,ngay_nhan_phong,ngay_tra_phong,so_nguoi,tong_tien,trang_thai,ngay_tao,isDelete,ten_nguoi_dat,sdt_nguoi_dat)
+                            values (@Id_user,@Id_Room,@Ngay_Nhan_Phong,@Ngay_Tra_Phong,@So_Nguoi,@TongTien,'dang_xu_ly',@ngay_tao,'False',@Ten_Khach_Hang,@SDT_Nguoi_Dat);
                                 SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
             using var cmd = new SqlCommand(query, _DBFactory.GetConnection, _DBFactory.GetTransaction);
@@ -53,6 +53,8 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             cmd.Parameters.AddWithValue("@So_Nguoi", bookingRequest.So_Nguoi);
             cmd.Parameters.AddWithValue("@TongTien", bookingRequest.Tong_Tien);
             cmd.Parameters.AddWithValue("@ngay_tao", time);
+            cmd.Parameters.AddWithValue("@Ten_Khach_Hang", bookingRequest.Ten_Khach_Hang);
+            cmd.Parameters.AddWithValue("@SDT_Nguoi_Dat", bookingRequest.SDT_Nguoi_Dat);
             var result = await cmd.ExecuteScalarAsync();
             return Convert.ToInt32(result);
         }
@@ -60,7 +62,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
         public async Task<List<BookingManagerRessponse>> GetAllBooking()
         {
             var listbooking = new List<BookingManagerRessponse>();
-            string query = @"select dp.id as id_dat_phong, nd.id as idUser, nd.ho_ten,p.id as idPhong,p.ten_phong, dp.ngay_nhan_phong, dp.ngay_tra_phong, dp.so_nguoi, dp.tong_tien,dp.ngay_tao,dp.trang_thai,dp.isDelete
+            string query = @"select dp.id as id_dat_phong, nd.id as idUser, nd.ho_ten,dp.ten_nguoi_dat,dp.sdt_nguoi_dat,p.id as idPhong,p.ten_phong, dp.ngay_nhan_phong, dp.ngay_tra_phong, dp.so_nguoi, dp.tong_tien,dp.ngay_tao,dp.trang_thai,dp.isDelete
                             from ql_hs_dat_phong dp
                             left join ql_hs_nguoi_dung nd on dp.ql_nguoi_dung_id = nd.id
                             left join ql_hs_phong p on dp.ql_phong_id = p.id";
@@ -71,7 +73,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                 var day = new BookingManagerRessponse()
                 {
                     Id_Booking = reader["id_dat_phong"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id_dat_phong"]),
-                    User_Name = reader["ho_ten"] == DBNull.Value ? null : Convert.ToString(reader["ho_ten"]),
+                    User_Name = reader["ten_nguoi_dat"] == DBNull.Value ? null : Convert.ToString(reader["ten_nguoi_dat"]),
                     Room_Name = reader["ten_phong"] == DBNull.Value ? null : Convert.ToString(reader["ten_phong"]),
                     So_Nguoi = reader["so_nguoi"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_nguoi"]),
                     Tong_Tien = reader["tong_tien"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["tong_tien"]),

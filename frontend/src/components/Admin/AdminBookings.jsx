@@ -255,6 +255,7 @@ const AdminBookings = () => {
                   <table className="w-full text-left">
                     <thead className="bg-gray-50/50">
                       <tr>
+                        <th className="px-8 py-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Mã Đơn</th>
                         <th className="px-8 py-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Khách hàng</th>
                         <th className="px-8 py-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Phòng / Số khách</th>
                         <th className="px-8 py-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Thời gian lưu trú</th>
@@ -271,6 +272,11 @@ const AdminBookings = () => {
                             ? 'bg-rose-50/30' 
                             : 'hover:bg-gray-50/30'
                         }`}>
+                          <td className="px-8 py-6">
+                            <span className="text-sm font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-100">
+                              #{booking.id_Booking}
+                            </span>
+                          </td>
                           <td className="px-8 py-6">
                             <div className="flex items-center gap-3">
                               <div className="w-10 h-10 rounded-full bg-[#2D3E35] flex items-center justify-center text-xs font-bold text-white shadow-inner uppercase">

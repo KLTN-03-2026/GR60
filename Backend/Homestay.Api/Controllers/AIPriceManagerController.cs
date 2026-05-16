@@ -43,6 +43,7 @@ namespace Homestay.Api.Controllers
             var result = await _aIService.GetListGiaDuDoan();
             return Ok(result);
         }
+  //qwe?
         [HttpPost("{idRoom}/giaapDung")]
         public async Task<IActionResult> CreateGiaAPDung(int idRoom,[FromBody] CreateGiaApDungRequest createGiaApDungRequest)
         {

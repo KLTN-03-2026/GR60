@@ -20,19 +20,21 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             this.dBFactory = dBFactory;
         }
 
-        public async Task AddUserAsync(RegisterRequest usersRegis)
+        public async Task<int> AddUserAsync(RegisterRequest usersRegis)
         {
            string query = "INSERT INTO ql_hs_nguoi_dung (ho_ten, email, mat_khau, dia_chi, so_dien_thoai, anh_dai_dien, vai_tro, ngay_tao,trang_thai) " +
-                "VALUES (@Name, @Email, @Matkhau, @Diachi, @SDT, @Anhdaidien, 'user', GETDATE(),'active')";
+                "VALUES (@Name, @Email, @Matkhau, @Diachi, @SDT, @Anhdaidien, 'user', GETDATE(),'active')" +
+                "select CAST(SCOPE_IDENTITY() as int)";
             using(var cmd = new SqlCommand(query, dBFactory.GetConnection, dBFactory.GetTransaction))
             {
                 cmd.Parameters.AddWithValue("@Name", usersRegis.Name);
                 cmd.Parameters.AddWithValue("@Email", usersRegis.Email);
                 cmd.Parameters.AddWithValue("@Matkhau", usersRegis.Matkhau);
                 cmd.Parameters.AddWithValue("@Diachi", "");
-                cmd.Parameters.AddWithValue("@SDT", "");
+                cmd.Parameters.AddWithValue("@SDT", usersRegis.SDT);
                 cmd.Parameters.AddWithValue("@Anhdaidien", "");
-                await cmd.ExecuteNonQueryAsync();
+                var result = await cmd.ExecuteScalarAsync();
+                return result == null ? 0 : Convert.ToInt32(result);
             }
         }
 
@@ -166,7 +168,7 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                     Matkhau = reader["mat_khau"] == DBNull.Value ? null : Convert.ToString(reader["mat_khau"]),
                     Diachi = reader["dia_chi"] == DBNull.Value ? null : Convert.ToString(reader["dia_chi"]),
                     Anhdaidien = reader["anh_dai_dien"] == DBNull.Value ? null : Convert.ToString(reader["anh_dai_dien"]),
-                    Ngaytao = reader["ngay_sinh"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_tao"]),
+                    Ngaytao = reader["ngay_tao"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_tao"]),
                     NgaySinh = reader["ngay_sinh"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_sinh"]),
                     IsDelete = reader["trang_thai"] == DBNull.Value ? null : Convert.ToString(reader["trang_thai"]),
                 };

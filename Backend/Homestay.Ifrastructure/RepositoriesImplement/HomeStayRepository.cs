@@ -1,5 +1,6 @@
 ﻿using Homestay.Application.DTOS.HomeStay;
 using Homestay.Application.Interfaces.Repositories;
+using Homestay.Application.Services;
 using Homestay.Domain.Entities;
 using Homestay.Ifrastructure.Data;
 using Microsoft.Data.SqlClient;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Homestay.Ifrastructure.RepositoriesImplement
 {
@@ -43,20 +45,47 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             return null;
         }
 
+        public async Task UpdateAVTHomeStay(string anh)
+        {
+            string query = @"UPDATE ql_hs_homestay
+                            SET hinh_anh = @anh";
+            using var cmd = new SqlCommand(query, _dbFactory.GetConnection, _dbFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@anh", anh);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task UpdateImgMoMoHomeStay(string anhMoMo)
+        {
+            string query = @"UPDATE ql_hs_homestay
+                            SET MoMo = @anh";
+            using var cmd = new SqlCommand(query, _dbFactory.GetConnection, _dbFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@anh", anhMoMo);
+            await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task UpdateImgQRHomeStay(string anhQr)
+        {
+            string query = @"UPDATE ql_hs_homestay
+                            SET QR_Code = @qr";
+            using var cmd = new SqlCommand(query, _dbFactory.GetConnection, _dbFactory.GetTransaction);
+            cmd.Parameters.AddWithValue("@qr", anhQr);
+            await cmd.ExecuteNonQueryAsync();
+            }
+
         public async Task UpdateInfoHomeStay(HomeStayEntities homeStay)
         {
             string query = @"UPDATE ql_hs_homestay
                             SET ten_homestay = @ten_Home, mo_ta = @mo_ta, dia_chi = @dia_chi, 
-                            so_dien_thoai = @sdt, email_lien_he = @emai, hinh_anh = @hinh_anh, QR_Code = @QR, MoMo=@momo";
+                            so_dien_thoai = @sdt, email_lien_he = @emai";
             using var cmd = new SqlCommand(query, _dbFactory.GetConnection, _dbFactory.GetTransaction);
             cmd.Parameters.AddWithValue("@ten_Home", homeStay.Ten_Home);
             cmd.Parameters.AddWithValue("@mo_ta", homeStay.Mo_Ta);
             cmd.Parameters.AddWithValue("@dia_chi", homeStay.Dia_Chi);
             cmd.Parameters.AddWithValue("@sdt", homeStay.SDT);
             cmd.Parameters.AddWithValue("@emai", homeStay.Email_Home);
-            cmd.Parameters.AddWithValue("@hinh_anh", homeStay.Anh);
-            cmd.Parameters.AddWithValue("@QR", homeStay.QR_Code);
-            cmd.Parameters.AddWithValue("@momo", homeStay.MoMo);
+            //cmd.Parameters.AddWithValue("@hinh_anh", homeStay.Anh);
+            //cmd.Parameters.AddWithValue("@QR", homeStay.QR_Code);
+            //cmd.Parameters.AddWithValue("@momo", homeStay.MoMo);
             await cmd.ExecuteNonQueryAsync();
         }
     }

@@ -65,7 +65,7 @@ const AdminStatistics = () => {
         return date >= new Date(firstDay) && date <= new Date(today + 'T23:59:59');
       });
       const initialUsers = (users || []).filter(u => {
-        const date = new Date(u.ngay_Tao || u.ngayTao || u.ngay_tao);
+        const date = new Date(u.ngay_Tao || u.ngayTao || u.ngay_tao || u.ngaytao);
         return date >= new Date(firstDay) && date <= new Date(today + 'T23:59:59');
       });
 
@@ -109,7 +109,7 @@ const AdminStatistics = () => {
     });
 
     const filteredUsers = data.users.filter(u => {
-      const date = new Date(u.ngay_Tao || u.ngayTao || u.ngay_tao);
+      const date = new Date(u.ngay_Tao || u.ngayTao || u.ngay_tao || u.ngaytao);
       return date >= new Date(fromDate) && date <= new Date(toDate + 'T23:59:59');
     });
 
@@ -213,7 +213,7 @@ const AdminStatistics = () => {
   , [filteredData.payments]);
 
   const activeBookingsCount = useMemo(() => 
-    filteredData.bookings.filter(b => b.trang_Thai !== 'da_huy').length
+    filteredData.bookings.length
   , [filteredData.bookings]);
 
   const cancelledBookingsCount = useMemo(() => 
@@ -223,7 +223,7 @@ const AdminStatistics = () => {
   const newCustomersCount = useMemo(() => 
     filteredData.users.filter(u => {
         const role = (u.vai_Tro || u.vaitro || u.Vaitro || u.vai_tro || '').toLowerCase();
-        return role === 'khách' || role === 'khach';
+        return role === 'khách' || role === 'khach' || role === 'user';
     }).length
   , [filteredData.users]);
 
@@ -356,7 +356,7 @@ const AdminStatistics = () => {
               <div className="bg-white p-8 rounded-[40px] border border-gray-100 shadow-sm group hover:shadow-xl transition-all">
                 <div className="flex justify-between items-start mb-6">
                   <div className="p-4 bg-blue-50 text-blue-600 rounded-3xl"><Bed size={28} /></div>
-                  <div className="flex items-center gap-1 text-blue-500 font-bold text-[10px] bg-blue-50 px-2 py-1 rounded-full uppercase">Đã duyệt</div>
+                  <div className="flex items-center gap-1 text-blue-500 font-bold text-[10px] bg-blue-50 px-2 py-1 rounded-full uppercase">Tất cả</div>
                 </div>
                 <div>
                   <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em] mb-2">Tổng số lượt đặt</p>

@@ -18,9 +18,12 @@ namespace Homestay.Application.Services
     {
         private HttpClient _httpClient;
         private IUnitOfWork _unitOfWork;
-        private string _apiToken = "cfut_dHC4qrqk6ZTZA1RAOSrXndmF93VY2Nb9QY9gDtvN2bd33a26";
-        private string _accountId = "24995311f4248b035950fa159126cbb0";
-        private string _model = "@cf/meta/llama-3-8b-instruct";
+        private string _apiToken;
+        private string _accountId;
+        private string _model;
+
+
+
         public AIService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -42,11 +45,11 @@ namespace Homestay.Application.Services
                                 Nhiệm vụ:
                                 Dựa vào giá hiện tại, hãy dự đoán giá trong 3 ngày tới.
 
-                                Yêu cầu bắt buộc:
+                                * Yêu cầu bắt buộc:
                                 - Chỉ trả về duy nhất một JSON hợp lệ
                                 - Không thêm bất kỳ text nào ngoài JSON
                                 - Không giải thích ngoài JSON
-
+                                - Không cần lời giải thích chỉ cần file Json với định dạng bênh dưới
                                 Format:
                                 {{
                                   ""Gia_Du_Doan"": number,
@@ -58,9 +61,11 @@ namespace Homestay.Application.Services
                                 - Dao động trong khoảng ±5% đến ±15% so với giá hiện tại
                                 - Viết tự nhiên như con người (không máy móc)
                                 - Nêu rõ NGUYÊN NHÂN cụ thể (ví dụ: cuối tuần, thời tiết, lượng khách, xu hướng đặt phòng)
-                                - Có ít nhất 2 yếu tố ảnh hưởng
+                                - Có ít nhất 3 yếu tố ảnh hưởng
                                 - Không viết chung chung kiểu: ""do nhu cầu tăng""
-                                - Không dài quá 2 câu
+                                - Không dài quá 5 câu và không ngắn quá 2 câu
+                                - Tăng thêm số lượng lý do dự đoán 
+                                - Nếu tỷ lệ lấp đầy có chữ số thập phân thì chỉ lấy 3 chữ số thập phân thôi
 
                                 Dữ liệu,nếu dữ liệu nào không có thì hãy bỏ qua:
                                  + Giá phòng dự đoán đã được duyệt của các lần trước dự đoán trước: {CheckGia}
@@ -70,9 +75,9 @@ namespace Homestay.Application.Services
                                  + Số trẻ em: {dataAIprice.So_Tre_Em}
                                  + Giá Gốc của phòng:{dataAIprice.Gia_Goc}
                                  + Địa điểm: Đà nẵng
-
+                                
                                 Output MUST be valid JSON only. If not, fix it before returning.
-                                "; ;
+                                ";
             var message = new AIMessageRequest
             {
                 Message = new List<AIMessage>
@@ -118,7 +123,7 @@ namespace Homestay.Application.Services
                 PriceList = result.PriceList == null? null : result.PriceList,
                 So_Nguoi_Lon = result.So_Nguoi_Lon,
                 So_Tre_Em = result.So_Tre_Em,
-                OccupancyRateLast7Days = (Check.Tong_dat_phong / Check.Tong_phong)*100,
+                OccupancyRateLast7Days = Math.Round((Check.Tong_dat_phong / Check.Tong_phong)*100,2),
             };
 
             var dataAI = await GetMessageAIResponse(ngayDuDoanRequest, dataAIprice);

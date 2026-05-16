@@ -27,12 +27,33 @@ const UpdateProfile = ({ user, isOpen, onClose, onUpdateSuccess }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData(prev => ({ ...prev, [name]: value }));
-    if (error) setError('');
+
+    if (name === 'sdt') {
+      if (!/^\d*$/.test(value)) {
+        setError('Số điện thoại chỉ được nhập chữ số.');
+      } else {
+        setError('');
+      }
+    } else {
+      if (error) setError('');
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (/[0-9]/.test(formData.name) || /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(formData.name)) {
+      setError('Họ tên không được chứa số hoặc ký tự đặc biệt.');
+      return;
+    }
+
+    if (!/^0[123456789]\d{8}$/.test(formData.sdt)) {
+      setError('Số điện thoại không hợp lệ (phải gồm 10 chữ số và bắt đầu bằng 0)!');
+      return;
+    }
+
     setLoading(true);
     setError('');
 

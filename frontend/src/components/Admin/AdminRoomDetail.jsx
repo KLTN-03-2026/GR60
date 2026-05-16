@@ -185,6 +185,11 @@ const AdminRoomDetail = () => {
 
   const handleUpdateRoom = async (e) => {
     e.preventDefault();
+    const price = parseInt(editRoomData.GiaGoc);
+    if (isNaN(price) || price <= 0) {
+      showToast('Giá phòng phải lớn hơn 0!', 'error');
+      return;
+    }
     try {
       setIsUpdatingRoom(true);
       

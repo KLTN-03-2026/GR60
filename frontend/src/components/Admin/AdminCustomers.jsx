@@ -60,6 +60,20 @@ const AdminCustomers = () => {
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
+
+    if (/[0-9]/.test(addFormData.name) || /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(addFormData.name)) {
+      window.dispatchEvent(new CustomEvent('show-notification', { 
+        detail: { message: 'Họ tên không được chứa số hoặc ký tự đặc biệt.', type: 'error' } 
+      }));
+      return;
+    }
+
+    if (!/^0[123456789]\d{8}$/.test(addFormData.sdt)) {
+      window.dispatchEvent(new CustomEvent('show-notification', { 
+        detail: { message: 'Số điện thoại không hợp lệ (phải gồm 10 chữ số và bắt đầu bằng 0)!', type: 'error' } 
+      }));
+      return;
+    }
     try {
       setIsSubmitting(true);
       await apiAddAdminUser(addFormData);
@@ -151,12 +165,12 @@ const AdminCustomers = () => {
           {/* Header Row */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-[#1A251F]">Quản lý Người dùng</h2>
+              <h2 className="text-3xl font-bold text-[#1A251F]">Quản lý Khách hàng</h2>
               <p className="text-gray-500 text-sm mt-1">Quản lý danh tính và phân quyền truy cập hệ thống.</p>
             </div>
             <button 
               onClick={() => setIsAddModalOpen(true)}
-              className="px-6 py-3 bg-[#003580] text-white rounded-lg font-bold hover:bg-[#002252] transition-all shadow-md flex items-center gap-2"
+              className="px-6 py-3 bg-[#2E5C44] text-white rounded-lg font-bold hover:bg-[#244835] transition-all shadow-md flex items-center gap-2"
             >
               <Plus size={20} />
               Thêm người dùng mới
@@ -190,7 +204,7 @@ const AdminCustomers = () => {
           {/* Filters Bar */}
           <div className="bg-white p-4 rounded-2xl border border-gray-100 mb-6 flex flex-col sm:flex-row justify-between items-center shadow-sm gap-4">
             <div className="flex flex-1 gap-4 w-full sm:w-auto">
-              <div className="relative flex-1 max-w-md">
+              <div className="relative flex-1">
                 <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input 
                   type="text" 
@@ -211,8 +225,7 @@ const AdminCustomers = () => {
               </select>
             </div>
             <div className="flex gap-2">
-              <button className="p-2.5 text-gray-400 hover:text-gray-600 rounded-xl border border-gray-200 hover:bg-gray-50 transition-all"><Filter size={20}/></button>
-              <button className="p-2.5 text-gray-400 hover:text-gray-600 rounded-xl border border-gray-200 hover:bg-gray-50 transition-all"><Download size={20}/></button>
+
             </div>
           </div>
 
@@ -419,7 +432,7 @@ const AdminCustomers = () => {
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="flex-1 px-4 py-2.5 rounded-xl bg-[#003580] text-white font-bold hover:bg-[#002252] transition-all disabled:opacity-50"
+                    className="flex-1 px-4 py-2.5 rounded-xl bg-[#2E5C44] text-white font-bold hover:bg-[#244835] transition-all disabled:opacity-50"
                   >
                     {isSubmitting ? 'Đang xử lý...' : 'Thêm người dùng'}
                   </button>

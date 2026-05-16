@@ -31,7 +31,14 @@ namespace Homestay.Application.Services
             var fileName = await UploadImg(paymentRequest.Hinh_Anh_Minh_Chung);
             var pathImg = Path.Combine("UploadsImg", fileName);
             _unitOfWork.BeginTransaction();
-
+            var checkDayBooking = await _unitOfWork.BookingRepository.CheckDayBookingRoomAsync(bookingRequest.Id_Room);
+            for (DateTime date = bookingRequest.Ngay_Nhan_Phong; date < bookingRequest.Ngay_Tra_Phong.Date; date = date.AddDays(1))
+            {
+                if (checkDayBooking.Any(d => d.Ngay_Nhan_Phong <= date && d.Ngay_Tra_Phong > date))
+                {
+                    throw new Exception("phòng đã được đặt vào ngày " + date.ToString("dd/MM/yyyy"));
+                }
+            }
             try
             {
               var idBooking =   await _unitOfWork.BookingRepository.CreateBooking(bookingRequest);

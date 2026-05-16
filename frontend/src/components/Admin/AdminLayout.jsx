@@ -11,21 +11,23 @@ const AdminLayout = ({ children }) => {
 
   const menuItems = [
     { name: 'Thống kê', icon: <BarChart2 size={18} />, path: '/admin/stats' },
-    { name: 'Thông tin Homestay', icon: <Home size={18} />, path: '/admin/info' },
     { name: 'Phòng', icon: <BedDouble size={18} />, path: '/admin/rooms' },
-    { name: 'Đánh giá', icon: <Star size={18} />, path: '/admin/reviews' },
-    { name: 'Tiện nghi phòng', icon: <Box size={18} />, path: '/admin/amenities' },
-    { name: 'AI Dự đoán giá', icon: <Cpu size={18} />, path: '/admin/ai' },
     { name: 'Booking', icon: <CalendarDays size={18} />, path: '/admin/bookings' },
+    { name: 'Khách hàng', icon: <Users size={18} />, path: '/admin/customers' },
+    { name: 'Thông tin Homestay', icon: <Home size={18} />, path: '/admin/info' },
+    { name: 'Tiện nghi phòng', icon: <Box size={18} />, path: '/admin/amenities' },
     { name: 'Thanh toán', icon: <CreditCard size={18} />, path: '/admin/payments' },
-    { name: 'Khách Hàng', icon: <Users size={18} />, path: '/admin/customers' },
-    { name: 'Ngày lễ', icon: <Gift size={18} />, path: '/admin/holidays' },
     { name: 'Chat', icon: <MessageSquare size={18} />, path: '/admin/chat' },
+
+    { name: 'AI dự đoán giá', icon: <Cpu size={18} />, path: '/admin/ai' },
+    { name: 'Đánh giá', icon: <Star size={18} />, path: '/admin/reviews' },
+
+    { name: 'Ngày lễ', icon: <Gift size={18} />, path: '/admin/holidays' },
   ];
 
   const isActive = (path) => {
-    if (path === '/admin/chat') {
-      return location.pathname === '/admin' || location.pathname === '/admin/chat';
+    if (path === '/admin/stats') {
+      return location.pathname === '/admin' || location.pathname.startsWith('/admin/stats');
     }
     return location.pathname.startsWith(path);
   };
@@ -70,7 +72,7 @@ const AdminLayout = ({ children }) => {
               className={`flex items-center gap-4 px-5 py-3.5 rounded-full transition-all duration-300 font-medium ${
                 isActive(item.path)
                   ? 'bg-[#2D3E35] text-white shadow-lg'
-                  : 'text-gray-700 hover:bg-[#DCD8D0]'
+                  : 'text-black hover:bg-[#DCD8D0]'
               }`}
             >
               {item.icon}
@@ -94,15 +96,7 @@ const AdminLayout = ({ children }) => {
             <h2 className="text-xl font-bold text-[#1A251F]">Tổng quan</h2>
           </div>
           
-          <div className="flex items-center gap-6 text-gray-600">
-            <button className="hover:text-[#1A251F] transition-colors relative">
-              <Bell size={20} />
-              <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full border border-[#FDFBF7]"></span>
-            </button>
-            <button className="hover:text-[#1A251F] transition-colors">
-              <Settings size={20} />
-            </button>
-          </div>
+
         </header>
 
         {/* Page Content */}

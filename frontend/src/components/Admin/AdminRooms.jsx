@@ -63,6 +63,11 @@ const AdminRooms = () => {
 
   const handleAddRoom = async (e) => {
     e.preventDefault();
+    const price = parseInt(newRoomData.GiaGoc);
+    if (isNaN(price) || price <= 0) {
+      showToast('Giá phòng phải lớn hơn 0!', 'error');
+      return;
+    }
     try {
       setIsSubmitting(true);
       
@@ -177,13 +182,11 @@ const AdminRooms = () => {
             <div className="flex gap-2">
                <button 
                   onClick={() => setShowAddModal(true)}
-                  className="px-6 py-3.5 bg-[#003580] text-white rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-blue-900/20 hover:bg-[#002559] transition-all active:scale-95"
+                  className="px-6 py-3.5 bg-[#2E5C44] text-white rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-emerald-900/20 hover:bg-[#244835] transition-all active:scale-95"
                >
                   <Plus size={20} />
                   Thêm phòng mới
                </button>
-               <button className="p-3.5 bg-white border border-gray-100 rounded-2xl text-gray-400 hover:text-gray-600 transition-all shadow-sm"><Download size={20}/></button>
-               <button className="p-3.5 bg-white border border-gray-100 rounded-2xl text-gray-400 hover:text-gray-600 transition-all shadow-sm"><Filter size={20}/></button>
             </div>
           </div>
 
@@ -515,7 +518,7 @@ const AdminRooms = () => {
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="flex-[2] py-4 bg-[#003580] text-white rounded-[24px] font-bold hover:bg-[#002559] transition-all shadow-xl shadow-blue-900/20 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="flex-[2] py-4 bg-[#2E5C44] text-white rounded-[24px] font-bold hover:bg-[#244835] transition-all shadow-xl shadow-emerald-900/20 disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>

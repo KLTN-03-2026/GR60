@@ -14,8 +14,8 @@ namespace Homestay.Application.DTOS.HomeStay
         public string Dia_Chi { get; set; } = default!;
         public string SDT { get; set; } = default!;
         public string Email_Home { get; set; } = default!;
-        public IFormFile Anh { get; set; } = default!;
-        public IFormFile QR_Code { get; set; } = default!;
-        public IFormFile MoMo { get; set; } = default!;
+        //public IFormFile Anh { get; set; } = default!;
+        //public IFormFile QR_Code { get; set; } = default!;
+        //public IFormFile MoMo { get; set; } = default!;
     }
 }

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { showToast } from './Notification';
 
 const DAYS_OF_WEEK = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
 const MONTH_NAMES = [
@@ -141,6 +142,19 @@ const DateRangePicker = ({ checkIn, checkOut, onDatesChange, isOpen, onClose, on
         onDatesChange(date, null);
         setSelecting('checkOut');
       } else {
+        const isOverlap = bookedDates && bookedDates.some(range => {
+          const start = new Date(range.start); start.setHours(0,0,0,0);
+          const end = new Date(range.end); end.setHours(0,0,0,0);
+          const ci = new Date(checkIn); ci.setHours(0,0,0,0);
+          const co = new Date(date); co.setHours(0,0,0,0);
+          return ci < end && co > start;
+        });
+
+        if (isOverlap) {
+          showToast('Khoảng thời gian chọn đã có khách đặt', 'error');
+          return;
+        }
+
         onDatesChange(checkIn, date);
         setSelecting(null);
       }

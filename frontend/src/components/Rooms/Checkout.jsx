@@ -20,6 +20,7 @@ const Checkout = () => {
   const [soDienThoai, setSoDienThoai] = useState('');
   const [email, setEmail] = useState('');
   const [homeInfo, setHomeInfo] = useState(null);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     // Nếu không có thông tin phòng, quay lại trang chủ
@@ -58,10 +59,49 @@ const Checkout = () => {
     return n.toLocaleString('vi-VN');
   };
 
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    setHoTen(value);
+    if (error === 'Họ và tên không được chứa số hoặc ký tự đặc biệt.') {
+      setError('');
+    }
+  };
+
+  const handlePhoneChange = (e) => {
+    const value = e.target.value;
+    setSoDienThoai(value);
+    if (value === '' || /^0\d*$/.test(value)) {
+      setError('');
+    } else {
+      setError('Số điện thoại chỉ được nhập chữ số và phải bắt đầu bằng số 0.');
+    }
+  };
+
   const checkInDate = checkIn ? new Date(checkIn) : new Date();
   const checkOutDate = checkOut ? new Date(checkOut) : new Date();
 
   const handleConfirmPayment = async () => {
+    if (!hoTen || !hoTen.trim()) {
+      showToast('Vui lòng nhập họ và tên khách hàng!', 'error');
+      return;
+    }
+
+    if (/[0-9]/.test(hoTen) || /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(hoTen)) {
+      showToast('Họ và tên không được chứa số hoặc ký tự đặc biệt!', 'error');
+      return;
+    }
+
+    if (!soDienThoai || !soDienThoai.trim()) {
+      showToast('Vui lòng nhập số điện thoại!', 'error');
+      return;
+    }
+
+    const phoneRegex = /^0[123456789]\d{8}$/;
+    if (!phoneRegex.test(soDienThoai.trim())) {
+      showToast('Số điện thoại không hợp lệ (phải gồm 10 chữ số và bắt đầu bằng 0)!', 'error');
+      return;
+    }
+
     if (!proofFile) {
       showToast('Vui lòng tải lên minh chứng giao dịch trước khi thanh toán!', 'error');
       return;
@@ -92,6 +132,8 @@ const Checkout = () => {
 
       formData.append('Ngay_Nhan_Phong', formatDate(checkInDate));
       formData.append('Ngay_Tra_Phong', formatDate(checkOutDate));
+      formData.append('Ten_Khach_Hang', hoTen);
+      formData.append('SDT_Nguoi_Dat', soDienThoai);
       formData.append('So_Nguoi', (guests?.adults || 0) + (guests?.children || 0));
       formData.append('Tong_Tien', total);
 
@@ -113,7 +155,7 @@ const Checkout = () => {
           window.dispatchEvent(new CustomEvent('auth:unauthorized'));
           throw new Error('Phiên đăng nhập đã hết hạn');
         }
-        throw new Error('Có lỗi xảy ra khi thanh toán');
+        throw new Error('Có lỗi xảy ra khi thanh toán(khoảng thời gian chọn đã có khách đặt)');
       }
 
       showToast('Đặt phòng và gửi minh chứng thành công!', 'success');
@@ -139,13 +181,20 @@ const Checkout = () => {
             {/* Box Thông tin khách hàng */}
             <div className="bg-[#EFEBE4] p-6 md:p-8 rounded-2xl border border-gray-200/50 shadow-sm">
               <h2 className="text-2xl font-serif text-gray-900 mb-6">Thông tin khách hàng</h2>
+              
+              {error && (
+                <div className="p-4 mb-6 bg-red-50 border border-red-100 rounded-2xl text-red-600 text-sm font-medium animate-in fade-in slide-in-from-top-2">
+                  {error}
+                </div>
+              )}
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Họ và tên</label>
                   <input 
                     type="text" 
                     value={hoTen}
-                    onChange={(e) => setHoTen(e.target.value)}
+                    onChange={handleNameChange}
                     className="w-full bg-transparent border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900 transition-colors"
                   />
                 </div>
@@ -154,7 +203,7 @@ const Checkout = () => {
                   <input 
                     type="tel" 
                     value={soDienThoai}
-                    onChange={(e) => setSoDienThoai(e.target.value)}
+                    onChange={handlePhoneChange}
                     className="w-full bg-transparent border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900 transition-colors"
                   />
                 </div>
@@ -164,8 +213,8 @@ const Checkout = () => {
                 <input 
                   type="email" 
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-transparent border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900 transition-colors"
+                  readOnly
+                  className="w-full bg-transparent border border-gray-300 rounded-lg px-4 py-3 text-gray-600 outline-none cursor-not-allowed opacity-80"
                 />
               </div>
             </div>

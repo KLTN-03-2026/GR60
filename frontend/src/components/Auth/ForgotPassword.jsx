@@ -11,6 +11,16 @@ const ForgotPassword = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
+  const handlePhoneChange = (e) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setPhone(value);
+      setErrorMessage('');
+    } else {
+      setErrorMessage('Số điện thoại chỉ được nhập chữ số.');
+    }
+  };
+
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     setErrorMessage('');
@@ -116,7 +126,7 @@ const ForgotPassword = () => {
                   type="tel"
                   required
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={handlePhoneChange}
                   className="block w-full pl-[46px] pr-4 py-3.5 bg-[#EFECE8] border-none rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#BA5D42] focus:bg-white text-[15px] text-[#222222] font-medium transition-all"
                   placeholder="09xx xxx xxx"
                 />

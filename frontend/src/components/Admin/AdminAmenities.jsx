@@ -203,13 +203,7 @@ const AdminAmenities = () => {
                   className="w-full pl-14 pr-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-emerald-500/20 transition-all font-medium text-gray-700"
                 />
               </div>
-              <div className="flex items-center gap-3 px-4 py-2 bg-gray-50 rounded-2xl border border-gray-100">
-                <span className="text-sm font-bold text-gray-400">Sắp xếp:</span>
-                <select className="bg-transparent border-none focus:ring-0 font-bold text-gray-700 text-sm">
-                  <option>Mới nhất</option>
-                  <option>Tên A-Z</option>
-                </select>
-              </div>
+
             </div>
 
             {/* Content Table */}

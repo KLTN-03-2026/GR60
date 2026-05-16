@@ -66,7 +66,7 @@ const Login = () => {
           {/* Titles */}
           <div className="text-center mb-8">
             <h2 className="text-[26px] font-bold text-[#1E1E1E] mb-2 tracking-tight">
-              Chào mừng quay trở lại
+              Chào mừng bạn đến với 60 HOMES
             </h2>
             <p className="text-[#555555] text-[15px] leading-relaxed">
               Nhập thông tin của bạn để kết nối lại với những nơi lưu trú yêu thích trên toàn thế giới.
@@ -126,8 +126,8 @@ const Login = () => {
                   required
                   value={matKhau}
                   onChange={(e) => setMatKhau(e.target.value)}
-                  className="block w-full pl-[46px] pr-12 py-3.5 bg-[#EFECE8] border-none rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#BA5D42] focus:bg-white text-[15px] text-[#222222] font-medium transition-all tracking-[0.2em]"
-                  placeholder="••••••••"
+                  className="block w-full pl-[46px] pr-12 py-3.5 bg-[#EFECE8] border-none rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#BA5D42] focus:bg-white text-[15px] text-[#222222] font-medium transition-all tracking-[0.2em] placeholder:tracking-normal"
+                  placeholder="Mật khẩu mới (8+ ký tự, A-Z, a-z, 0-9, @#...)"
                 />
                 <button
                   type="button"
@@ -141,6 +141,9 @@ const Login = () => {
                   )}
                 </button>
               </div>
+              <p className="text-[12px] text-gray-400 italic mt-1.5 leading-tight">
+                * Ít nhất 8 ký tự có ít nhất một ký tự hoa, một ký tự thường, một ký tự số và một ký tự đặc biệt (@$!%*?&#)
+              </p>
             </div>
 
             {/* Submit Button */}

@@ -106,7 +106,25 @@ namespace Homestay.Application.Services
             unitOfWork.BeginTransaction();
             try
             {
-                await unitOfWork.UserRepository.AddUserAsync(registerRequest);
+                var addUser = await unitOfWork.UserRepository.AddUserAsync(registerRequest);
+                if(addUser == 0)
+                {
+                    unitOfWork.Rollback();
+                    return new RegisterResponse
+                    {
+                        StatusCode = 500,
+                        Message = "Đăng ký thất bại"
+                    };
+                }   
+                var createConver = await unitOfWork.conversationRepository.CreateConversation(addUser);
+                if(createConver == 0) { 
+                    unitOfWork.Rollback();
+                    return new RegisterResponse
+                    {
+                        StatusCode = 500,
+                        Message = "Đăng ký thất bại"
+                    };
+                }   
                 unitOfWork.Commit();
                 return new RegisterResponse
                 {

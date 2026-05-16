@@ -222,7 +222,7 @@ const AdminHolidays = () => {
             </div>
             <button 
               onClick={handleAddHoliday}
-              className="px-5 py-2.5 bg-[#1546A0] text-white rounded-lg font-semibold hover:bg-blue-800 transition-colors shadow-sm flex items-center gap-2 h-fit text-sm"
+              className="px-5 py-2.5 bg-[#2E5C44] text-white rounded-lg font-semibold hover:bg-[#244835] transition-colors shadow-sm flex items-center gap-2 h-fit text-sm"
             >
               <Plus size={18} />
               Thêm ngày lễ mới
@@ -471,7 +471,7 @@ const AdminHolidays = () => {
                   <button 
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-5 py-2.5 bg-[#2D3E35] text-white rounded-lg font-medium hover:bg-[#1A251F] transition-colors shadow-md flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="px-5 py-2.5 bg-[#2E5C44] text-white rounded-lg font-medium hover:bg-[#244835] transition-colors shadow-md flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <><Loader2 size={18} className="animate-spin" /> Đang lưu...</>
@@ -558,7 +558,7 @@ const AdminHolidays = () => {
                   <button 
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-5 py-2.5 bg-[#1546A0] text-white rounded-lg font-medium hover:bg-blue-800 transition-colors shadow-md flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="px-5 py-2.5 bg-[#2E5C44] text-white rounded-lg font-medium hover:bg-[#244835] transition-colors shadow-md flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <><Loader2 size={18} className="animate-spin" /> Đang lưu...</>

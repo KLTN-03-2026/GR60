@@ -12,6 +12,8 @@ namespace Homestay.Application.DTOS.Booking
         public int Id_Room { get; set; } = default!;
         public DateTime Ngay_Nhan_Phong {  get; set; } = default!;
         public DateTime Ngay_Tra_Phong { get;set; } = default!;
+        public string Ten_Khach_Hang { get; set; } = default!;
+        public string SDT_Nguoi_Dat { get; set; } = default!;
         public int So_Nguoi { get; set; } = default!;
         public decimal Tong_Tien { get; set; } = default!;
     }

@@ -127,31 +127,31 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
             string query = "WITH GiaMoiNhat AS(SELECT ql_phong_id, gia_ap_dung, ngay_ap_dung, ROW_NUMBER() OVER (PARTITION BY ql_phong_id ORDER BY ngay_ap_dung DESC) as rn FROM ql_hs_gia_ap_dung)," +
                             "DanhGiaTrungBinh AS(SELECT ql_phong_id, AVG(CAST(so_sao AS FLOAT)) AS so_sao_tb FROM ql_hs_danh_gia GROUP BY ql_phong_id)," +
                             "anhPhong1 as (SELECT phong_id, url_anh, ROW_NUMBER() OVER(PARTITION BY phong_id ORDER BY id ASC) as rn FROM ql_hs_anh_phong)" +
-                            "SELECT   P.id, ROUND(DG.so_sao_tb, 1) AS so_sao,P.ten_phong, ap.url_anh, GAD.gia_ap_dung,P.mo_ta,P.so_nguoi_lon,P.so_tre_em,P.dia_chi" +
+                            "SELECT   P.id, ROUND(DG.so_sao_tb, 1) AS so_sao,P.ten_phong, ap.url_anh, case when GAD.gia_ap_dung >0 then GAD.gia_ap_dung else p.gia_goc end as gia_ap_dung1 ,P.mo_ta,P.so_nguoi_lon,P.so_tre_em,P.dia_chi, p.gia_goc" +
                             " FROM ql_hs_phong P" +
                             " left join DanhGiaTrungBinh DG on p.id = DG .ql_phong_id" +
                             " left join GiaMoiNhat GAD on p.id = GAD .ql_phong_id and  GAD.rn = 1" +
                             " left join anhPhong1 AP on p.id = AP.phong_id and  AP.rn = 1 "+
-                            "where so_nguoi_lon >=0";
+                            "where 1 = 1";
             if (!string.IsNullOrEmpty(findRoomRequest.DiaChi))
             {
-                query += "and P.dia_chi COLLATE SQL_Latin1_General_CP1_CI_AI LIKE  @DiaChi ";
+                query += " and P.dia_chi COLLATE SQL_Latin1_General_CP1_CI_AI LIKE  @DiaChi ";
             } if(findRoomRequest.MucGiaMin > 0)
             {
-                query += "and @GiaMin<= GAD.gia_ap_dung ";
+                query += " and @GiaMin<= gia_ap_dung1 ";
             } if(findRoomRequest.MucGiaMax > 0)
             {
-                query += "and GAD.gia_ap_dung <= @GiaMax ";
+                query += " and gia_ap_dung1 <= @GiaMax ";
             } if(findRoomRequest.SoSao > 0)
             {
-                query += "and DG.so_sao_tb >= @SoSao ";
+                query += " and DG.so_sao_tb >= @SoSao ";
             }  if(findRoomRequest.SoNguoiLon > 0)
             {
-                query += "and P.so_nguoi_lon >= @SoNguoiLon ";
+                query += " and P.so_nguoi_lon >= @SoNguoiLon ";
             }
             if (findRoomRequest.SoTreEm > 0)
             {
-                query += "and P.so_tre_em >= @SoTreEm ";
+                query += " and P.so_tre_em >= @SoTreEm ";
             }
             using var cmd = new SqlCommand(query, _dBFactory.GetConnection, _dBFactory.GetTransaction);
             if (!string.IsNullOrEmpty(findRoomRequest.DiaChi))
@@ -185,9 +185,9 @@ namespace Homestay.Ifrastructure.RepositoriesImplement
                 {
                     Id = reader["id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id"]),
                     TenPhong = reader["ten_phong"] == DBNull.Value ? null : reader["ten_phong"].ToString(),
-                    DSAnh = new List<string> { reader["url_anh"] == DBNull.Value ? null : reader["url_anh"].ToString() },
+                    DSAnh = new List<string> { reader["url_anh"] == DBNull.Value ? null : Path.Combine(_configuration["localhost"], reader["url_anh"].ToString()) },
                     Mota = reader["mo_ta"] == DBNull.Value ? null : reader["mo_ta"].ToString(),
-                    Gia = reader["gia_ap_dung"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["gia_ap_dung"]),
+                    Gia = reader["gia_ap_dung1"] == DBNull.Value ? Convert.ToDecimal(reader["gia_goc"]) : Convert.ToDecimal(reader["gia_ap_dung1"]),
                     SoNguoiLon = reader["so_nguoi_lon"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_nguoi_lon"]),
                     SoTreEm = reader["so_tre_em"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_tre_em"]),
                     SoSao = reader["so_sao"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_sao"])

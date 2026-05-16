@@ -3,12 +3,14 @@ using Homestay.Application.Interfaces;
 using Homestay.Application.Interfaces.Services;
 using Homestay.Application.Static;
 using Homestay.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Homestay.Application.Services
 {
@@ -38,34 +40,109 @@ namespace Homestay.Application.Services
             };
         }
 
-        public async Task UpdateInfoHomeStay(HomeStayRequest homeStayRequest)
+        public async Task UpdateAVTHomeStay(IFormFile imghomeStayRequest)
         {
             var ListAnh = await _unitOfWork.homeStayRepository.GetInfoHomeStay();
-            var nameAnh = await  CLassStatic.UploadImg(homeStayRequest.Anh, "HomeImg");
-            var nameQr_code = await CLassStatic.UploadImg(homeStayRequest.QR_Code, "HomeImg");
-            var nameMOMO = await CLassStatic.UploadImg(homeStayRequest.MoMo, "HomeImg");
+            var nameAnh = await CLassStatic.UploadImg(imghomeStayRequest, "HomeImg");
             var anh = Path.Combine("HomeImg", nameAnh);
-            var anhQr = Path.Combine("HomeImg", nameQr_code);
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                await _unitOfWork.homeStayRepository.UpdateAVTHomeStay(anh);
+                _unitOfWork.Commit();
+                CLassStatic.DeleteFileImg(ListAnh.Anh, "HomeImg");
+                //CLassStatic.DeleteFileImg(ListAnh.QR_Code, "HomeImg");
+                //CLassStatic.DeleteFileImg(ListAnh.MoMo, "HomeImg");
+            }
+            catch
+            {   
+                _unitOfWork.Rollback();
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+
+        }
+
+        public async Task UpdateImgMoMoHomeStay(IFormFile imgmomoHomeStayRequest)
+        {
+            var ListAnh = await _unitOfWork.homeStayRepository.GetInfoHomeStay();
+            var nameMOMO = await CLassStatic.UploadImg(imgmomoHomeStayRequest, "HomeImg");
             var anhMoMo = Path.Combine("HomeImg", nameMOMO);
+
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                await _unitOfWork.homeStayRepository.UpdateImgMoMoHomeStay(anhMoMo);
+                _unitOfWork.Commit();
+                //CLassStatic.DeleteFileImg(ListAnh.Anh, "HomeImg");
+                //CLassStatic.DeleteFileImg(ListAnh.QR_Code, "HomeImg");
+                CLassStatic.DeleteFileImg(ListAnh.MoMo, "HomeImg");
+            }
+            catch
+            {
+                _unitOfWork.Rollback();
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+        }
+
+        public async Task UpdateImgQRHomeStay(IFormFile imgqrHomeStayRequest)
+        {
+            var ListAnh = await _unitOfWork.homeStayRepository.GetInfoHomeStay();
+            var nameQr_code = await CLassStatic.UploadImg(imgqrHomeStayRequest, "HomeImg");
+            var anhQr = Path.Combine("HomeImg", nameQr_code);
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                await _unitOfWork.homeStayRepository.UpdateImgQRHomeStay(anhQr);
+                _unitOfWork.Commit();
+                //CLassStatic.DeleteFileImg(ListAnh.Anh, "HomeImg");
+                CLassStatic.DeleteFileImg(ListAnh.QR_Code, "HomeImg");
+                //CLassStatic.DeleteFileImg(ListAnh.MoMo, "HomeImg");
+            }
+            catch
+            {
+                _unitOfWork.Rollback();
+            }
+            finally
+            {
+                _unitOfWork.Dispose();
+            }
+
+        }
+
+        public async Task UpdateInfoHomeStay(HomeStayRequest homeStayRequest)
+        {
+            //var ListAnh = await _unitOfWork.homeStayRepository.GetInfoHomeStay();
+            //var nameAnh = await  CLassStatic.UploadImg(homeStayRequest.Anh, "HomeImg");
+            //var nameQr_code = await CLassStatic.UploadImg(homeStayRequest.QR_Code, "HomeImg");
+            //var nameMOMO = await CLassStatic.UploadImg(homeStayRequest.MoMo, "HomeImg");
+            //var anh = Path.Combine("HomeImg", nameAnh);
+            //var anhQr = Path.Combine("HomeImg", nameQr_code);
+            //var anhMoMo = Path.Combine("HomeImg", nameMOMO);
             var homeStay = new HomeStayEntities()
             {
-                Anh = anh,
+                //Anh = anh,
                 Dia_Chi = homeStayRequest.Dia_Chi,
                 Email_Home = homeStayRequest.Email_Home,
                 Ten_Home = homeStayRequest.Ten_Home,
                 Mo_Ta = homeStayRequest.Mo_Ta,
                 SDT = homeStayRequest.SDT,
-                QR_Code = anhQr,
-                MoMo = anhMoMo
+                //QR_Code = anhQr,
+                //MoMo = anhMoMo
             };
             _unitOfWork.BeginTransaction();
             try
             {
                 await _unitOfWork.homeStayRepository.UpdateInfoHomeStay(homeStay);
                 _unitOfWork.Commit();
-                CLassStatic.DeleteFileImg(ListAnh.Anh, "HomeImg");
-                CLassStatic.DeleteFileImg(ListAnh.QR_Code, "HomeImg");
-                CLassStatic.DeleteFileImg(ListAnh.MoMo, "HomeImg");
+                //CLassStatic.DeleteFileImg(ListAnh.Anh, "HomeImg");
+                //CLassStatic.DeleteFileImg(ListAnh.QR_Code, "HomeImg");
+                //CLassStatic.DeleteFileImg(ListAnh.MoMo, "HomeImg");
             }
             catch
             {
